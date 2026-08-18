@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@700;900&family=Assistant:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;box-sizing:border-box}
+  html,body{overflow:hidden}
+  body{margin:0;background:#14201D;font-family:'Assistant',Arial,sans-serif}
+  /* מסגרת סגורה עם overflow:hidden — כך אלמנט הזוהר לא מרחיב את פריסת ה-RTL */
+  .card{width:1200px;height:630px;background:#14201D;color:#fff;position:relative;overflow:hidden}
+  .glow{position:absolute;width:820px;height:820px;border-radius:50%;
+        background:radial-gradient(circle,rgba(13,107,84,.55) 0%,rgba(13,107,84,0) 68%);
+        top:-300px;right:-180px}
+  .pad{position:relative;padding:64px 70px;height:100%;display:flex;flex-direction:column;justify-content:space-between}
+  .top{display:flex;align-items:center;gap:14px}
+  .mark{width:56px;height:56px;border-radius:14px;background:#0D6B54;display:grid;place-items:center;
+        font-family:'Frank Ruhl Libre',serif;font-weight:900;font-size:31px}
+  .name{font-family:'Frank Ruhl Libre',serif;font-weight:900;font-size:42px}
+  h1{font-family:'Frank Ruhl Libre',serif;font-weight:900;font-size:76px;line-height:1.12;letter-spacing:-1px;max-width:19ch}
+  .sub{color:#8FD9BE;font-size:29px;font-weight:700;margin-top:22px}
+  .strip{display:flex;gap:14px;flex-wrap:wrap}
+  .chip{background:rgba(255,255,255,.09);border:1px solid rgba(143,217,190,.35);
+        border-radius:999px;padding:13px 26px;font-size:23px;font-weight:700;color:#E7F3EF}
+  .chip b{color:#8FD9BE}
+</style>
+</head>
+<body>
+ <div class="card">
+  <div class="glow"></div>
+  <div class="pad">
+    <div class="top"><div class="mark">מ</div><div class="name">המוזיל</div></div>
+    <div>
+      <h1>עסק אחד לא מזיז ספק.<br>מאה עסקים מזיזים שוק.</h1>
+      <div class="sub">מיזם חברתי-עסקי שמייצר כוח קנייה קבוצתי</div>
+    </div>
+    <div class="strip">
+      <div class="chip">ללא דמי הצטרפות</div>
+      <div class="chip">ללא התחייבות</div>
+      <div class="chip"><b>90%</b> מהחיסכון נשאר אצלכם</div>
+    </div>
+  </div>
+ </div>
+</body>
+</html>
