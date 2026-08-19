@@ -284,6 +284,13 @@
   .stack-row input:focus{outline:none; border-color:var(--green); background:#fff}
   .stack-row .pct{font-weight:700; color:var(--muted); font-size:15px}
   .stack-row .mo,.stack-row .yr{font-family:'Frank Ruhl Libre',serif; font-weight:900; color:var(--green-deep); font-size:19px}
+  /* שורת ענף — לא רלוונטית לכל עסק, לכן מסומנת ויזואלית */
+  .stack-row.branch-row{background:var(--green-soft)}
+  .branch-tag{
+    display:inline-block; background:var(--green); color:#fff; border-radius:999px;
+    padding:2px 10px; font-size:12px; font-weight:700; margin-left:8px; vertical-align:middle;
+    font-family:'Assistant',sans-serif;
+  }
   .stack-total{
     display:grid; grid-template-columns:1.5fr 1.1fr .8fr .9fr .9fr; gap:12px;
     align-items:center; padding:20px 22px; background:var(--green); color:#fff;
@@ -373,7 +380,7 @@
 
 <!-- ==================== הירו ==================== -->
 <section class="wrap hero">
-  <div class="badge">● הקבוצה הראשונה נפתחת עכשיו — עמלות סליקה</div>
+  <div class="badge">● הקבוצה נבנית עכשיו — ככל שנהיה יותר, המחיר טוב יותר</div>
   <h1>עסק אחד לא מזיז ספק.<br>מאה עסקים מזיזים שוק.</h1>
   <div class="sub">מיזם חברתי-עסקי שמייצר כוח קנייה קבוצתי</div>
   <p class="lead">
@@ -454,22 +461,22 @@
       <div class="step">
         <div class="n">1</div>
         <h3>נרשמים</h3>
-        <p>שתי דקות. שם העסק, מחזור מוערך והעמלה שאתם משלמים היום. בלי מסמכים ובלי התחייבות.</p>
+        <p>שתי דקות: שם העסק ופרטי קשר. זה כל מה שצריך עכשיו. בלי מסמכים ובלי התחייבות.</p>
       </div>
       <div class="step">
         <div class="n">2</div>
-        <h3>אנחנו סופרים</h3>
-        <p>ככל שמצטרפים יותר עסקים, כך גדל המחזור המשותף שאנחנו מביאים לשולחן — וגם הכוח.</p>
+        <h3>מוסיפים ספקים <span style="font-weight:400;color:var(--muted)">(לא חובה)</span></h3>
+        <p>מי שרוצה מזין את הספקים שהוא לא מתנגד להחליף, אם יקבל מחיר טוב יותר. אפשר גם לדלג ולהוסיף בהמשך.</p>
       </div>
       <div class="step">
         <div class="n">3</div>
-        <h3>יוצאים למכרז</h3>
-        <p>חברות הסליקה מקבלות מספר אחד: כמה עסקים ואיזה מחזור. הן מתחרות ביניהן — עליכם.</p>
+        <h3>אנחנו מקבצים</h3>
+        <p>המערכת מאחדת ומפצלת את העסקים לקטגוריות — קודם מה שכולם קונים, ואז לפי הענף של כל עסק — כדי שכל אחד ייכנס לקבוצה שמביאה לו את המחיר הטוב ביותר.</p>
       </div>
       <div class="step">
         <div class="n">4</div>
-        <h3>אתם מחליטים</h3>
-        <p>כל עסק מקבל את ההצעה הזוכה ואת המספרים שלו, ובוחר בעצמו. אין קבוצה שמחליטה בשבילכם.</p>
+        <h3>יוצאים למכרזים</h3>
+        <p>כשיש מספיק עסקים בקטגוריה, הספקים מתחרים עליה. כל עסק מקבל את ההצעה שמתאימה לו — ומחליט בעצמו. אין קבוצה שמחליטה בשבילכם.</p>
       </div>
     </div>
   </div>
@@ -565,11 +572,12 @@
 <!-- ==================== שלוש השכבות + חיסכון מצטבר ==================== -->
 <section class="section" id="more">
   <div class="wrap">
-    <div class="eyebrow">זו רק ההתחלה</div>
-    <h2>הסליקה היא הקבוצה הראשונה — לא היחידה</h2>
+    <div class="eyebrow">קבוצה אחת, הרבה קטגוריות</div>
+    <h2>נרשמים פעם אחת — ומקבלים הצעות על כל ההוצאות</h2>
     <p class="lead" style="margin-top:16px">
-      ברגע שאתם בפנים, כוח הקנייה שלנו עובד מולכם על <b>כל</b> ההוצאות החוזרות שלכם,
-      לא רק על עמלת הסליקה. ככל שנצטרף לעוד קבוצות — החיסכון מצטבר.
+      אין קבוצה ראשונה ושנייה. יש <b>קבוצה אחת</b>, ובתוכה קטגוריות.
+      קודם כל יוצאים למכרז על מה שכל עסק בישראל משלם — ואחר כך על מה שמתאים
+      דווקא לענף שלכם. אותה הצטרפות אחת, עוד ועוד הוצאות שיורדות.
     </p>
 
     <div class="tiers">
@@ -577,7 +585,7 @@
         <div class="tier-head"><div class="tier-n">1</div><h3>כל עסק בישראל</h3></div>
         <p class="who">אין עסק שלא משלם את אלה — כאן הקבוצה הכי גדולה והכוח הכי חזק</p>
         <div class="chips">
-          <span class="chip live">✓ עמלות סליקה — פתוח</span>
+          <span class="chip">עמלות סליקה</span>
           <span class="chip">חשמל לעסק</span>
           <span class="chip">ביטוח עסק</span>
           <span class="chip">הנהלת חשבונות</span>
@@ -622,6 +630,7 @@
     <h3 style="font-size:26px; margin:52px 0 8px">וכשמחברים את הכל — זה מצטבר</h3>
     <p class="lead" style="margin-bottom:0">
       החליפו את המספרים במה שאתם באמת משלמים, ותראו את הסכום שלכם.
+      השורה האחרונה היא דוגמה ענפית — מי שלא קונה חומרי גלם פשוט יאפס אותה.
     </p>
 
     <div class="stack">
@@ -671,6 +680,17 @@
         <div class="pct">15%</div>
         <div class="mo" id="m_tel"></div>
         <div class="yr" id="y_tel"></div>
+      </div>
+
+      <div class="stack-row branch-row">
+        <div class="cat">
+          <span class="branch-tag">לפי הענף</span>
+          חומרי גלם<small>לדוגמה מסעדה או בית קפה — רכש חודשי</small>
+        </div>
+        <div class="inp"><input id="s_raw" type="number" min="0" step="500" value="25000" inputmode="numeric"></div>
+        <div class="pct">6%</div>
+        <div class="mo" id="m_raw"></div>
+        <div class="yr" id="y_raw"></div>
       </div>
 
       <div class="stack-total">
@@ -743,8 +763,8 @@
         <p>לספקים עוברים מספרים מצרפיים בלבד: כמה עסקים ואיזה מחזור כולל. פרטי העסק שלכם לא נמסרים לאף ספק בלי אישור מפורש מכם.</p>
       </details>
       <details>
-        <summary>ואחרי הסליקה?</summary>
-        <p>סליקה היא הקטגוריה הראשונה כי היא נוגעת בכל עסק. אחריה: חשמל, שליחויות, ביטוח עסקי, הנהלת חשבונות ואשראי. אותה קבוצה — עוד ועוד הוצאות שיורדות.</p>
+        <summary>אני נרשם רק לסליקה?</summary>
+        <p>לא. אין קבוצה ראשונה ושנייה — יש קבוצה אחת, ובתוכה קטגוריות. הרשמה אחת מכניסה אתכם לכולן: קודם למכרזים על מה שכל עסק משלם (סליקה, חשמל, ביטוח, הנהלת חשבונות, תקשורת), ואחר כך למכרזים שמתאימים לענף שלכם. לא צריך להירשם שוב בכל פעם.</p>
       </details>
     </div>
   </div>
@@ -754,11 +774,12 @@
 <section class="section" id="join" style="border-top:0">
   <div class="wrap">
     <div class="join">
-      <div class="eyebrow" style="color:#BEE7D8">הצטרפות לקבוצה הראשונה</div>
+      <div class="eyebrow" style="color:#BEE7D8">הצטרפות לקבוצה</div>
       <h2>ההצטרפות לוקחת שתי דקות ולא עולה כלום</h2>
       <p class="lead">
-        ככל שנהיה יותר, המחיר שנשיג יהיה טוב יותר — לכולם. תשאירו פרטים
-        ונעדכן אתכם ברגע שהמכרז יוצא לדרך.
+        אנחנו בונים עכשיו את הקבוצה, וככל שנהיה יותר — המחיר שנשיג טוב יותר, לכולם.
+        בשלב הזה כל מה שצריך זה להשאיר פרטים. את רשימת הספקים תוסיפו אחר כך,
+        רק אם תרצו, וכשנגיע למספר עסקים שמאפשר לצאת למכרזים — נעדכן אתכם.
       </p>
       <form class="form" id="joinForm">
         <input id="f_name"  type="text" placeholder="שם מלא" required>
@@ -845,6 +866,7 @@ const STACK = [
   { id: 'ins',   pct: 0.12 },
   { id: 'acc',   pct: 0.10 },
   { id: 'tel',   pct: 0.15 },
+  { id: 'raw',   pct: 0.06 },   // חומרי גלם — ענפי, לא רלוונטי לכל עסק
 ];
 
 function recalcStack() {
