@@ -336,6 +336,11 @@
   .form input::placeholder{color:rgba(255,255,255,.68)}
   .form input:focus{outline:none; border-color:#fff; background:rgba(255,255,255,.17)}
   .form button{width:100%; background:#fff; color:var(--green-deep); border:0}
+  .form-sep{
+    background:rgba(255,255,255,.1); border:1px dashed rgba(255,255,255,.4);
+    border-radius:11px; padding:16px 18px; font-size:15.5px; color:#D6EDE4; line-height:1.6;
+  }
+  .form-sep b{display:block; color:#fff; font-size:17px; margin-bottom:5px}
   .form-note{font-size:14.5px; color:#BEDDD2; margin-top:16px}
   .thanks{display:none; background:rgba(255,255,255,.13); border:2px solid rgba(255,255,255,.4); border-radius:12px; padding:26px; margin-top:26px; font-size:19px; font-weight:600}
 
@@ -802,6 +807,12 @@
         <input id="f_biz"   type="text" placeholder="שם העסק" required>
         <input id="f_phone" type="tel"  placeholder="טלפון" required>
         <input id="f_mail"  type="email" placeholder="אימייל">
+        <div class="full form-sep">
+          <b>רוצים לקבל הצעת מחיר אמיתית על הסליקה שלכם?</b>
+          מלאו גם את שני השדות הבאים. בלעדיהם נצרף אתכם לקבוצה כרגיל —
+          אבל איתם נוכל לחשב בדיוק כמה אתם משלמים היום, ולהחזיר לכם
+          הצעה אישית מול המחיר שנשיג במכרז.
+        </div>
         <input id="f_turn"  type="number" placeholder="מחזור חודשי משוער בכרטיסי אשראי (₪)">
         <input id="f_rate"  type="number" step="0.01" placeholder="העמלה שאתם משלמים היום (%)">
         <div class="full"><button type="submit" class="btn btn-primary form-btn">שריינו לי מקום בקבוצה</button></div>
