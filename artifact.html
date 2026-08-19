@@ -88,10 +88,11 @@
   }
   .nav{display:flex; align-items:center; justify-content:space-between; height:70px}
   .logo{display:flex; align-items:center; gap:10px; font-family:'Frank Ruhl Libre',serif; font-weight:900; font-size:26px}
-  /* "לעסקים" קטן יותר — כדי שהמותג יישאר "המוזיל" והשורה תיכנס גם בטלפון */
+  /* השם ומתחתיו שורת המשנה — שתי שורות צפופות שנכנסות לגובה הסרגל */
+  .logo-txt{display:flex; flex-direction:column; line-height:1.05; white-space:nowrap}
   .logo-sub{
-    font-family:'Assistant',sans-serif; font-size:.5em; font-weight:700;
-    color:var(--green); margin-right:.35em; letter-spacing:.02em;
+    font-family:'Assistant',sans-serif; font-size:.42em; font-weight:700;
+    color:var(--green); letter-spacing:.08em; margin-top:2px;
   }
   .logo .mark{
     width:34px;height:34px;border-radius:9px;background:var(--green);color:#fff;
@@ -392,6 +393,15 @@
     .risk,.join{padding:38px 24px}
     .section{padding:64px 0}
   }
+  @media (max-width:700px){
+    /* בטלפון הסרגל צר מדי לשלושה אלמנטים — הלשוניות חשובות יותר
+       מכפתור הכותרת (יש שני כפתורי פעולה בהירו מיד מתחתיו) */
+    header .nav .btn{display:none}
+    .logo{font-size:20px; gap:8px}
+    .logo .mark{width:29px;height:29px;font-size:16px}
+    .logo-sub{display:none}
+    .tab{padding:8px 16px; font-size:15px}
+  }
   @media (max-width:560px){
     .steps{grid-template-columns:1fr}
     .risk-table th:nth-child(3),.risk-table td:nth-child(3){display:none}
@@ -405,7 +415,10 @@
 
 <header>
   <div class="wrap nav">
-    <div class="logo"><span class="mark">מ</span> קבוצת המוזיל</div>
+    <div class="logo">
+      <span class="mark">מ</span>
+      <span class="logo-txt">קבוצת המוזיל<span class="logo-sub">משלמים פחות</span></span>
+    </div>
     <div class="tabs" role="tablist">
       <button class="tab is-on" data-view="business" role="tab">לעסקים</button>
       <button class="tab"       data-view="private"  role="tab">לפרטיים</button>
@@ -455,7 +468,9 @@
       </p>
       <p class="lead">
         רשת עם מאות סניפים לא משלמת את זה. היא לא התמקחה טוב יותר —
-        פשוט היה לה מה לשים על השולחן. <b>זה בדיוק מה שאנחנו בונים לכם.</b>
+        פשוט היה לה מה לשים על השולחן. <b>זה בדיוק מה שאנחנו בונים לכם:</b>
+        קבוצת רכישה משותפת שתייצר כוח מיקוח אדיר, ותחסוך לכל עסק ולכל אדם
+        שישתתפו — במיזם העסקי, בפרטי, ובוודאי בשניהם יחד.
       </p>
     </div>
     <div class="stat-card">
@@ -857,7 +872,10 @@
 
 <footer class="wrap">
   <div class="foot">
-    <div class="logo" style="font-size:21px"><span class="mark" style="width:28px;height:28px;font-size:16px">מ</span> המוזיל<span class="logo-sub">לעסקים</span></div>
+    <div class="logo" style="font-size:21px">
+      <span class="mark" style="width:28px;height:28px;font-size:16px">מ</span>
+      <span class="logo-txt">קבוצת המוזיל<span class="logo-sub">משלמים פחות</span></span>
+    </div>
     <div>מיזם חברתי-עסקי לכוח קנייה קבוצתי · כל הזכויות שמורות</div>
   </div>
 </footer>
