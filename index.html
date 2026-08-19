@@ -244,6 +244,52 @@
     padding:16px 18px; border:1px dashed #B6D2C7;
   }
 
+  /* ---------- שלוש השכבות ---------- */
+  .tiers{display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:40px}
+  .tier{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:26px; box-shadow:var(--shadow); display:flex; flex-direction:column}
+  .tier-head{display:flex; align-items:center; gap:10px; margin-bottom:6px}
+  .tier-n{
+    width:30px;height:30px;border-radius:8px;background:var(--green-soft);color:var(--green-deep);
+    display:grid;place-items:center;font-weight:900;font-size:15px;font-family:'Frank Ruhl Libre',serif;flex:none;
+  }
+  .tier h3{font-size:19px}
+  .tier .who{font-size:15px; color:var(--muted); margin:0 0 16px}
+  .chips{display:flex; flex-wrap:wrap; gap:7px}
+  .chip{
+    background:var(--paper); border:1px solid var(--line); border-radius:999px;
+    padding:6px 13px; font-size:14.5px; font-weight:600; color:#3B4A45;
+  }
+  .chip.live{background:var(--green); border-color:var(--green); color:#fff}
+  .tier .branch{margin-top:14px; font-size:14.5px; color:var(--muted)}
+  .tier .branch b{color:var(--ink); display:block; margin-top:10px; font-size:15px}
+
+  /* ---------- חיסכון מצטבר ---------- */
+  .stack{margin-top:38px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden}
+  .stack-head, .stack-row{
+    display:grid; grid-template-columns:1.5fr 1.1fr .8fr .9fr .9fr; gap:12px;
+    align-items:center; padding:14px 22px;
+  }
+  .stack-head{background:var(--paper); border-bottom:1px solid var(--line); font-size:13.5px; font-weight:700; color:var(--muted)}
+  .stack-row{border-bottom:1px solid var(--line)}
+  .stack-row:last-of-type{border-bottom:0}
+  .stack-row .cat{font-weight:700}
+  .stack-row .cat small{display:block; font-weight:600; color:var(--muted); font-size:13px}
+  .stack-row input{
+    width:100%; padding:9px 11px; border:2px solid var(--line); border-radius:8px;
+    background:var(--paper); font-family:'Frank Ruhl Libre',serif; font-weight:700; font-size:17px; color:var(--ink);
+  }
+  .stack-row input:focus{outline:none; border-color:var(--green); background:#fff}
+  .stack-row .pct{font-weight:700; color:var(--muted); font-size:15px}
+  .stack-row .mo,.stack-row .yr{font-family:'Frank Ruhl Libre',serif; font-weight:900; color:var(--green-deep); font-size:19px}
+  .stack-total{
+    display:grid; grid-template-columns:1.5fr 1.1fr .8fr .9fr .9fr; gap:12px;
+    align-items:center; padding:20px 22px; background:var(--green); color:#fff;
+  }
+  .stack-total .lbl{font-weight:700; font-size:18px; grid-column:1 / span 3}
+  .stack-total .mo,.stack-total .yr{font-family:'Frank Ruhl Libre',serif; font-weight:900; font-size:26px}
+  .stack-total small{display:block; font-family:'Assistant',sans-serif; font-size:12.5px; font-weight:600; color:#BEDDD2}
+  .stack-note{padding:16px 22px; background:var(--green-soft); font-size:15px; color:#31544A; border-top:1px solid #CADED6}
+
   /* ---------- שקיפות ---------- */
   .values{display:grid; grid-template-columns:repeat(3,1fr); gap:22px; margin-top:40px}
   .value{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:28px; box-shadow:var(--shadow)}
@@ -281,6 +327,17 @@
   @media (max-width:860px){
     body{font-size:17px}
     .cols,.calc,.form{grid-template-columns:1fr}
+    .tiers{grid-template-columns:1fr}
+    /* הטבלה המצטברת נפרסת לכרטיסים — חמש עמודות לא נכנסות לטלפון */
+    .stack-head{display:none}
+    .stack-row{grid-template-columns:1fr 1fr; gap:8px 12px; padding:18px}
+    .stack-row .cat,.stack-row .inp,.stack-row .pct{grid-column:1 / -1}
+    .stack-row .pct{color:var(--green-deep); font-size:14px}
+    .stack-row .mo::before{content:'לחודש'; display:block; font-family:'Assistant',sans-serif; font-size:12px; font-weight:600; color:var(--muted)}
+    .stack-row .yr::before{content:'לשנה'; display:block; font-family:'Assistant',sans-serif; font-size:12px; font-weight:600; color:var(--muted)}
+    .stack-row .yr{text-align:left}
+    .stack-total{grid-template-columns:1fr 1fr; gap:10px}
+    .stack-total .lbl{grid-column:1 / -1}
     .steps{grid-template-columns:1fr 1fr}
     .values{grid-template-columns:1fr}
     .nav-links{display:none}
@@ -502,6 +559,134 @@
   </div>
 </section>
 
+<!-- ==================== שלוש השכבות + חיסכון מצטבר ==================== -->
+<section class="section" id="more">
+  <div class="wrap">
+    <div class="eyebrow">זו רק ההתחלה</div>
+    <h2>הסליקה היא הקבוצה הראשונה — לא היחידה</h2>
+    <p class="lead" style="margin-top:16px">
+      ברגע שאתם בפנים, כוח הקנייה שלנו עובד מולכם על <b>כל</b> ההוצאות החוזרות שלכם,
+      לא רק על עמלת הסליקה. ככל שנצטרף לעוד קבוצות — החיסכון מצטבר.
+    </p>
+
+    <div class="tiers">
+      <div class="tier">
+        <div class="tier-head"><div class="tier-n">1</div><h3>כל עסק בישראל</h3></div>
+        <p class="who">אין עסק שלא משלם את אלה — כאן הקבוצה הכי גדולה והכוח הכי חזק</p>
+        <div class="chips">
+          <span class="chip live">✓ עמלות סליקה — פתוח</span>
+          <span class="chip">חשמל לעסק</span>
+          <span class="chip">ביטוח עסק</span>
+          <span class="chip">הנהלת חשבונות</span>
+          <span class="chip">אינטרנט וסלולר</span>
+          <span class="chip">עמלות בנק ואשראי</span>
+        </div>
+      </div>
+
+      <div class="tier">
+        <div class="tier-head"><div class="tier-n">2</div><h3>רוב העסקים</h3></div>
+        <p class="who">קבוצה קצת יותר מצומצמת — אבל החיסכון לעסק גדול יותר</p>
+        <div class="chips">
+          <span class="chip">שליחויות ומשלוחים</span>
+          <span class="chip">ניקיון</span>
+          <span class="chip">אבטחה ומצלמות</span>
+          <span class="chip">אחזקת מזגנים</span>
+          <span class="chip">הדברה</span>
+          <span class="chip">פינוי אשפה</span>
+          <span class="chip">דפוס ושילוט</span>
+          <span class="chip">ביגוד ומדים</span>
+          <span class="chip">חבילות SMS ודיוור</span>
+        </div>
+      </div>
+
+      <div class="tier">
+        <div class="tier-head"><div class="tier-n">3</div><h3>לפי הענף שלכם</h3></div>
+        <p class="who">כאן הפערים הכי גדולים, כי כמעט אף אחד לא משווה מחירים</p>
+        <div class="branch">
+          <b>מסעדנות ובתי קפה</b>
+          חומרי גלם · אריזות וחד-פעמי · גז · ציוד מטבח
+          <b>קמעונאות</b>
+          שקיות ואריזות · קופות ומדפים · ביטוח מלאי
+          <b>קליניקות וטיפול</b>
+          ביטוח אחריות מקצועית · ציוד חד-פעמי · כביסה
+          <b>מוסכים ורכב</b>
+          חלקי חילוף · שמנים בכמות · ציוד מוסך
+        </div>
+      </div>
+    </div>
+
+    <!-- ---------- הטבלה המצטברת ---------- -->
+    <h3 style="font-size:26px; margin:52px 0 8px">וכשמחברים את הכל — זה מצטבר</h3>
+    <p class="lead" style="margin-bottom:0">
+      החליפו את המספרים במה שאתם באמת משלמים, ותראו את הסכום שלכם.
+    </p>
+
+    <div class="stack">
+      <div class="stack-head">
+        <div>קטגוריה</div>
+        <div>משלמים היום בחודש</div>
+        <div>חיסכון</div>
+        <div>לחודש</div>
+        <div>לשנה</div>
+      </div>
+
+      <div class="stack-row">
+        <div class="cat">עמלות סליקה<small>על מחזור אשראי חודשי</small></div>
+        <div class="inp"><input id="s_clear" type="number" min="0" step="1000" value="100000" inputmode="numeric"></div>
+        <div class="pct">0.9% ← 0.75%</div>
+        <div class="mo" id="m_clear"></div>
+        <div class="yr" id="y_clear"></div>
+      </div>
+
+      <div class="stack-row">
+        <div class="cat">חשמל לעסק<small>חשבון חודשי ממוצע</small></div>
+        <div class="inp"><input id="s_elec" type="number" min="0" step="50" value="1500" inputmode="numeric"></div>
+        <div class="pct">7%</div>
+        <div class="mo" id="m_elec"></div>
+        <div class="yr" id="y_elec"></div>
+      </div>
+
+      <div class="stack-row">
+        <div class="cat">ביטוח עסק<small>פרמיה חודשית</small></div>
+        <div class="inp"><input id="s_ins" type="number" min="0" step="50" value="500" inputmode="numeric"></div>
+        <div class="pct">12%</div>
+        <div class="mo" id="m_ins"></div>
+        <div class="yr" id="y_ins"></div>
+      </div>
+
+      <div class="stack-row">
+        <div class="cat">הנהלת חשבונות<small>ריטיינר חודשי</small></div>
+        <div class="inp"><input id="s_acc" type="number" min="0" step="50" value="1000" inputmode="numeric"></div>
+        <div class="pct">10%</div>
+        <div class="mo" id="m_acc"></div>
+        <div class="yr" id="y_acc"></div>
+      </div>
+
+      <div class="stack-row">
+        <div class="cat">אינטרנט וסלולר עסקי<small>סך החבילות בחודש</small></div>
+        <div class="inp"><input id="s_tel" type="number" min="0" step="50" value="400" inputmode="numeric"></div>
+        <div class="pct">15%</div>
+        <div class="mo" id="m_tel"></div>
+        <div class="yr" id="y_tel"></div>
+      </div>
+
+      <div class="stack-total">
+        <div class="lbl">סך החיסכון שלכם</div>
+        <div class="mo" id="m_tot">—<small>בחודש</small></div>
+        <div class="yr" id="y_tot">—<small>בשנה</small></div>
+      </div>
+
+      <div class="stack-note" id="stackNet"></div>
+    </div>
+
+    <p class="note" style="max-width:70ch">
+      <b>אחוזי החיסכון כאן הם הערכה שמרנית להמחשה</b>, לא הבטחה — הם נועדו להראות
+      איך הסכומים מצטברים. המחיר בפועל בכל קטגוריה ייקבע במכרז ותלוי בכמה עסקים יצטרפו,
+      ואנחנו נפרסם כל תוצאה בשקיפות מלאה. גם כאן: <b>לא חסכנו — לא שילמתם.</b>
+    </p>
+  </div>
+</section>
+
 <!-- ==================== למה מיזם ==================== -->
 <section class="section" id="why">
   <div class="wrap">
@@ -645,6 +830,44 @@ function recalc(){
 document.getElementById('turnover').addEventListener('input', recalc);
 document.getElementById('rate').addEventListener('input', recalc);
 recalc();
+
+/* -----------------------------------------------------------------
+   חיסכון מצטבר על פני כמה קטגוריות.
+   drop = נקודות אחוז מהמחזור (סליקה) | pct = אחוז מההוצאה (כל השאר).
+   האחוזים הם הערכה שמרנית להמחשה — להחליף כשיהיו נתונים אמיתיים.
+------------------------------------------------------------------ */
+const STACK = [
+  { id: 'clear', drop: 0.15 },   // 0.9% ← 0.75% על מחזור האשראי
+  { id: 'elec',  pct: 0.07 },
+  { id: 'ins',   pct: 0.12 },
+  { id: 'acc',   pct: 0.10 },
+  { id: 'tel',   pct: 0.15 },
+];
+
+function recalcStack() {
+  let total = 0;
+
+  for (const row of STACK) {
+    const spend = Math.max(0, +document.getElementById('s_' + row.id).value || 0);
+    const saved = row.drop ? spend * row.drop / 100 : spend * row.pct;
+    total += saved;
+    document.getElementById('m_' + row.id).textContent = ils(saved);
+    document.getElementById('y_' + row.id).textContent = ils(saved * 12);
+  }
+
+  document.getElementById('m_tot').innerHTML = `${ils(total)}<small>בחודש</small>`;
+  document.getElementById('y_tot').innerHTML = `${ils(total * 12)}<small>בשנה</small>`;
+
+  const net = total * (1 - CATEGORY.ourCut);
+  document.getElementById('stackNet').innerHTML =
+    `אחרי חלקנו (10%) נשאר אצלכם <b>${ils(net)} בחודש</b> — כלומר <b>${ils(net * 12)} בשנה</b>, ` +
+    `בלי לשנות שום דבר בעסק חוץ מלהצטרף.`;
+}
+
+STACK.forEach(r =>
+  document.getElementById('s_' + r.id).addEventListener('input', recalcStack)
+);
+recalcStack();
 
 /* ההרשמה נשלחת כהודעת וואטסאפ מוכנה — אפס תלות בשרת או בשירות חיצוני.
    כשיהיה CRM אפשר להחליף כאן ב-fetch לשרת ולהשאיר את הוואטסאפ כגיבוי. */
