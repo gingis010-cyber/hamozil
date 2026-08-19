@@ -132,6 +132,10 @@
   .v.loss{color:var(--loss)}
   .v.good{color:var(--green-deep)}
   .note{font-size:15px; color:var(--muted); margin-top:14px}
+  .ex-tag{
+    display:inline-block; background:var(--gold); color:#fff; border-radius:999px;
+    padding:3px 13px; font-size:13px; font-weight:700; margin-bottom:12px;
+  }
 
   /* השוואת "היום לבד" מול "בקבוצה" */
   .compare{display:grid; grid-template-columns:1fr auto 1fr; align-items:stretch; gap:14px}
@@ -260,8 +264,15 @@
     padding:6px 13px; font-size:14.5px; font-weight:600; color:#3B4A45;
   }
   .chip.live{background:var(--green); border-color:var(--green); color:#fff}
+  .chip.more{background:transparent; border-style:dashed; color:var(--green-deep); font-weight:700}
   .tier .branch{margin-top:14px; font-size:14.5px; color:var(--muted)}
   .tier .branch b{color:var(--ink); display:block; margin-top:10px; font-size:15px}
+  .more-i{color:var(--green-deep); font-weight:700}
+  .branch-more{
+    margin-top:18px; padding-top:16px; border-top:1px dashed var(--line);
+    font-size:14.5px; color:var(--muted); line-height:1.6;
+  }
+  .branch-more b{color:var(--ink)}
 
   /* ---------- חיסכון מצטבר ---------- */
   .stack{margin-top:38px; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden}
@@ -401,7 +412,7 @@
   <div class="wrap cols">
     <div>
       <div class="eyebrow">הבעיה</div>
-      <h2>אתם משלמים על כל שקל שנכנס לעסק</h2>
+      <h2>היום אתם משלמים לחברת הסליקה על כל שקל שנכנס לעסק</h2>
       <p class="lead" style="margin-top:18px">
         עמלת סליקה היא ההוצאה שהכי קל לשכוח ממנה — היא לא מגיעה כחשבונית, היא פשוט
         נגרעת בשקט מכל עסקה. עסק בודד היום מקבל סליקה בסביבות <b>0.9%</b>.
@@ -413,6 +424,7 @@
       </p>
     </div>
     <div class="stat-card">
+      <div class="ex-tag">דוגמה</div>
       <div style="font-weight:700;margin-bottom:14px">עסק עם מחזור של ₪100,000 בחודש</div>
 
       <div class="compare">
@@ -588,6 +600,7 @@
           <span class="chip">הנהלת חשבונות</span>
           <span class="chip">אינטרנט וסלולר</span>
           <span class="chip">עמלות בנק ואשראי</span>
+          <span class="chip more">ועוד…</span>
         </div>
       </div>
 
@@ -604,6 +617,7 @@
           <span class="chip">דפוס ושילוט</span>
           <span class="chip">ביגוד ומדים</span>
           <span class="chip">חבילות SMS ודיוור</span>
+          <span class="chip more">ועוד…</span>
         </div>
       </div>
 
@@ -612,13 +626,18 @@
         <p class="who">כאן הפערים הכי גדולים, כי כמעט אף אחד לא משווה מחירים</p>
         <div class="branch">
           <b>מסעדנות ובתי קפה</b>
-          חומרי גלם · אריזות וחד-פעמי · גז · ציוד מטבח
+          חומרי גלם · אריזות וחד-פעמי · גז · ציוד מטבח · <span class="more-i">ועוד…</span>
           <b>קמעונאות</b>
-          שקיות ואריזות · קופות ומדפים · ביטוח מלאי
+          שקיות ואריזות · קופות ומדפים · ביטוח מלאי · <span class="more-i">ועוד…</span>
           <b>קליניקות וטיפול</b>
-          ביטוח אחריות מקצועית · ציוד חד-פעמי · כביסה
+          ביטוח אחריות מקצועית · ציוד חד-פעמי · כביסה · <span class="more-i">ועוד…</span>
           <b>מוסכים ורכב</b>
-          חלקי חילוף · שמנים בכמות · ציוד מוסך
+          חלקי חילוף · שמנים בכמות · ציוד מוסך · <span class="more-i">ועוד…</span>
+        </div>
+        <div class="branch-more">
+          וזו רק דוגמה לארבעה ענפים. <b>לכל עסק יש את הספקים של הענף שלו</b> —
+          מספרות, גנים, חדרי כושר, בתי דפוס, סטודיו, חנויות. תגידו לנו במה אתם משתמשים,
+          ונבנה גם לזה קבוצה.
         </div>
       </div>
     </div>
