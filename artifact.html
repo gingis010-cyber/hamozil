@@ -26,7 +26,7 @@
 <meta name="twitter:description" content="מיזם חברתי-עסקי לכוח קנייה קבוצתי. 90% מהחיסכון נשאר אצלכם.">
 
 <meta name="theme-color" content="#0D6B54">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230D6B54'/%3E%3Ctext x='32' y='45' font-size='38' font-family='serif' font-weight='bold' fill='white' text-anchor='middle'%3E%D7%9E%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22%230D6B54%22%2F%3E%3Cpath%20d%3D%22M31%2011%20L53%2011%20L53%2033%20L31%2055%20L9%2033%20Z%22%20fill%3D%22%23ffffff%22%2F%3E%3Ccircle%20cx%3D%2245%22%20cy%3D%2219%22%20r%3D%223.6%22%20fill%3D%22%230D6B54%22%2F%3E%3Cpath%20d%3D%22M28%2026%20L28%2040%20M21%2034%20L28%2041%20L35%2034%22%20fill%3D%22none%22%20stroke%3D%22%23C08A1E%22%20stroke-width%3D%225%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E">
 <style>
   /* גופנים עבריים מוטמעים — ללא תלות בשרת חיצוני */
   @font-face{
@@ -94,10 +94,9 @@
     font-family:'Assistant',sans-serif; font-size:.42em; font-weight:700;
     color:var(--green); letter-spacing:.08em; margin-top:2px;
   }
-  .logo .mark{
-    width:34px;height:34px;border-radius:9px;background:var(--green);color:#fff;
-    display:grid;place-items:center;font-size:19px;font-weight:900;
-  }
+  /* הסמל הוא תג מחיר עם חץ יורד — SVG כדי שיישאר חד בכל גודל ובהדפסה */
+  .logo .mark{width:38px;height:38px;flex:none;display:block}
+  .logo .mark svg{width:100%;height:100%;display:block}
   /* שתי הלשוניות — לעסקים / לפרטיים */
   .tabs{display:flex; gap:4px; background:var(--green-soft); border:1px solid #CADED6; border-radius:999px; padding:4px}
   .tab{
@@ -416,7 +415,13 @@
 <header>
   <div class="wrap nav">
     <div class="logo">
-      <span class="mark">מ</span>
+      <span class="mark"><svg viewBox="0 0 64 64" role="img" aria-label="קבוצת המוזיל">
+        <rect width="64" height="64" rx="15" fill="#0D6B54"/>
+        <path d="M31 11 L53 11 L53 33 L31 55 L9 33 Z" fill="#fff"/>
+        <circle cx="45" cy="19" r="3.6" fill="#0D6B54"/>
+        <path d="M28 26 L28 40 M21 34 L28 41 L35 34" fill="none" stroke="#C08A1E"
+              stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg></span>
       <span class="logo-txt">קבוצת המוזיל<span class="logo-sub">משלמים פחות</span></span>
     </div>
     <div class="tabs" role="tablist">
@@ -436,12 +441,13 @@
 
 <!-- ==================== הירו ==================== -->
 <section class="wrap hero">
-  <div class="badge">● הקבוצה נבנית עכשיו — ככל שנהיה יותר, המחיר טוב יותר</div>
+  <div class="badge">● נלחמים במחירים — ככל שנהיה יותר, המחיר טוב יותר</div>
   <h1>עסק אחד לא מזיז ספק.<br>מאה עסקים מזיזים שוק.</h1>
   <div class="sub">מיזם חברתי-עסקי שמייצר כוח קנייה קבוצתי</div>
   <p class="lead">
-    רשת גדולה משלמת פחות מכם על בדיוק אותו שירות. לא כי היא חכמה יותר — כי היא גדולה יותר.
-    המוזיל מאגד עסקים קטנים ובינוניים לקבוצת רכש אחת, ומביא את הספקים להתחרות עליכם.
+    רשת גדולה משלמת פחות מכם על אותו השירות בדיוק. לא כי היא חכמה יותר — כי היא גדולה יותר.
+    המוזיל מאגד עסקים קטנים, בינוניים וגדולים לקבוצת רכש אחת ענקית, ומביא את הספקים
+    להתחרות עליכם כקבוצה — ולהשיג את המחיר הנמוך ביותר.
   </p>
   <div class="cta-row">
     <a href="#join" class="btn btn-primary">אני רוצה להצטרף לקבוצה</a>
@@ -872,7 +878,13 @@
 <footer class="wrap">
   <div class="foot">
     <div class="logo" style="font-size:21px">
-      <span class="mark" style="width:28px;height:28px;font-size:16px">מ</span>
+      <span class="mark" style="width:31px;height:31px"><svg viewBox="0 0 64 64" aria-hidden="true">
+        <rect width="64" height="64" rx="15" fill="#0D6B54"/>
+        <path d="M31 11 L53 11 L53 33 L31 55 L9 33 Z" fill="#fff"/>
+        <circle cx="45" cy="19" r="3.6" fill="#0D6B54"/>
+        <path d="M28 26 L28 40 M21 34 L28 41 L35 34" fill="none" stroke="#C08A1E"
+              stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg></span>
       <span class="logo-txt">קבוצת המוזיל<span class="logo-sub">משלמים פחות</span></span>
     </div>
     <div>מיזם חברתי-עסקי לכוח קנייה קבוצתי · כל הזכויות שמורות</div>

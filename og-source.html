@@ -14,8 +14,7 @@
         top:-300px;right:-180px}
   .pad{position:relative;padding:64px 70px;height:100%;display:flex;flex-direction:column;justify-content:space-between}
   .top{display:flex;align-items:center;gap:14px}
-  .mark{width:56px;height:56px;border-radius:14px;background:#0D6B54;display:grid;place-items:center;
-        font-family:'Frank Ruhl Libre',serif;font-weight:900;font-size:31px}
+  .mark{width:58px;height:58px;display:block;flex:none}
   .name{font-family:'Frank Ruhl Libre',serif;font-weight:900;font-size:42px}
   .sub-name{font-family:'Assistant',sans-serif;font-size:22px;font-weight:700;color:#8FD9BE;margin-right:10px}
   h1{font-family:'Frank Ruhl Libre',serif;font-weight:900;font-size:76px;line-height:1.12;letter-spacing:-1px;max-width:19ch}
@@ -30,7 +29,15 @@
  <div class="card">
   <div class="glow"></div>
   <div class="pad">
-    <div class="top"><div class="mark">מ</div><div class="name">המוזיל<span class="sub-name">לעסקים</span></div></div>
+    <div class="top">
+      <svg class="mark" viewBox="0 0 64 64">
+        <path d="M31 11 L53 11 L53 33 L31 55 L9 33 Z" fill="#fff"/>
+        <circle cx="45" cy="19" r="3.6" fill="#14201D"/>
+        <path d="M28 26 L28 40 M21 34 L28 41 L35 34" fill="none" stroke="#C08A1E"
+              stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div class="name">קבוצת המוזיל<span class="sub-name">משלמים פחות</span></div>
+    </div>
     <div>
       <h1>עסק אחד לא מזיז ספק.<br>מאה עסקים מזיזים שוק.</h1>
       <div class="sub">מיזם חברתי-עסקי שמייצר כוח קנייה קבוצתי</div>
