@@ -1703,6 +1703,15 @@ const CATEGORY = {
 };
 
 // מספר הוואטסאפ שאליו נשלחות ההרשמות. פורמט בינלאומי בלי + ובלי אפס מוביל.
+/* מסד הנתונים. המפתח כאן הוא anon בלבד, וההרשאה היחידה שלו היא
+   הכנסת שורה — הוא אינו יכול לקרוא דבר. עד שיוגדר, ההרשמה ממשיכה
+   לעבוד בדיוק כמו קודם דרך וואטסאפ. */
+const DB = {
+  url: '',   // https://xxxxxxxx.supabase.co
+  key: '',   // anon public
+  table: 'hamozil_leads',
+};
+
 const WHATSAPP = '972506911937';   // 050-691-1937 בפורמט בינלאומי
 
 const ils = n => '₪' + Math.round(n).toLocaleString('he-IL');
@@ -1853,6 +1862,23 @@ recalcPStack();
 
 /* ההרשמה נשלחת כהודעת וואטסאפ מוכנה — אפס תלות בשרת או בשירות חיצוני.
    כשיהיה CRM אפשר להחליף כאן ב-fetch לשרת ולהשאיר את הוואטסאפ כגיבוי. */
+/* השמירה שקטה בכוונה: אם מסד הנתונים לא זמין, הגולש לא אמור לראות
+   שגיאה — הוא סיים את ההרשמה, והוואטסאפ נפתח בכל מקרה. */
+function saveLead(row) {
+  if (!DB.url || !DB.key) return;
+  fetch(DB.url + '/rest/v1/' + DB.table, {
+    method: 'POST',
+    headers: {
+      apikey: DB.key,
+      Authorization: 'Bearer ' + DB.key,
+      'Content-Type': 'application/json',
+      Prefer: 'return=minimal',
+    },
+    body: JSON.stringify(row),
+    keepalive: true,   // השמירה מסתיימת גם אם הדף נסגר מיד אחרי
+  }).catch(() => {});
+}
+
 document.getElementById('joinForm').addEventListener('submit', e => {
   e.preventDefault();
   const val = id => (document.getElementById(id).value || '').trim();
@@ -1876,6 +1902,22 @@ document.getElementById('joinForm').addEventListener('submit', e => {
       line('עמלה היום', val('f_rate') ? val('f_rate') + '%' : '');
 
   const full = msg + line('הופנה על ידי', REF);
+
+  /* נשמר לפני פתיחת וואטסאפ. עד היום הליד היה קיים רק אם הגולש
+     לחץ "שלח" בוואטסאפ — מי שהיסס נעלם בלי זכר. */
+  saveLead({
+    side:        VIEW,
+    full_name:   val('f_name'),
+    phone:       val('f_phone'),
+    email:       val('f_mail')  || null,
+    biz_type:    val('f_biz')   || null,
+    turnover:    +val('f_turn') || null,
+    rate:        +val('f_rate') || null,
+    power_bill:  +val('f_bill') || null,
+    power_supp:  val('f_sup')   || null,
+    referred_by: REF            || null,
+    page_url:    location.href.slice(0, 500),
+  });
 
   window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(full)}`, '_blank');
   e.target.style.display = 'none';

@@ -2,3 +2,7 @@ _check.png
 _artifact_check.png
 .DS_Store
 Thumbs.db
+
+# חיבור לוח הבקרה — מקומי בלבד, לעולם לא במאגר ציבורי
+admin-config.js
+admin.html
