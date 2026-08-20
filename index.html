@@ -529,6 +529,101 @@
     *{animation:none !important; transition:none !important}
     html{scroll-behavior:auto !important}
   }
+  /* ================================================================
+     שיתוף — הפיכת המבקר למפיץ
+     ================================================================ */
+
+  /* דחיפה שקטה בתוך קטע "אפס סיכון", ברגע שבו כבר ברור שאין מה להפסיד */
+  .nudge{
+    margin-top:22px; padding-top:20px; border-top:1px solid rgba(255,255,255,.18);
+    display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;
+  }
+  .nudge p{margin:0; color:#CFEADF; font-size:calc(16px * var(--ts,1)); line-height:1.6; max-width:52ch}
+  .nudge p b{color:#fff}
+  .nudge .acts{display:flex; gap:10px; flex-wrap:wrap}
+  .btn-ghost{
+    background:transparent; color:#fff; border:2px solid rgba(255,255,255,.55);
+    font-family:inherit; cursor:pointer; white-space:nowrap;
+  }
+  .btn-ghost:hover{background:rgba(255,255,255,.14); border-color:#fff}
+
+  /* הקטע המלא */
+  .share-box{
+    background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
+    box-shadow:var(--shadow); padding:34px 32px; position:relative; overflow:hidden;
+  }
+  .share-box::before{
+    content:''; position:absolute; inset-block-start:0; inset-inline:0; height:4px;
+    background:linear-gradient(90deg,var(--green),var(--gold));
+  }
+  .share-box h2{margin:0}
+  .share-lead{margin:14px 0 0; max-width:62ch}
+
+  /* שלושת השלבים — המנגנון עצמו, מוצג ולא מוסבר */
+  .ladder{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin:28px 0 6px}
+  .rung{
+    background:var(--paper); border:1px solid var(--line); border-radius:12px;
+    padding:18px 16px; text-align:center; position:relative;
+  }
+  .rung .who{font-size:calc(14px * var(--ts,1)); color:var(--muted); font-weight:700}
+  .rung .num{
+    font-family:'Frank Ruhl Libre',serif; font-weight:900; line-height:1; margin:8px 0 6px;
+    font-size:calc(30px * var(--ts,1));
+  }
+  .rung .pow{font-size:calc(14px * var(--ts,1)); font-weight:700}
+  .rung:nth-child(1){opacity:.72}
+  .rung:nth-child(1) .num,.rung:nth-child(1) .pow{color:var(--loss)}
+  .rung:nth-child(2) .num,.rung:nth-child(2) .pow{color:var(--muted)}
+  .rung:nth-child(3){border-color:var(--green); background:var(--green-soft)}
+  .rung:nth-child(3) .num,.rung:nth-child(3) .pow{color:var(--green-deep)}
+
+  .share-acts{display:flex; gap:12px; flex-wrap:wrap; margin-top:26px}
+  .btn-wa{background:#25D366; color:#0A2A18; border-color:#25D366}
+  .btn-wa:hover{background:#1FB855; border-color:#1FB855; color:#fff}
+  .btn-copy{background:transparent; color:var(--green-deep); border-color:var(--green)}
+  .btn-copy:hover{background:var(--green-soft)}
+  button.btn{font-family:inherit; cursor:pointer}
+
+  .share-note{margin-top:18px; font-size:calc(14.5px * var(--ts,1)); color:var(--muted); max-width:62ch}
+
+  /* קישור אישי — מוצג רק אחרי הרשמה */
+  .reflink{
+    margin-top:20px; background:var(--paper); border:1px dashed var(--gold);
+    border-radius:11px; padding:14px 16px; color:var(--ink);
+  }
+  .reflink b{display:block; font-size:calc(15px * var(--ts,1)); margin-bottom:6px}
+  .reflink code{
+    display:block; direction:ltr; text-align:left; font-size:calc(13.5px * var(--ts,1));
+    color:var(--green-deep); word-break:break-all; font-family:ui-monospace,Menlo,Consolas,monospace;
+  }
+
+  /* חיווי העתקה */
+  .toast{
+    position:fixed; inset-block-end:26px; inset-inline:0; margin-inline:auto; width:max-content;
+    max-width:88vw; z-index:2147482995; background:var(--ink); color:#fff;
+    padding:13px 22px; border-radius:999px; font-weight:700;
+    font-size:calc(15px * var(--ts,1)); box-shadow:0 8px 30px rgba(20,32,29,.35);
+    opacity:0; visibility:hidden; transform:translateY(10px);
+    transition:opacity .22s, transform .22s, visibility .22s;
+  }
+  .toast.is-on{opacity:1; visibility:visible; transform:none}
+
+  /* שיתוף בתוך מסך התודה */
+  .thanks .after{margin-top:18px; padding-top:16px; border-top:1px solid rgba(255,255,255,.28)}
+  .thanks .after p{margin:0 0 14px; font-size:calc(16.5px * var(--ts,1)); line-height:1.65; color:#DCF0E7}
+  .thanks .after p b{color:#fff}
+  .thanks .acts{display:flex; gap:10px; flex-wrap:wrap}
+
+  @media (max-width:700px){
+    .share-box{padding:26px 20px}
+    .ladder{grid-template-columns:1fr; gap:10px}
+    .rung{display:flex; align-items:center; justify-content:space-between; text-align:start; padding:14px 16px}
+    .rung .num{margin:0}
+    .nudge .acts,.share-acts,.thanks .acts{width:100%}
+    .nudge .acts .btn,.share-acts .btn,.thanks .acts .btn{flex:1; text-align:center}
+    .toast{inset-block-end:calc(var(--cta-h,64px) + 150px)}
+  }
+
 </style>
 </head>
 <body>
@@ -937,6 +1032,16 @@
         אין תרחיש שבו אנחנו מרוויחים ואתם לא.<br>
         אנחנו מקבלים 10% ממה שהשארנו לכם בכיס — <b>אף פעם לא מהכיס עצמו.</b>
       </div>
+      <div class="nudge">
+        <p>
+          ואם אין מה להפסיד — <b>אין גם סיבה להחזיק את זה לעצמכם.</b>
+          כל אחד שתשלחו אליו מגדיל את הקבוצה, וההנחה שנשיג היא של כולם, כולל שלכם.
+        </p>
+        <div class="acts">
+          <button type="button" class="btn btn-ghost" data-share="wa">שליחה בוואטסאפ</button>
+          <button type="button" class="btn btn-ghost" data-share="native" hidden>שיתוף</button>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1189,6 +1294,10 @@
         <p data-p="לספקים עוברים מספרים מצרפיים בלבד: כמה משקי בית ואיזו צריכה כוללת. הפרטים האישיים שלכם לא נמסרים לאף ספק בלי אישור מפורש מכם.">לספקים עוברים מספרים מצרפיים בלבד: כמה עסקים ואיזה מחזור כולל. פרטי העסק שלכם לא נמסרים לאף ספק בלי אישור מפורש מכם.</p>
       </details>
       <details>
+        <summary>איך אני יכול לעזור?</summary>
+        <p>בכנות — יש רק דבר אחד, והוא גם משרת אתכם ישירות: <b>להעביר את הקישור הלאה.</b> אנחנו לא מגייסים כסף ולא מבקשים תרומות. כוח המיקוח שלנו מורכב אך ורק ממספר המשתתפים, ולכן כל אדם שתצרפו מוריד את המחיר שיוצע לכם עצמכם. שיתוף אחד שווה לנו יותר מכל תקציב פרסום.</p>
+      </details>
+      <details>
         <summary data-p="אני נרשם רק לחשמל?">אני נרשם רק לסליקה?</summary>
         <p data-p="לא. אין קבוצה ראשונה ושנייה — יש קבוצה אחת, ובתוכה קטגוריות. הרשמה אחת מכניסה אתכם לכולן: קודם למכרזים על מה שכל בית משלם (חשמל, סלולר, אינטרנט, ביטוחים), ואחר כך למכרזים על דמי ניהול בפנסיה ועל רכישות גדולות. לא צריך להירשם שוב בכל פעם.">לא. אין קבוצה ראשונה ושנייה — יש קבוצה אחת, ובתוכה קטגוריות. הרשמה אחת מכניסה אתכם לכולן: קודם למכרזים על מה שכל עסק משלם (סליקה, חשמל, ביטוח, הנהלת חשבונות, תקשורת), ואחר כך למכרזים שמתאימים לענף שלכם. לא צריך להירשם שוב בכל פעם.</p>
       </details>
@@ -1236,6 +1345,21 @@
       </form>
       <div class="thanks" id="thanks">
         ✓ נרשמתם. נעדכן אתכם ברגע שהקבוצה תגיע למסה שמאפשרת לצאת למכרז — ותקבלו את המספרים שלכם בשקיפות מלאה.
+        <div class="after">
+          <p>
+            עכשיו יש דבר אחד שנשאר בשליטתכם: <b>כמה גדולה תהיה הקבוצה כשנצא למכרז.</b>
+            זה המשתנה היחיד שקובע איזה מחיר נצליח להביא לכם.
+          </p>
+          <div class="acts">
+            <button type="button" class="btn btn-wa"   data-share="wa">שליחה בוואטסאפ</button>
+            <button type="button" class="btn btn-ghost" data-share="native" hidden>שיתוף</button>
+            <button type="button" class="btn btn-ghost" data-share="copy">העתקת הקישור</button>
+          </div>
+          <div class="reflink" id="reflink" hidden>
+            <b>הקישור האישי שלכם</b>
+            <code id="refurl"></code>
+          </div>
+        </div>
       </div>
       <p class="form-note">בלי דמי הצטרפות · בלי התחייבות · בלי שיחות מכירה. רק עדכון כשיש מה לעדכן.</p>
     </div>
@@ -1243,6 +1367,53 @@
 </section>
 
 </main>
+
+<!-- ==================== שיתוף ==================== -->
+<section class="section" id="share" style="border-top:0">
+  <div class="wrap">
+    <div class="share-box">
+      <div class="eyebrow">הדבר היחיד שמשפיע על המחיר שלכם</div>
+      <h2>אנחנו לא מבקשים מכם טובה. אנחנו מבקשים שתורידו לעצמכם את המחיר.</h2>
+      <p class="lead share-lead">
+        בקבוצת רכישה אין דבר כזה "לעזור למיזם". הספק לא נותן הנחה כי ביקשנו יפה —
+        הוא נותן אותה לפי כמה לקוחות אנחנו מביאים. <b>כל אחד שתשלחו אליו את הקישור
+        הזה מגדיל את ההנחה שאתם עצמכם תקבלו.</b> זה לא סלוגן, זו החשבונאות של המכרז.
+      </p>
+
+      <div class="ladder">
+        <div class="rung">
+          <div class="who">עסק בודד</div>
+          <div class="num">1</div>
+          <div class="pow">מקבל את המחיר שנותנים לו</div>
+        </div>
+        <div class="rung">
+          <div class="who">קבוצה קטנה</div>
+          <div class="num">50</div>
+          <div class="pow">כבר שווה לספק להתאמץ</div>
+        </div>
+        <div class="rung">
+          <div class="who">קבוצה אמיתית</div>
+          <div class="num">500+</div>
+          <div class="pow">הספקים מתחרים ביניהם</div>
+        </div>
+      </div>
+
+      <div class="share-acts">
+        <button type="button" class="btn btn-wa"   data-share="wa">שליחה בוואטסאפ</button>
+        <button type="button" class="btn btn-copy" data-share="native" hidden>שיתוף</button>
+        <button type="button" class="btn btn-copy" data-share="copy">העתקת הקישור</button>
+      </div>
+
+      <p class="share-note">
+        שלחו לשותף, לספק, לקבוצת בעלי העסקים בשכונה, לאח או לשכן.
+        אין כאן מה למכור להם — אין דמי הצטרפות, אין התחייבות, ואם לא נחסוך להם
+        הם לא ישלמו כלום. במקרה הגרוע הם יֵדעו שהם משלמים מחיר טוב.
+      </p>
+    </div>
+  </div>
+</section>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <!-- סרגל פעולה קבוע — מוצג רק בטלפון, מחליף את כפתור הכותרת -->
 <div class="mobile-cta">
@@ -1704,10 +1875,126 @@ document.getElementById('joinForm').addEventListener('submit', e => {
       line('מחזור חודשי', shekel('f_turn')) +
       line('עמלה היום', val('f_rate') ? val('f_rate') + '%' : '');
 
-  window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`, '_blank');
+  const full = msg + line('הופנה על ידי', REF);
+
+  window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(full)}`, '_blank');
   e.target.style.display = 'none';
   document.getElementById('thanks').style.display = 'block';
+
+  /* מרגע ההרשמה יש למשתמש קישור אישי. הוא לא מזכה בהטבה — הוא פשוט
+     מאפשר לנו לדעת מי הביא את מי, בלי שרת ובלי מסד נתונים. */
+  myRef = val('f_name').trim().replace(/\s+/g, '-').slice(0, 30);
+  if (myRef) {
+    /* בתצוגה מפוענח כדי שייקרא בעברית; ההעתקה בפועל מקודדת ותקינה */
+    document.getElementById('refurl').textContent = decodeURI(shareUrl());
+    document.getElementById('reflink').hidden = false;
+  }
+
+  /* בטלפון סרגל הפעולה כבר לא צריך להוביל להרשמה שבוצעה */
+  const bar = document.querySelector('.mobile-cta a');
+  if (bar) {
+    bar.textContent = 'שתפו — כל מצטרף מוריד את המחיר';
+    bar.setAttribute('href', '#share');
+  }
 });
+
+/* -----------------------------------------------------------------
+   שיתוף.
+
+   המנגנון של המיזם הוא ויראלי מטבעו: המחיר שכל אחד מקבל תלוי בכמה
+   אנחנו. לכן הבקשה לשתף אינה טובה שמבקשים מהמבקר — היא הדרך שלו
+   להוריד את המחיר של עצמו, וכך היא מנוסחת בכל מקום בעמוד.
+
+   ההפניה נשמרת בכתובת (?ref=) ומגיעה אלינו בהודעת ההרשמה, כך שאפשר
+   לדעת מי הביא את מי בלי שרת ובלי מסד נתונים.
+------------------------------------------------------------------ */
+const SITE = location.protocol.startsWith('http')
+  ? location.origin + location.pathname
+  : 'https://gingis010-cyber.github.io/hamozil/';
+
+/* מי הפנה אותנו לכאן */
+const REF = (new URLSearchParams(location.search).get('ref') || '').slice(0, 40);
+
+/* הקישור האישי נוצר רק אחרי הרשמה, ומבוסס על השם שנמסר */
+let myRef = '';
+
+function shareUrl() {
+  const q = myRef ? '?ref=' + encodeURIComponent(myRef) : '';
+  return SITE + q + (VIEW === 'private' ? '#private' : '');
+}
+
+/* הנוסח נכתב כדי שיהיה נוח להעביר אותו הלאה — לא כבקשה אישית,
+   אלא כדבר ששווה שחבר יראה. */
+function shareText() {
+  return VIEW === 'private'
+    ? 'שווה שתסתכלו על זה — קבוצת המוזיל מאגדת משפחות לקבוצת רכישה אחת, ' +
+      'ומביאה את ספקי החשמל, הסלולר והביטוח להתחרות על המחיר. ' +
+      'בלי דמי הצטרפות ובלי התחייבות, ואם לא חוסכים — לא משלמים כלום. ' +
+      'ככל שנהיה יותר, המחיר של כולנו יורד:'
+    : 'שווה שתסתכלו על זה — קבוצת המוזיל מאגדת עסקים לקבוצת רכישה אחת, ' +
+      'ומביאה את חברות הסליקה, החשמל והביטוח להתחרות על המחיר. ' +
+      'בלי דמי הצטרפות ובלי התחייבות, ואם לא חוסכים — לא משלמים כלום. ' +
+      'ככל שנהיה יותר עסקים, המחיר של כולנו יורד:';
+}
+
+const toast = document.getElementById('toast');
+let toastTimer;
+function say(msg) {
+  toast.textContent = msg;
+  toast.classList.add('is-on');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toast.classList.remove('is-on'), 2600);
+}
+
+function shareWhatsApp() {
+  window.open('https://wa.me/?text=' + encodeURIComponent(shareText() + '\n' + shareUrl()), '_blank');
+}
+
+async function shareNative() {
+  /* בטלפון זה פותח את מגירת השיתוף של המערכת — וואטסאפ, מסרונים,
+     מייל — ולכן הוא עדיף על כפתור לרשת אחת. בדסקטופ אין לו קיום,
+     ואז נופלים להעתקת הקישור. */
+  if (navigator.share) {
+    try {
+      await navigator.share({ title: 'קבוצת המוזיל', text: shareText(), url: shareUrl() });
+      return;
+    } catch (e) { if (e && e.name === 'AbortError') return; }
+  }
+  copyLink();
+}
+
+async function copyLink() {
+  const url = shareUrl();
+  try {
+    await navigator.clipboard.writeText(url);
+    say('✓ הקישור הועתק — אפשר להדביק ולשלוח');
+  } catch (e) {
+    /* דפדפנים ישנים, או הקשר שאינו מאובטח */
+    const t = document.createElement('textarea');
+    t.value = url;
+    t.style.cssText = 'position:fixed;opacity:0';
+    document.body.appendChild(t);
+    t.select();
+    try { document.execCommand('copy'); say('✓ הקישור הועתק'); }
+    catch (e2) { say('לא הצלחנו להעתיק — הקישור בשורת הכתובת'); }
+    t.remove();
+  }
+}
+
+document.querySelectorAll('[data-share]').forEach(b =>
+  b.addEventListener('click', e => {
+    e.preventDefault();
+    const how = b.dataset.share;
+    if (how === 'wa') shareWhatsApp();
+    else if (how === 'copy') copyLink();
+    else shareNative();
+  })
+);
+
+/* בטלפון יש מגירת שיתוף מערכתית — הכפתור הכללי עדיף שם על וואטסאפ */
+if (navigator.share) {
+  document.querySelectorAll('[data-share="native"]').forEach(b => b.hidden = false);
+}
 
 /* -----------------------------------------------------------------
    חזרה לראש העמוד.
