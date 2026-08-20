@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@700;900&family=Assistant:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--green:#0D6B54;--deep:#07503D;--gold:#C08A1E;--paper:#F7F4EE;--ink:#14201D;--line:#E3DED4}
+  *{box-sizing:border-box;margin:0}
+  body{background:var(--paper);color:var(--ink);font-family:'Assistant',Arial,sans-serif;padding:40px}
+  .sheet{max-width:1180px;margin:0 auto}
+  h1{font-family:'Frank Ruhl Libre',serif;font-size:34px;margin-bottom:6px}
+  .sub{color:#5D6B66;margin-bottom:34px}
+  .row{display:grid;grid-template-columns:1fr;gap:20px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px 28px}
+  .head{display:flex;align-items:baseline;gap:12px;margin-bottom:18px}
+  .letter{width:30px;height:30px;border-radius:8px;background:var(--ink);color:#fff;
+          display:grid;place-items:center;font-weight:900;font-size:15px;flex:none}
+  .title{font-family:'Frank Ruhl Libre',serif;font-weight:900;font-size:21px}
+  .idea{color:#5D6B66;font-size:15px}
+  .strip{display:flex;align-items:center;gap:32px;flex-wrap:wrap}
+  .box{text-align:center}
+  .box span{display:block;font-size:12px;color:#8B968F;margin-top:7px;font-weight:600}
+  .lock{display:flex;align-items:center;gap:12px;background:var(--paper);
+        border:1px solid var(--line);border-radius:12px;padding:13px 20px}
+  .lock .txt{display:flex;flex-direction:column;line-height:1.05;white-space:nowrap}
+  .lock .nm{font-family:'Frank Ruhl Libre',serif;font-weight:900;font-size:24px}
+  .lock .tag{font-size:11px;font-weight:700;color:var(--green);letter-spacing:.09em;margin-top:3px}
+</style>
+</head>
+<body>
+<div class="sheet">
+  <h1>קבוצת המוזיל — סבב שני</h1>
+  <p class="sub">שישה כיוונים חדשים. שוב: גדול, אייקון, ו-16px — המבחן האמיתי.</p>
+  <div class="row">
+
+    <!-- ה — אחוז שהקו שלו הוא חץ יורד -->
+    <div class="card">
+      <div class="head"><div class="letter">ה</div><div>
+        <div class="title">אחוז שיורד</div>
+        <div class="idea">סמל האחוז — והקו האלכסוני שלו הוא חץ שמצביע מטה. השפה של עמלות והנחות.</div></div></div>
+      <div class="strip" id="s-e"></div>
+    </div>
+
+    <!-- ו — שקל יורד -->
+    <div class="card">
+      <div class="head"><div class="letter">ו</div><div>
+        <div class="title">שקל יורד</div>
+        <div class="idea">סמל השקל וחץ זהב יורד לצידו. ישראלי, מיידי, לא צריך הסבר.</div></div></div>
+      <div class="strip" id="s-v"></div>
+    </div>
+
+    <!-- ז — שלושה שברונים יורדים -->
+    <div class="card">
+      <div class="head"><div class="letter">ז</div><div>
+        <div class="title">שלושה שברונים</div>
+        <div class="idea">ירידה חדה ובוטחת. הצורה הכי פשוטה שיש — ולכן שורדת בכל גודל.</div></div></div>
+      <div class="strip" id="s-z"></div>
+    </div>
+
+    <!-- ח — תג מחיר עם חץ -->
+    <div class="card">
+      <div class="head"><div class="letter">ח</div><div>
+        <div class="title">תג מחיר</div>
+        <div class="idea">צורת תג המחיר אומרת "מחיר" בלי מילה, והחץ בפנים אומר לאן הוא הולך.</div></div></div>
+      <div class="strip" id="s-h"></div>
+    </div>
+
+    <!-- ט — שלושה עיגולים מתמזגים -->
+    <div class="card">
+      <div class="head"><div class="letter">ט</div><div>
+        <div class="title">מתאחדים לאחד</div>
+        <div class="idea">שלושה נפרדים שחופפים ויוצרים גוף אחד חזק. זו בדיוק ההגדרה של קבוצת רכש.</div></div></div>
+      <div class="strip" id="s-t"></div>
+    </div>
+
+    <!-- י — מ עם תג חץ -->
+    <div class="card">
+      <div class="head"><div class="letter">י</div><div>
+        <div class="title">מ עם חותם יורד</div>
+        <div class="idea">שומר על זהות השם, ומוסיף לה משמעות: אות המותג עם חותם זהב שיורד.</div></div></div>
+      <div class="strip" id="s-y"></div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+/* כל לוגו מוגדר פעם אחת ומוזרק בארבעה גדלים — כדי שלא ייווצר פער
+   בין הגרסה הגדולה לקטנה בגלל טעות העתקה. */
+const G = '#0D6B54', W = '#fff', A = '#C08A1E';
+
+const MARKS = {
+  e: `<rect width="64" height="64" rx="15" fill="${G}"/>
+      <circle cx="21" cy="20" r="7" fill="none" stroke="${W}" stroke-width="5"/>
+      <circle cx="43" cy="40" r="7" fill="none" stroke="${W}" stroke-width="5"/>
+      <path d="M46 14 L22 50" stroke="${A}" stroke-width="6" stroke-linecap="round"/>
+      <path d="M14 40 L22 51 L33 46" fill="none" stroke="${A}" stroke-width="6"
+            stroke-linecap="round" stroke-linejoin="round"/>`,
+
+  v: `<rect width="64" height="64" rx="15" fill="${G}"/>
+      <text x="36" y="46" font-family="Assistant,Arial" font-size="40" font-weight="700"
+            fill="${W}" text-anchor="middle">₪</text>
+      <path d="M13 26 L13 44 M7 37 L13 45 L19 37" fill="none" stroke="${A}" stroke-width="5"
+            stroke-linecap="round" stroke-linejoin="round"/>`,
+
+  z: `<rect width="64" height="64" rx="15" fill="${G}"/>
+      <path d="M17 20 L32 32 L47 20" fill="none" stroke="${W}" stroke-width="6"
+            stroke-linecap="round" stroke-linejoin="round" opacity=".45"/>
+      <path d="M17 32 L32 44 L47 32" fill="none" stroke="${W}" stroke-width="6"
+            stroke-linecap="round" stroke-linejoin="round" opacity=".75"/>
+      <path d="M17 44 L32 56 L47 44" fill="none" stroke="${A}" stroke-width="6"
+            stroke-linecap="round" stroke-linejoin="round"/>`,
+
+  h: `<rect width="64" height="64" rx="15" fill="${G}"/>
+      <path d="M31 11 L53 11 L53 33 L31 55 L9 33 Z" fill="${W}"/>
+      <circle cx="45" cy="19" r="3.6" fill="${G}"/>
+      <path d="M28 26 L28 40 M21 34 L28 41 L35 34" fill="none" stroke="${A}" stroke-width="5"
+            stroke-linecap="round" stroke-linejoin="round"/>`,
+
+  t: `<rect width="64" height="64" rx="15" fill="${G}"/>
+      <circle cx="24" cy="26" r="13" fill="${W}" opacity=".55"/>
+      <circle cx="40" cy="26" r="13" fill="${W}" opacity=".55"/>
+      <circle cx="32" cy="40" r="13" fill="${A}" opacity=".95"/>`,
+
+  y: `<rect width="64" height="64" rx="15" fill="${G}"/>
+      <text x="30" y="44" font-family="Frank Ruhl Libre,serif" font-size="36" font-weight="900"
+            fill="${W}" text-anchor="middle">מ</text>
+      <circle cx="50" cy="48" r="11" fill="${A}"/>
+      <path d="M50 43 L50 53 M45.5 49 L50 53.5 L54.5 49" fill="none" stroke="#fff" stroke-width="3"
+            stroke-linecap="round" stroke-linejoin="round"/>`
+};
+
+const svg = (k, px) =>
+  `<svg width="${px}" height="${px}" viewBox="0 0 64 64">${MARKS[k]}</svg>`;
+
+for (const [key, id] of Object.entries({e:'s-e', v:'s-v', z:'s-z', h:'s-h', t:'s-t', y:'s-y'})) {
+  document.getElementById(id).innerHTML =
+    [104, 48, 16].map(px =>
+      `<div class="box">${svg(key, px)}<span>${px}px</span></div>`).join('') +
+    `<div class="lock">${svg(key, 42)}
+       <div class="txt"><span class="nm">קבוצת המוזיל</span>
+       <span class="tag">משלמים פחות</span></div></div>`;
+}
+</script>
+</body>
+</html>
