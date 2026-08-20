@@ -14,17 +14,17 @@
      ============================================================ -->
 <meta property="og:type"        content="website">
 <meta property="og:locale"      content="he_IL">
-<meta property="og:site_name"   content="המוזיל לעסקים">
+<meta property="og:site_name"   content="קבוצת המוזיל">
 <meta property="og:title"       content="קבוצת המוזיל — מתאגדים ומשלמים פחות. לעסקים ולמשקי בית.">
 <meta property="og:description" content="מיזם חברתי-עסקי לכוח קנייה קבוצתי. מתחילים בעמלות סליקה. בלי דמי הצטרפות ובלי התחייבות — 90% מהחיסכון נשאר אצלכם.">
-<meta property="og:image"       content="og-image.png">
+<meta property="og:image"       content="https://gingis010-cyber.github.io/hamozil/og-image.png">
 <meta property="og:image:width"  content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:url"         content="./">
+<meta property="og:url"         content="https://gingis010-cyber.github.io/hamozil/">
 <meta name="twitter:card"        content="summary_large_image">
 <meta name="twitter:title"       content="קבוצת המוזיל — מתאגדים ומשלמים פחות. לעסקים ולמשקי בית.">
 <meta name="twitter:description" content="מיזם חברתי-עסקי לכוח קנייה קבוצתי. 90% מהחיסכון נשאר אצלכם.">
-<meta name="twitter:image"       content="og-image.png">
+<meta name="twitter:image"       content="https://gingis010-cyber.github.io/hamozil/og-image.png">
 <meta name="theme-color" content="#0D6B54">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22%230D6B54%22%2F%3E%3Ctext%20x%3D%2240%22%20y%3D%2245%22%20font-family%3D%22Arial%2CHelvetica%2Csans-serif%22%20font-size%3D%2238%22%20font-weight%3D%22700%22%20fill%3D%22%23ffffff%22%20text-anchor%3D%22middle%22%3E%E2%82%AA%3C%2Ftext%3E%3Cpath%20d%3D%22M19%2026%20L19%2040%20M14.5%2035%20L19%2040.5%20L23.5%2035%22%20fill%3D%22none%22%20stroke%3D%22%23C08A1E%22%20stroke-width%3D%224.2%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -446,20 +446,9 @@
   }
   .skip-link:focus{inset-inline-start:12px}
 
-  /* ---------- כפתור הנגישות הצף ---------- */
-  .a11y-wrap{position:fixed; inset-block-end:20px; inset-inline-start:20px; z-index:120}
-  .a11y-btn{
-    width:54px; height:54px; border-radius:50%; border:2px solid #fff; cursor:pointer;
-    background:var(--green); color:#fff; display:grid; place-items:center;
-    box-shadow:0 4px 18px rgba(20,32,29,.28); padding:0;
-  }
-  .a11y-btn:hover{background:var(--green-deep)}
-  .a11y-btn:focus-visible{outline:3px solid var(--gold); outline-offset:3px}
-  .a11y-btn svg{width:30px; height:30px; display:block}
-
   /* ---------- חזרה לראש העמוד ---------- */
   .to-top{
-    position:fixed; inset-block-end:84px; inset-inline-start:24px; z-index:119;
+    position:fixed; inset-block-end:86px; inset-inline-start:25px; z-index:2147482996;
     width:46px; height:46px; border-radius:50%; cursor:pointer; padding:0;
     background:var(--surface); color:var(--green-deep); border:2px solid var(--green);
     display:grid; place-items:center; box-shadow:0 4px 16px rgba(20,32,29,.2);
@@ -470,29 +459,6 @@
   .to-top:focus-visible{outline:3px solid var(--gold); outline-offset:3px}
   .to-top svg{width:22px; height:22px; display:block}
 
-  .a11y-panel{
-    position:absolute; inset-block-end:66px; inset-inline-start:0; width:min(330px,calc(100vw - 40px));
-    background:var(--surface); border:1px solid var(--line); border-radius:16px;
-    box-shadow:0 10px 40px rgba(20,32,29,.22); padding:16px; max-height:78vh; overflow-y:auto;
-  }
-  .a11y-panel h2{font-size:calc(18px * var(--ts,1)); margin:0 0 4px}
-  .a11y-panel .hint{font-size:calc(13px * var(--ts,1)); color:var(--muted); margin:0 0 12px; line-height:1.5}
-  .a11y-grid{display:grid; grid-template-columns:1fr 1fr; gap:8px}
-  .a11y-opt{
-    display:flex; flex-direction:column; align-items:center; gap:5px; text-align:center;
-    background:var(--paper); border:2px solid var(--line); border-radius:11px;
-    padding:11px 6px; font:inherit; font-size:calc(13px * var(--ts,1)); font-weight:700; color:var(--ink); cursor:pointer;
-  }
-  .a11y-opt .ico{font-size:calc(19px * var(--ts,1)); line-height:1}
-  .a11y-opt:hover{border-color:var(--green)}
-  .a11y-opt[aria-pressed="true"]{background:var(--green); color:#fff; border-color:var(--green)}
-  .a11y-opt:focus-visible{outline:3px solid var(--gold); outline-offset:2px}
-  .a11y-reset{
-    grid-column:1/-1; background:transparent; border:2px dashed var(--line);
-    color:var(--muted); font-weight:700;
-  }
-  .a11y-foot{margin-top:12px; border-top:1px solid var(--line); padding-top:11px; font-size:calc(13.5px * var(--ts,1))}
-  .a11y-foot a{color:var(--green-deep); font-weight:700; display:block; margin-top:5px}
 
   /* ---------- קישורים משפטיים בכותרת התחתונה ---------- */
   .legal-links{display:flex; flex-wrap:wrap; gap:8px 18px; margin-top:14px}
@@ -537,10 +503,10 @@
   @media (max-width:700px){
     /* בטלפון סרגל הפעולה התחתון תופס את התחתית — הכפתורים עולים מעליו,
        והכותרת התחתונה מקבלת מרווח כדי שלא תיחבא מאחוריהם */
-    .a11y-wrap{inset-block-end:calc(var(--cta-h,64px) + 14px); inset-inline-start:14px}
-    .to-top{inset-block-end:calc(var(--cta-h,64px) + 78px); inset-inline-start:18px}
+    /* הכפתורים הצפים נערמים מעל סרגל הפעולה, לפי גובהו בפועל */
+    :root{--a11yw-offset:calc(var(--cta-h,64px) + 14px)}
+    .to-top{inset-block-end:calc(var(--cta-h,64px) + 80px); inset-inline-start:18px}
     footer.wrap{padding-block-end:calc(var(--cta-h,64px) + 116px)}
-    .a11y-panel{width:min(310px,calc(100vw - 28px))}
     .modal{padding:0}
     .modal-card{max-height:100vh; height:100%; border-radius:0; width:100%}
   }
@@ -557,56 +523,6 @@
      ומזיז כל רכיב position:fixed לאמצע המסך — הכפתורים הצפים וסרגל
      הפעולה התחתון נתלשו ממקומם. הגדלת גופן משאירה את הפריסה שלמה
      ומאפשרת לטקסט לזרום מחדש, וזו גם הדרישה בתקן. */
-  html.fs-1{--ts:1.14}
-  html.fs-2{--ts:1.28}
-  html.fs-3{--ts:1.45}
-
-  html.a11y-space p,html.a11y-space li,html.a11y-space .lead,html.a11y-space .doc{
-    line-height:2.1 !important; letter-spacing:.04em; word-spacing:.14em;
-  }
-
-  html.a11y-readable *{font-family:Arial,Helvetica,sans-serif !important; letter-spacing:0 !important}
-
-  html.a11y-links a:not(.btn),html.a11y-links .legal-links button{
-    text-decoration:underline !important; text-underline-offset:3px; font-weight:700;
-  }
-
-  html.a11y-mono body{filter:grayscale(1)}
-
-  html.a11y-motion *,html.a11y-motion *::before,html.a11y-motion *::after{
-    animation:none !important; transition:none !important;
-  }
-  html.a11y-motion{scroll-behavior:auto !important}
-
-  html.a11y-cursor,html.a11y-cursor *{
-    cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='42' height='42' viewBox='0 0 42 42'%3E%3Cpath d='M5 2 L5 33 L13 26 L18 38 L25 35 L20 23 L31 23 Z' fill='%23000' stroke='%23fff' stroke-width='2.5'/%3E%3C/svg%3E") 4 2, auto !important;
-  }
-
-  html.a11y-focus :focus{outline:4px solid #C08A1E !important; outline-offset:3px !important}
-
-  /* ניגודיות גבוהה — שחור/צהוב. הכלל גורף בכוונה, כי חלק מהמשטחים
-     בעמוד צבועים ישירות ולא דרך משתנה. */
-  /* הגוף מוחרג מהכלל הגורף במפורש. חריגה דרך כלל נפרד לא הייתה עובדת:
-     שרשרת ה-:not מעלה את הסגוליות של הכלל הגורף מעל כל כלל פשוט על body,
-     ו-!important בשני הצדדים מכריע לטובת הסגולי יותר. */
-  html.a11y-contrast *:not(svg):not(path):not(rect):not(text):not(body){
-    background-color:transparent !important; color:#FFF !important;
-    border-color:#FFF !important; box-shadow:none !important; text-shadow:none !important;
-  }
-  html.a11y-contrast,html.a11y-contrast body{background-color:#000 !important; color:#FFF !important}
-  html.a11y-contrast .a11y-panel,html.a11y-contrast .modal-card,
-  html.a11y-contrast .a11y-opt,html.a11y-contrast input,
-  html.a11y-contrast .modal-close,html.a11y-contrast .btn,
-  html.a11y-contrast details{background-color:#000 !important; border:2px solid #FFF !important}
-  html.a11y-contrast .modal{background:rgba(0,0,0,.9) !important}
-  html.a11y-contrast a,html.a11y-contrast b,html.a11y-contrast strong,
-  html.a11y-contrast summary,html.a11y-contrast .btn,
-  html.a11y-contrast .legal-links button,html.a11y-contrast h1,
-  html.a11y-contrast h2,html.a11y-contrast h3{color:#FFEB3B !important}
-  html.a11y-contrast .a11y-opt[aria-pressed="true"]{background-color:#FFEB3B !important; color:#000 !important}
-  html.a11y-contrast .a11y-opt[aria-pressed="true"] *{color:#000 !important}
-  html.a11y-contrast .tab.is-on{background-color:#FFEB3B !important; color:#000 !important}
-  html.a11y-contrast .fill{background-color:#333 !important}
 
   /* מי שביקש ממערכת ההפעלה פחות תנועה — מקבל את זה בלי לגעת בתפריט */
   @media (prefers-reduced-motion:reduce){
@@ -1282,7 +1198,7 @@
       </p>
       <form class="form" id="joinForm">
         <input id="f_name"  type="text" placeholder="שם מלא" required>
-        <input id="f_biz"   type="text" placeholder="שם העסק" required class="only-biz">
+        <input id="f_biz"   type="text" placeholder="סוג העסק (מסעדה, מספרה, חנות…)" required class="only-biz">
         <input id="f_phone" type="tel"  placeholder="טלפון" required>
         <input id="f_mail"  type="email" placeholder="אימייל">
 
@@ -1347,40 +1263,6 @@
     <path d="M12 19V5M5 12l7-7 7 7"/>
   </svg>
 </button>
-
-<!-- ==================== תפריט נגישות ==================== -->
-<div class="a11y-wrap">
-  <button class="a11y-btn" id="a11yBtn" aria-expanded="false" aria-controls="a11yPanel"
-          aria-label="פתיחת תפריט הנגישות" title="תפריט נגישות">
-    <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
-      <circle cx="12" cy="3.8" r="2"/>
-      <path d="M20.4 7.1a1.1 1.1 0 0 0-1.3-.8l-4.6 1a10.6 10.6 0 0 1-5 0l-4.6-1a1.1 1.1 0 1 0-.5 2.1l4.3 1v3.2l-2 6.9a1.1 1.1 0 0 0 2.1.6L12 15l3.2 5.1a1.1 1.1 0 0 0 2.1-.6l-2-6.9V9.4l4.3-1a1.1 1.1 0 0 0 .8-1.3z"/>
-    </svg>
-  </button>
-
-  <div class="a11y-panel" id="a11yPanel" role="dialog" aria-label="תפריט נגישות" hidden>
-    <h2>נגישות</h2>
-    <p class="hint">הבחירה נשמרת בדפדפן שלכם ותחזור גם בביקור הבא.</p>
-
-    <div class="a11y-grid">
-      <button class="a11y-opt" data-a11y="font"     aria-pressed="false"><span class="ico" aria-hidden="true">A⁺</span>הגדלת תצוגה</button>
-      <button class="a11y-opt" data-a11y="contrast" aria-pressed="false"><span class="ico" aria-hidden="true">◐</span>ניגודיות גבוהה</button>
-      <button class="a11y-opt" data-a11y="mono"     aria-pressed="false"><span class="ico" aria-hidden="true">◑</span>גווני אפור</button>
-      <button class="a11y-opt" data-a11y="links"    aria-pressed="false"><span class="ico" aria-hidden="true">🔗</span>הדגשת קישורים</button>
-      <button class="a11y-opt" data-a11y="readable" aria-pressed="false"><span class="ico" aria-hidden="true">א</span>גופן קריא</button>
-      <button class="a11y-opt" data-a11y="space"    aria-pressed="false"><span class="ico" aria-hidden="true">↕</span>ריווח שורות</button>
-      <button class="a11y-opt" data-a11y="motion"   aria-pressed="false"><span class="ico" aria-hidden="true">⏸</span>עצירת תנועה</button>
-      <button class="a11y-opt" data-a11y="cursor"   aria-pressed="false"><span class="ico" aria-hidden="true">➤</span>סמן גדול</button>
-      <button class="a11y-opt" data-a11y="focus"    aria-pressed="false"><span class="ico" aria-hidden="true">⌨</span>סימון מיקוד</button>
-      <button class="a11y-opt a11y-reset" id="a11yReset"><span class="ico" aria-hidden="true">↺</span>איפוס כל ההגדרות</button>
-    </div>
-
-    <div class="a11y-foot">
-      נתקלתם בבעיית נגישות?
-      <a href="#" data-doc="doc-a11y">קראו את הצהרת הנגישות ופנו אלינו</a>
-    </div>
-  </div>
-</div>
 
 <!-- ==================== הצהרת נגישות ==================== -->
 <div class="modal" id="doc-a11y" role="dialog" aria-modal="true" aria-labelledby="doc-a11y-t" hidden>
@@ -1805,7 +1687,7 @@ document.getElementById('joinForm').addEventListener('submit', e => {
       line('ספק חשמל היום', val('f_sup'))
     : 'הצטרפות לקבוצת הרכש של המוזיל — עמלות סליקה' +
       line('שם', val('f_name')) +
-      line('עסק', val('f_biz')) +
+      line('סוג העסק', val('f_biz')) +
       line('טלפון', val('f_phone')) +
       line('אימייל', val('f_mail')) +
       line('מחזור חודשי', shekel('f_turn')) +
@@ -1815,83 +1697,6 @@ document.getElementById('joinForm').addEventListener('submit', e => {
   e.target.style.display = 'none';
   document.getElementById('thanks').style.display = 'block';
 });
-
-/* -----------------------------------------------------------------
-   תפריט נגישות.
-   כל מצב הוא class על אלמנט השורש, כדי שיחול על העמוד כולו —
-   כולל החלוניות המשפטיות שנפתחות מעליו. הבחירה נשמרת ב-localStorage
-   ומוחלת מיד בטעינה הבאה.
-   "הגדלת תצוגה" היא מחזורית (100% ← 112% ← 126% ← 142% ← חזרה),
-   ולכן היא נשמרת כמספר ולא כמצב דלוק/כבוי.
------------------------------------------------------------------- */
-const A11Y_KEY   = 'hamozil-a11y';
-const A11Y_MODES = ['contrast','mono','links','readable','space','motion','cursor','focus'];
-const FONT_STEPS = 4;   // 0 = ללא הגדלה
-
-let a11y = { font: 0, modes: [] };
-
-try {
-  const saved = JSON.parse(localStorage.getItem(A11Y_KEY) || '{}');
-  if (saved && typeof saved === 'object') {
-    a11y.font  = Number(saved.font) || 0;
-    a11y.modes = Array.isArray(saved.modes) ? saved.modes.filter(m => A11Y_MODES.includes(m)) : [];
-  }
-} catch (e) { /* מצב פרטי או אחסון חסום — פשוט ממשיכים בברירת המחדל */ }
-
-function applyA11y() {
-  const root = document.documentElement;
-
-  for (let i = 1; i < FONT_STEPS; i++) root.classList.toggle('fs-' + i, a11y.font === i);
-  A11Y_MODES.forEach(m => root.classList.toggle('a11y-' + m, a11y.modes.includes(m)));
-
-  document.querySelectorAll('.a11y-opt[data-a11y]').forEach(b => {
-    const k = b.dataset.a11y;
-    b.setAttribute('aria-pressed', k === 'font' ? String(a11y.font > 0) : String(a11y.modes.includes(k)));
-  });
-
-  const fontBtn = document.querySelector('[data-a11y="font"]');
-  if (fontBtn) fontBtn.lastChild.textContent =
-    a11y.font ? `הגדלה ${[100,112,126,142][a11y.font]}%` : 'הגדלת תצוגה';
-
-  try { localStorage.setItem(A11Y_KEY, JSON.stringify(a11y)); } catch (e) {}
-}
-
-document.querySelectorAll('.a11y-opt[data-a11y]').forEach(btn =>
-  btn.addEventListener('click', () => {
-    const k = btn.dataset.a11y;
-    if (k === 'font') {
-      a11y.font = (a11y.font + 1) % FONT_STEPS;
-    } else {
-      const i = a11y.modes.indexOf(k);
-      if (i > -1) a11y.modes.splice(i, 1); else a11y.modes.push(k);
-    }
-    applyA11y();
-  })
-);
-
-document.getElementById('a11yReset').addEventListener('click', () => {
-  a11y = { font: 0, modes: [] };
-  applyA11y();
-});
-
-/* פתיחה וסגירה של התפריט */
-const a11yBtn   = document.getElementById('a11yBtn');
-const a11yPanel = document.getElementById('a11yPanel');
-
-function toggleA11yPanel(open) {
-  a11yPanel.hidden = !open;
-  a11yBtn.setAttribute('aria-expanded', String(open));
-  a11yBtn.setAttribute('aria-label', open ? 'סגירת תפריט הנגישות' : 'פתיחת תפריט הנגישות');
-  if (open) a11yPanel.querySelector('.a11y-opt').focus();
-}
-
-a11yBtn.addEventListener('click', () => toggleA11yPanel(a11yPanel.hidden));
-
-document.addEventListener('click', e => {
-  if (!a11yPanel.hidden && !e.target.closest('.a11y-wrap')) toggleA11yPanel(false);
-});
-
-applyA11y();
 
 /* -----------------------------------------------------------------
    חזרה לראש העמוד.
@@ -1946,7 +1751,6 @@ function closeDoc(m) {
 document.querySelectorAll('[data-doc]').forEach(el =>
   el.addEventListener('click', e => {
     e.preventDefault();
-    if (!a11yPanel.hidden) toggleA11yPanel(false);
     openDoc(el.dataset.doc);
   })
 );
@@ -1962,7 +1766,6 @@ document.addEventListener('keydown', e => {
 
   if (e.key === 'Escape') {
     if (open) closeDoc(open);
-    else if (!a11yPanel.hidden) { toggleA11yPanel(false); a11yBtn.focus(); }
     return;
   }
 
@@ -1977,5 +1780,8 @@ document.addEventListener('keydown', e => {
   else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
 });
 </script>
+
+<!-- סרגל הנגישות — רכיב משותף לכל האתרים. מוטמע כשורה אחת. -->
+<script src="a11y-widget.js" data-side="right" data-color="#0D6B54" data-statement="[data-doc=&quot;doc-a11y&quot;]" defer></script>
 </body>
 </html>
