@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>המוזיל לעסקים</title>
+<title>קבוצת המוזיל</title>
 <meta name="description" content="מיזם חברתי-עסקי שמאגד עסקים קטנים לכוח קנייה קבוצתי. אין דמי הצטרפות ואין התחייבות — אתם יכולים רק להרוויח: 90% מהחיסכון נשארים אצלכם.">
 
 <!-- ============================================================
@@ -15,14 +15,14 @@
 <meta property="og:type"        content="website">
 <meta property="og:locale"      content="he_IL">
 <meta property="og:site_name"   content="המוזיל לעסקים">
-<meta property="og:title"       content="המוזיל לעסקים — עסק אחד לא מזיז ספק. מאה עסקים מזיזים שוק.">
+<meta property="og:title"       content="קבוצת המוזיל — משלמים פחות. לעסקים ולמשקי בית.">
 <meta property="og:description" content="מיזם חברתי-עסקי לכוח קנייה קבוצתי. מתחילים בעמלות סליקה. בלי דמי הצטרפות ובלי התחייבות — 90% מהחיסכון נשאר אצלכם.">
 
 
 
 <meta property="og:url"         content="./">
 <meta name="twitter:card"        content="summary_large_image">
-<meta name="twitter:title"       content="המוזיל לעסקים — עסק אחד לא מזיז ספק. מאה עסקים מזיזים שוק.">
+<meta name="twitter:title"       content="קבוצת המוזיל — משלמים פחות. לעסקים ולמשקי בית.">
 <meta name="twitter:description" content="מיזם חברתי-עסקי לכוח קנייה קבוצתי. 90% מהחיסכון נשאר אצלכם.">
 
 <meta name="theme-color" content="#0D6B54">
@@ -60,6 +60,9 @@
     --shadow:0 1px 2px rgba(20,32,29,.05), 0 8px 28px rgba(20,32,29,.07);
   }
   *{box-sizing:border-box}
+  /* התצוגות והשדות המוחלפים מוסתרים דרך התכונה hidden — כלל display
+     בכל מקום אחר בגיליון היה גובר עליה, ולכן ההצהרה הזו נחרצת */
+  [hidden]{display:none !important}
   html{scroll-behavior:smooth}
   body{
     margin:0; background:var(--paper); color:var(--ink);
@@ -116,12 +119,6 @@
     padding-bottom:calc(12px + env(safe-area-inset-bottom));
   }
   .mobile-cta .btn{display:block; text-align:center; padding:14px}
-
-  .soon-bar{
-    margin-top:20px; background:var(--green-soft); border:1px dashed #9CC6B7;
-    border-radius:12px; padding:16px 20px; font-size:16px; color:#2E5147; line-height:1.6;
-  }
-  .soon-bar b{display:block; color:var(--green-deep); font-size:17px; margin-bottom:3px}
 
   /* ---------- כפתורים ---------- */
   .btn{
@@ -181,6 +178,9 @@
 
   /* השוואת "היום לבד" מול "בקבוצה" */
   .compare{display:grid; grid-template-columns:1fr auto 1fr; align-items:stretch; gap:14px}
+  /* ילדי גריד מקבלים min-width:auto כברירת מחדל, ולכן ערך ארוך כמו
+     "מחיר מלא" היה מרחיב את הכרטיס מעבר למסך צר במקום לגלוש לשורה שנייה */
+  .compare > *{min-width:0}
   .compare .arrow{display:grid; place-items:center}
   .compare .side{
     background:var(--paper); border:1px solid var(--line); border-radius:12px;
@@ -428,6 +428,14 @@
     .save-row{grid-template-columns:1fr auto}
     .save-row .bar{display:none}
     .risk-table th,.risk-table td{padding-inline:0}
+    /* במסכים צרים במיוחד (iPhone SE ‏— 320px) הלוגו ושתי הלשוניות
+       לא נכנסים לשורה אחת, והלשוניות נדחפו אל מחוץ למסך */
+    .tab{padding:7px 12px; font-size:14px}
+    .tabs{gap:2px; padding:3px}
+    .logo{font-size:17px}
+    .compare{gap:8px}
+    .compare .rate{font-size:26px}
+    .compare .side{padding-inline:10px}
   }
 </style>
 </head>
@@ -451,11 +459,11 @@
 </header>
 
 
-<div class="wrap"><div class="soon-bar" id="soonBar" hidden>
-  <b>הצד הפרטי בבנייה</b>
-  אותו מנגנון בדיוק, למשקי בית — חשמל, סלולר, ביטוחים, פנסיה ועוד.
-  בינתיים אפשר להשאיר פרטים בטופס למטה, ונעדכן אתכם כשייפתח.
-</div></div>
+<!-- ============================================================
+     שתי תצוגות באותו קובץ. הלשוניות מחליפות ביניהן,
+     והמצב נשמר ב-hash כדי שאפשר יהיה לשלוח קישור ישיר (#private).
+     ============================================================ -->
+<div id="view-business">
 
 <!-- ==================== הירו ==================== -->
 <section class="wrap hero">
@@ -679,6 +687,277 @@
   </div>
 </section>
 
+<!-- ==================== מחשבון ==================== -->
+<section class="section" id="calc">
+  <div class="wrap">
+    <div class="eyebrow">בדיקה מהירה</div>
+    <h2>כמה עמלת הסליקה עולה לכם היום?</h2>
+    <p class="lead" style="margin-top:16px">
+      מלאו שני שדות ותראו את המספר האמיתי. החישוב הוא אריתמטיקה פשוטה — לא הבטחה.
+    </p>
+    <div class="calc">
+      <div class="calc-inputs">
+        <div class="field">
+          <label for="turnover">מחזור חודשי בכרטיסי אשראי <span class="hint">(₪)</span></label>
+          <div class="input-wrap"><input id="turnover" type="number" min="0" step="1000" value="100000" inputmode="numeric"></div>
+        </div>
+        <div class="field">
+          <label for="rate">העמלה שאתם משלמים היום <span class="hint">(%) — לרוב סביב 0.9</span></label>
+          <div class="input-wrap"><input id="rate" type="number" min="0" max="5" step="0.01" value="0.9" inputmode="decimal"></div>
+        </div>
+        <div class="aside">
+          <b>0.9% זה מה שעסק בודד מקבל היום.</b>
+          רשת עם מאות סניפים לא מתמקחת טוב יותר מכם — פשוט יש לה מחזור להניח על השולחן.
+          זה בדיוק מה שקבוצה יוצרת.
+        </div>
+      </div>
+      <div class="calc-out">
+        <div class="today">
+          <div>
+            <div class="lbl">אתם משלמים היום</div>
+            <div class="note" id="yearly" style="margin:2px 0 0"></div>
+          </div>
+          <div class="amt" id="monthly">₪900</div>
+        </div>
+        <div style="font-weight:700;margin-bottom:12px">מה שווה כל הורדה בעמלה:</div>
+        <div class="save-grid" id="saveGrid"></div>
+        <div class="split" id="split"></div>
+        <div class="honest">
+          <b>בכנות:</b> אנחנו עדיין לא יודעים באיזו עמלה נסגור — זה תלוי בכמה עסקים יצטרפו.
+          לכן אנחנו לא מבטיחים מספר. מה שאנחנו כן מתחייבים אליו: לפרסם את התוצאה בשקיפות
+          מלאה לכל המשתתפים, ולגבות אך ורק <b>10% מתוך החיסכון בפועל</b> — 90% נשארים אצלכם.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<div id="view-private" hidden>
+
+<!-- ==================== הירו — פרטי ==================== -->
+<section class="wrap hero">
+  <div class="badge">● נלחמים במחירים — ככל שנהיה יותר, כוח המיקוח מתגבר</div>
+  <h1>משפחה אחת לא מזיזה ספק.<br>אלף משפחות מזיזות שוק.</h1>
+  <div class="sub">מיזם חברתי שמייצר כוח קנייה קבוצתי למשקי בית</div>
+  <p class="lead">
+    על החשמל, הסלולר, האינטרנט והביטוחים אתם משלמים את המחיר של לקוח בודד.
+    ועד עובדים גדול משלם על אותם שירותים בדיוק הרבה פחות — לא כי התמקח טוב יותר,
+    אלא כי הביא איתו אלפי לקוחות. <b>המוזיל מאגד משקי בית לקבוצה אחת ענקית</b>,
+    ומביא את הספקים להתחרות עליכם — ולהשיג את המחיר הנמוך ביותר.
+  </p>
+  <div class="trust" style="margin-top:30px">
+    <span><b class="tick">✓</b> ללא דמי הצטרפות</span>
+    <span><b class="tick">✓</b> ללא התחייבות</span>
+    <span><b class="tick">✓</b> ההחלטה תמיד שלכם</span>
+    <span><b class="tick">✓</b> אתם יכולים רק להרוויח</span>
+  </div>
+</section>
+
+<!-- ==================== דוגמה — פרטי ==================== -->
+<section class="section" id="problem-p">
+  <div class="wrap">
+    <div class="ex-head"><span>דוגמה</span></div>
+  </div>
+  <div class="wrap cols">
+    <div>
+      <h2>היום אתם משלמים לספק החשמל את המחיר המלא</h2>
+      <p class="lead" style="margin-top:18px">
+        שוק החשמל בישראל נפתח לתחרות — יש היום ספקים פרטיים שנלחמים על לקוחות
+        ומציעים הנחה על התעריף. אבל לקוח בודד מקבל את ההנחה הקטנה, ורוב האנשים
+        פשוט לא מתעסקים עם זה בכלל.
+      </p>
+      <p class="lead">
+        ועד עובדים עם אלפי חברים מקבל תנאים אחרים לגמרי. לא כי הוא מתמקח טוב יותר —
+        פשוט יש לו מה לשים על השולחן. <b>זה בדיוק מה שאנחנו בונים לכם.</b>
+      </p>
+    </div>
+    <div class="stat-card">
+      <div style="font-weight:700;margin-bottom:14px">משק בית עם חשבון חשמל של ₪600 בחודש</div>
+
+      <div class="compare">
+        <div class="side">
+          <div class="tag">היום, לבד</div>
+          <div class="rate loss">מחיר מלא</div>
+          <div class="amt loss">₪600 <small>בחודש</small></div>
+        </div>
+        <div class="arrow">←</div>
+        <div class="side">
+          <div class="tag">בקבוצה</div>
+          <div class="rate good">7% הנחה</div>
+          <div class="amt good">₪558 <small>בחודש</small></div>
+        </div>
+      </div>
+
+      <div class="saved">
+        <div class="saved-ttl">מה שנשאר אצלכם</div>
+        <div class="stat-row"><span class="k">בחודש</span><span class="v good">₪42</span></div>
+        <div class="stat-row"><span class="k">בשנה</span><span class="v good">₪504</span></div>
+        <div class="net">
+          <b>אתם יכולים רק להרוויח</b> — ₪38 נטו כל חודש נשארים אצלכם,
+          גם אחרי חלקנו (10%).
+        </div>
+      </div>
+
+      <p class="note">
+        <b>תרחיש להמחשה בלבד</b> — אחוז ההנחה בפועל ייקבע במכרז ותלוי בכמה
+        משקי בית יצטרפו. אנחנו לא מבטיחים את המספר הזה.
+      </p>
+      <p class="note">
+        וזו רק קטגוריה אחת. אותו סיפור חוזר בסלולר, בביטוחים, בפנסיה ובאינטרנט —
+        ולשם אנחנו הולכים אחרי זה.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== שכבות + מצטבר — פרטי ==================== -->
+<section class="section" id="more-p">
+  <div class="wrap">
+    <div class="eyebrow">קבוצה אחת, הרבה קטגוריות</div>
+    <h2>נרשמים פעם אחת — ומקבלים הצעות על כל ההוצאות</h2>
+    <p class="lead" style="margin-top:16px">
+      אין קבוצה ראשונה ושנייה. יש <b>קבוצה אחת</b>, ובתוכה קטגוריות.
+      קודם כל יוצאים למכרז על מה שכל בית בישראל משלם — ואחר כך על מה
+      שמתאים דווקא לכם. אותה הצטרפות אחת, עוד ועוד הוצאות שיורדות.
+    </p>
+
+    <div class="tiers">
+      <div class="tier">
+        <div class="tier-head"><div class="tier-n">1</div><h3>כל בית בישראל</h3></div>
+        <p class="who">אין משק בית שלא משלם את אלה — כאן הקבוצה הכי גדולה והכוח הכי חזק</p>
+        <div class="chips">
+          <span class="chip">חשמל לבית</span>
+          <span class="chip">סלולר</span>
+          <span class="chip">אינטרנט וטלוויזיה</span>
+          <span class="chip">גז בישול</span>
+          <span class="chip">עמלות בנק</span>
+          <span class="chip more">ועוד…</span>
+        </div>
+      </div>
+
+      <div class="tier">
+        <div class="tier-head"><div class="tier-n">2</div><h3>הכסף הגדול</h3></div>
+        <p class="who">כאן החיסכון לא נמדד בשקלים בחודש אלא בעשרות אלפים לאורך החיים</p>
+        <div class="chips">
+          <span class="chip">דמי ניהול בפנסיה וגמל</span>
+          <span class="chip">ביטוח רכב</span>
+          <span class="chip">ביטוח דירה</span>
+          <span class="chip">ביטוח בריאות</span>
+          <span class="chip">ריבית משכנתא</span>
+          <span class="chip more">ועוד…</span>
+        </div>
+      </div>
+
+      <div class="tier">
+        <div class="tier-head"><div class="tier-n">3</div><h3>רכישות ושירותים</h3></div>
+        <p class="who">כאן הפערים הכי גדולים, כי כמעט אף אחד לא משווה מחירים</p>
+        <div class="branch">
+          <b>לבית</b>
+          מזגנים · מקרר ומכונת כביסה · דוד שמש · פאנלים סולאריים · <span class="more-i">ועוד…</span>
+          <b>לרכב</b>
+          צמיגים · מצבר · טיפולים ושמן · טסט · <span class="more-i">ועוד…</span>
+          <b>לבריאות</b>
+          יישור שיניים ושתלים · משקפיים ועדשות · לייזר · <span class="more-i">ועוד…</span>
+          <b>לילדים</b>
+          שיעורי נהיגה · פסיכומטרי · חוגים · קייטנות · <span class="more-i">ועוד…</span>
+        </div>
+        <div class="branch-more">
+          וזו רק דוגמה. <b>לכל משפחה יש את ההוצאות שלה</b> — תגידו לנו על מה
+          אתם משלמים, ונבנה גם לזה קבוצה.
+        </div>
+      </div>
+    </div>
+
+    <h3 style="font-size:26px; margin:52px 0 8px">וכשמחברים את הכל — זה מצטבר</h3>
+    <p class="lead" style="margin-bottom:0">
+      החליפו את המספרים במה שאתם באמת משלמים, ותראו את הסכום שלכם.
+    </p>
+
+    <div class="stack">
+      <div class="stack-head">
+        <div>קטגוריה</div>
+        <div>הסכום שלכם</div>
+        <div>חיסכון</div>
+        <div>לחודש</div>
+        <div>לשנה</div>
+      </div>
+
+      <div class="stack-row">
+        <div class="cat">חשמל לבית<small>חשבון חודשי ממוצע</small></div>
+        <div class="inp"><input id="p_elec" type="number" min="0" step="50" value="600" inputmode="numeric"></div>
+        <div class="pct">7%</div>
+        <div class="mo" id="pm_elec"></div>
+        <div class="yr" id="py_elec"></div>
+      </div>
+
+      <div class="stack-row">
+        <div class="cat">סלולר<small>סך כל הקווים במשפחה</small></div>
+        <div class="inp"><input id="p_cell" type="number" min="0" step="20" value="200" inputmode="numeric"></div>
+        <div class="pct">20%</div>
+        <div class="mo" id="pm_cell"></div>
+        <div class="yr" id="py_cell"></div>
+      </div>
+
+      <div class="stack-row">
+        <div class="cat">אינטרנט וטלוויזיה<small>תשתית, ספק וחבילות צפייה</small></div>
+        <div class="inp"><input id="p_net" type="number" min="0" step="20" value="250" inputmode="numeric"></div>
+        <div class="pct">15%</div>
+        <div class="mo" id="pm_net"></div>
+        <div class="yr" id="py_net"></div>
+      </div>
+
+      <div class="stack-row">
+        <div class="cat">ביטוח רכב<small>חובה ומקיף, לחודש</small></div>
+        <div class="inp"><input id="p_car" type="number" min="0" step="25" value="350" inputmode="numeric"></div>
+        <div class="pct">15%</div>
+        <div class="mo" id="pm_car"></div>
+        <div class="yr" id="py_car"></div>
+      </div>
+
+      <div class="stack-row">
+        <div class="cat">ביטוח דירה<small>מבנה ותכולה, לחודש</small></div>
+        <div class="inp"><input id="p_home" type="number" min="0" step="10" value="120" inputmode="numeric"></div>
+        <div class="pct">15%</div>
+        <div class="mo" id="pm_home"></div>
+        <div class="yr" id="py_home"></div>
+      </div>
+
+      <div class="stack-row branch-row">
+        <div class="cat">
+          <span class="branch-tag">הכסף הגדול</span>
+          דמי ניהול בפנסיה<small>הזינו את הצבירה שלכם, לא הפקדה חודשית</small>
+        </div>
+        <div class="inp"><input id="p_pens" type="number" min="0" step="10000" value="500000" inputmode="numeric"></div>
+        <div class="pct">0.3% לשנה</div>
+        <div class="mo" id="pm_pens"></div>
+        <div class="yr" id="py_pens"></div>
+      </div>
+
+      <div class="stack-total">
+        <div class="lbl">סך החיסכון שלכם</div>
+        <div class="mo" id="pm_tot">—<small>בחודש</small></div>
+        <div class="yr" id="py_tot">—<small>בשנה</small></div>
+      </div>
+    </div>
+
+    <p class="note" style="max-width:70ch">
+      <b>אחוזי החיסכון כאן הם הערכה שמרנית להמחשה</b>, לא הבטחה — הם נועדו להראות
+      איך הסכומים מצטברים. המחיר בפועל בכל קטגוריה ייקבע במכרז ותלוי בכמה משקי בית
+      יצטרפו, ואנחנו נפרסם כל תוצאה בשקיפות מלאה. גם כאן: <b>אתם יכולים רק להרוויח.</b>
+    </p>
+    <p class="note" style="max-width:70ch">
+      <b>שימו לב לשורת הפנסיה:</b> הפרש קטן בדמי הניהול נראה זניח, אבל הוא נגבה
+      מהצבירה כל שנה מחדש — ולאורך עשרות שנות חיסכון הוא מסתכם בעשרות אלפי שקלים.
+      זו כנראה ההוצאה הכי גדולה שאתם לא שמים לב אליה.
+    </p>
+  </div>
+</section>
+
+</div>
+
+
 <!-- ==================== איך זה עובד ==================== -->
 <section class="section" id="how">
   <div class="wrap">
@@ -688,22 +967,22 @@
       <div class="step">
         <div class="n">1</div>
         <h3>נרשמים</h3>
-        <p>שתי דקות: שם העסק ופרטי קשר. זה כל מה שצריך עכשיו. בלי מסמכים ובלי התחייבות.</p>
+        <p data-p="שתי דקות: שם ופרטי קשר. זה כל מה שצריך עכשיו. בלי מסמכים ובלי התחייבות.">שתי דקות: שם העסק ופרטי קשר. זה כל מה שצריך עכשיו. בלי מסמכים ובלי התחייבות.</p>
       </div>
       <div class="step">
         <div class="n">2</div>
         <h3>מוסיפים ספקים <span style="font-weight:400;color:var(--muted)">(לא חובה)</span></h3>
-        <p>מי שרוצה מזין את הספקים שהוא לא מתנגד להחליף, אם יקבל מחיר טוב יותר. אפשר גם לדלג ולהוסיף בהמשך.</p>
+        <p data-p="מי שרוצה מזין את הספקים שהוא לא מתנגד להחליף, אם יקבל מחיר טוב יותר — ספק החשמל, הסלולר, הביטוח. אפשר גם לדלג ולהוסיף בהמשך.">מי שרוצה מזין את הספקים שהוא לא מתנגד להחליף, אם יקבל מחיר טוב יותר. אפשר גם לדלג ולהוסיף בהמשך.</p>
       </div>
       <div class="step">
         <div class="n">3</div>
         <h3>אנחנו מקבצים</h3>
-        <p>המערכת מאחדת ומפצלת את העסקים לקטגוריות — קודם מה שכולם קונים, ואז לפי הענף של כל עסק — כדי שכל אחד ייכנס לקבוצה שמביאה לו את המחיר הטוב ביותר.</p>
+        <p data-p="המערכת מאחדת ומפצלת את המשתתפים לקטגוריות — קודם מה שכל בית משלם, ואז מה שמתאים דווקא לכם — כדי שכל אחד ייכנס לקבוצה שמביאה לו את המחיר הטוב ביותר.">המערכת מאחדת ומפצלת את העסקים לקטגוריות — קודם מה שכולם קונים, ואז לפי הענף של כל עסק — כדי שכל אחד ייכנס לקבוצה שמביאה לו את המחיר הטוב ביותר.</p>
       </div>
       <div class="step">
         <div class="n">4</div>
         <h3>יוצאים למכרזים</h3>
-        <p>כשיש מספיק עסקים בקטגוריה, הספקים מתחרים עליה. כל עסק מקבל את ההצעה שמתאימה לו — ומחליט בעצמו. אין קבוצה שמחליטה בשבילכם.</p>
+        <p data-p="כשיש מספיק משקי בית בקטגוריה, הספקים מתחרים עליה. כל משפחה מקבלת את ההצעה שמתאימה לה — ומחליטה בעצמה. אין קבוצה שמחליטה בשבילכם.">כשיש מספיק עסקים בקטגוריה, הספקים מתחרים עליה. כל עסק מקבל את ההצעה שמתאימה לו — ומחליט בעצמו. אין קבוצה שמחליטה בשבילכם.</p>
       </div>
     </div>
   </div>
@@ -751,51 +1030,6 @@
   </div>
 </section>
 
-<!-- ==================== מחשבון ==================== -->
-<section class="section" id="calc">
-  <div class="wrap">
-    <div class="eyebrow">בדיקה מהירה</div>
-    <h2>כמה עמלת הסליקה עולה לכם היום?</h2>
-    <p class="lead" style="margin-top:16px">
-      מלאו שני שדות ותראו את המספר האמיתי. החישוב הוא אריתמטיקה פשוטה — לא הבטחה.
-    </p>
-    <div class="calc">
-      <div class="calc-inputs">
-        <div class="field">
-          <label for="turnover">מחזור חודשי בכרטיסי אשראי <span class="hint">(₪)</span></label>
-          <div class="input-wrap"><input id="turnover" type="number" min="0" step="1000" value="100000" inputmode="numeric"></div>
-        </div>
-        <div class="field">
-          <label for="rate">העמלה שאתם משלמים היום <span class="hint">(%) — לרוב סביב 0.9</span></label>
-          <div class="input-wrap"><input id="rate" type="number" min="0" max="5" step="0.01" value="0.9" inputmode="decimal"></div>
-        </div>
-        <div class="aside">
-          <b>0.9% זה מה שעסק בודד מקבל היום.</b>
-          רשת עם מאות סניפים לא מתמקחת טוב יותר מכם — פשוט יש לה מחזור להניח על השולחן.
-          זה בדיוק מה שקבוצה יוצרת.
-        </div>
-      </div>
-      <div class="calc-out">
-        <div class="today">
-          <div>
-            <div class="lbl">אתם משלמים היום</div>
-            <div class="note" id="yearly" style="margin:2px 0 0"></div>
-          </div>
-          <div class="amt" id="monthly">₪900</div>
-        </div>
-        <div style="font-weight:700;margin-bottom:12px">מה שווה כל הורדה בעמלה:</div>
-        <div class="save-grid" id="saveGrid"></div>
-        <div class="split" id="split"></div>
-        <div class="honest">
-          <b>בכנות:</b> אנחנו עדיין לא יודעים באיזו עמלה נסגור — זה תלוי בכמה עסקים יצטרפו.
-          לכן אנחנו לא מבטיחים מספר. מה שאנחנו כן מתחייבים אליו: לפרסם את התוצאה בשקיפות
-          מלאה לכל המשתתפים, ולגבות אך ורק <b>10% מתוך החיסכון בפועל</b> — 90% נשארים אצלכם.
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ==================== למה מיזם ==================== -->
 <section class="section" id="why">
   <div class="wrap">
@@ -822,7 +1056,7 @@
 <section class="section" id="faq">
   <div class="wrap">
     <div class="eyebrow">שאלות ותשובות</div>
-    <h2>מה שבעלי עסקים שואלים אותנו</h2>
+    <h2 data-p="מה שאנשים שואלים אותנו">מה שבעלי עסקים שואלים אותנו</h2>
     <div style="margin-top:34px">
       <details open>
         <summary>כמה זה עולה לי?</summary>
@@ -833,7 +1067,7 @@
         <p>לא. ההרשמה היא הצטרפות לקבוצה, לא לעסקה. כשההצעה תגיע — תראו את המספרים שלכם ותחליטו. גם "לא" זו תשובה לגיטימית לחלוטין, ובלי עלות.</p>
       </details>
       <details>
-        <summary>אתם מרוויחים מחברות הסליקה?</summary>
+        <summary data-p="אתם מרוויחים מהספקים?">אתם מרוויחים מחברות הסליקה?</summary>
         <p>לא. אם היינו מקבלים עמלה מהספק, האינטרס שלנו היה שתעברו — לא שתחסכו. אנחנו מרוויחים מצד אחד בלבד: 10% מתוך החיסכון שלכם. ככה האינטרסים שלנו ושלכם זהים לגמרי — ככל שנחסוך לכם יותר, נרוויח יותר.</p>
       </details>
       <details>
@@ -841,16 +1075,16 @@
         <p>נגיד לכם את זה. אם ההצעה הקבוצתית לא מכה את מה שיש לכם — לא תשלמו לנו כלום, ואתם נשארים בדיוק איפה שאתם. גם זו תוצאה שווה: עכשיו אתם יודעים בוודאות שאתם משלמים מחיר טוב.</p>
       </details>
       <details>
-        <summary>אני צריך להחליף חברת סליקה?</summary>
+        <summary data-p="אני חייב להחליף ספק?">אני צריך להחליף חברת סליקה?</summary>
         <p>רק אם תבחרו. לפעמים דווקא הספק הנוכחי משפר את התנאים כשמונחת מולו הצעה קבוצתית — וגם זה ניצחון.</p>
       </details>
       <details>
         <summary>מה אתם עושים עם המידע שלי?</summary>
-        <p>לספקים עוברים מספרים מצרפיים בלבד: כמה עסקים ואיזה מחזור כולל. פרטי העסק שלכם לא נמסרים לאף ספק בלי אישור מפורש מכם.</p>
+        <p data-p="לספקים עוברים מספרים מצרפיים בלבד: כמה משקי בית ואיזו צריכה כוללת. הפרטים האישיים שלכם לא נמסרים לאף ספק בלי אישור מפורש מכם.">לספקים עוברים מספרים מצרפיים בלבד: כמה עסקים ואיזה מחזור כולל. פרטי העסק שלכם לא נמסרים לאף ספק בלי אישור מפורש מכם.</p>
       </details>
       <details>
-        <summary>אני נרשם רק לסליקה?</summary>
-        <p>לא. אין קבוצה ראשונה ושנייה — יש קבוצה אחת, ובתוכה קטגוריות. הרשמה אחת מכניסה אתכם לכולן: קודם למכרזים על מה שכל עסק משלם (סליקה, חשמל, ביטוח, הנהלת חשבונות, תקשורת), ואחר כך למכרזים שמתאימים לענף שלכם. לא צריך להירשם שוב בכל פעם.</p>
+        <summary data-p="אני נרשם רק לחשמל?">אני נרשם רק לסליקה?</summary>
+        <p data-p="לא. אין קבוצה ראשונה ושנייה — יש קבוצה אחת, ובתוכה קטגוריות. הרשמה אחת מכניסה אתכם לכולן: קודם למכרזים על מה שכל בית משלם (חשמל, סלולר, אינטרנט, ביטוחים), ואחר כך למכרזים על דמי ניהול בפנסיה ועל רכישות גדולות. לא צריך להירשם שוב בכל פעם.">לא. אין קבוצה ראשונה ושנייה — יש קבוצה אחת, ובתוכה קטגוריות. הרשמה אחת מכניסה אתכם לכולן: קודם למכרזים על מה שכל עסק משלם (סליקה, חשמל, ביטוח, הנהלת חשבונות, תקשורת), ואחר כך למכרזים שמתאימים לענף שלכם. לא צריך להירשם שוב בכל פעם.</p>
       </details>
     </div>
   </div>
@@ -862,24 +1096,36 @@
     <div class="join">
       <div class="eyebrow" style="color:#BEE7D8">הצטרפות לקבוצה</div>
       <h2>ההצטרפות לוקחת שתי דקות ולא עולה כלום</h2>
-      <p class="lead">
+      <p class="lead" data-p="אנחנו בונים עכשיו את הקבוצה, וככל שנהיה יותר — המחיר שנשיג טוב יותר, לכולם. בשלב הזה כל מה שצריך זה להשאיר פרטים. את רשימת הספקים תוסיפו אחר כך, רק אם תרצו, וכשנגיע למספר משקי בית שמאפשר לצאת למכרזים — נעדכן אתכם.">
         אנחנו בונים עכשיו את הקבוצה, וככל שנהיה יותר — המחיר שנשיג טוב יותר, לכולם.
         בשלב הזה כל מה שצריך זה להשאיר פרטים. את רשימת הספקים תוסיפו אחר כך,
         רק אם תרצו, וכשנגיע למספר עסקים שמאפשר לצאת למכרזים — נעדכן אתכם.
       </p>
       <form class="form" id="joinForm">
         <input id="f_name"  type="text" placeholder="שם מלא" required>
-        <input id="f_biz"   type="text" placeholder="שם העסק" required>
+        <input id="f_biz"   type="text" placeholder="שם העסק" required class="only-biz">
         <input id="f_phone" type="tel"  placeholder="טלפון" required>
         <input id="f_mail"  type="email" placeholder="אימייל">
-        <div class="full form-sep">
+
+        <!-- שדות ההצעה האישית — לכל תצוגה השדות שרלוונטיים לה -->
+        <div class="full form-sep only-biz">
           <b>רוצים לקבל הצעת מחיר אמיתית על הסליקה שלכם?</b>
           מלאו גם את שני השדות הבאים. בלעדיהם נצרף אתכם לקבוצה כרגיל —
           אבל איתם נוכל לחשב בדיוק כמה אתם משלמים היום, ולהחזיר לכם
           הצעה אישית מול המחיר שנשיג במכרז.
         </div>
-        <input id="f_turn"  type="number" placeholder="מחזור חודשי משוער בכרטיסי אשראי (₪)">
-        <input id="f_rate"  type="number" step="0.01" placeholder="העמלה שאתם משלמים היום (%)">
+        <input id="f_turn"  type="number" placeholder="מחזור חודשי משוער בכרטיסי אשראי (₪)" class="only-biz">
+        <input id="f_rate"  type="number" step="0.01" placeholder="העמלה שאתם משלמים היום (%)" class="only-biz">
+
+        <div class="full form-sep only-priv" hidden>
+          <b>רוצים לקבל הצעת מחיר אמיתית על החשמל שלכם?</b>
+          מלאו גם את שני השדות הבאים. בלעדיהם נצרף אתכם לקבוצה כרגיל —
+          אבל איתם נוכל לחשב בדיוק כמה אתם משלמים היום, ולהחזיר לכם
+          הצעה אישית מול המחיר שנשיג במכרז.
+        </div>
+        <input id="f_bill" type="number" placeholder="חשבון החשמל החודשי שלכם (₪)" class="only-priv" hidden>
+        <input id="f_sup"  type="text"   placeholder="ספק החשמל שלכם היום" class="only-priv" hidden>
+
         <div class="full"><button type="submit" class="btn btn-primary form-btn">שריינו לי מקום בקבוצה</button></div>
       </form>
       <div class="thanks" id="thanks">
@@ -960,19 +1206,46 @@ recalc();
 
 /* -----------------------------------------------------------------
    לשוניות לעסקים / לפרטיים.
-   הצד הפרטי עדיין בבנייה — עד שייבנה, הלחיצה מציגה הודעה כנה
-   במקום להיות כפתור מת.
+
+   שתי התצוגות יושבות באותו עמוד. החלקים הייחודיים (הירו, הדוגמה,
+   הקטגוריות, המחשבון) מוחלפים לגמרי; החלקים המשותפים — איך זה עובד,
+   אפס סיכון, שאלות והטופס — נשארים, ורק הניסוח בהם מוחלף דרך data-p.
+   הנוסח המקורי נשמר ב-data-b בפעם הראשונה, כדי שאפשר יהיה לחזור אליו.
 ------------------------------------------------------------------ */
-document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () => {
-  const soon = document.getElementById('soonBar');
-  if (t.dataset.view === 'private') {
-    soon.hidden = false;
-    soon.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  } else {
-    soon.hidden = true;
-  }
-  document.querySelectorAll('.tab').forEach(x => x.classList.toggle('is-on', x === t));
-}));
+let VIEW = 'business';
+
+function setView(v, scroll) {
+  VIEW = (v === 'private') ? 'private' : 'business';
+  const priv = VIEW === 'private';
+
+  document.getElementById('view-business').hidden = priv;
+  document.getElementById('view-private').hidden  = !priv;
+
+  document.querySelectorAll('.tab').forEach(t =>
+    t.classList.toggle('is-on', t.dataset.view === VIEW));
+
+  document.querySelectorAll('.only-biz').forEach(el => el.hidden = priv);
+  document.querySelectorAll('.only-priv').forEach(el => el.hidden = !priv);
+
+  /* שדה חובה שמוסתר חוסם שליחת טופס בדפדפן — לכן מבטלים לו את ה-required */
+  const biz = document.getElementById('f_biz');
+  if (priv) biz.removeAttribute('required'); else biz.setAttribute('required', '');
+
+  /* החלפת ניסוח בחלקים המשותפים */
+  document.querySelectorAll('[data-p]').forEach(el => {
+    if (!el.dataset.b) el.dataset.b = el.textContent.trim();
+    el.textContent = priv ? el.dataset.p : el.dataset.b;
+  });
+
+  history.replaceState(null, '', priv ? '#private' : location.pathname);
+  if (scroll) window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+document.querySelectorAll('.tab').forEach(t =>
+  t.addEventListener('click', () => setView(t.dataset.view, true)));
+
+/* קישור ישיר לצד הפרטי: hamozil.com/#private */
+if (location.hash === '#private') setView('private');
 
 /* -----------------------------------------------------------------
    חיסכון מצטבר על פני כמה קטגוריות.
@@ -1008,6 +1281,41 @@ STACK.forEach(r =>
 );
 recalcStack();
 
+/* -----------------------------------------------------------------
+   אותו חישוב, לצד הפרטי.
+   pct = אחוז מההוצאה החודשית | yearly = אחוז שנתי מצבירה (פנסיה),
+   ולכן מחולק ב-12 כדי להציג אותו באותה שורה חודשית.
+   גם כאן: הערכה שמרנית להמחשה, לא הבטחה.
+------------------------------------------------------------------ */
+const PSTACK = [
+  { id: 'elec', pct: 0.07 },
+  { id: 'cell', pct: 0.20 },
+  { id: 'net',  pct: 0.15 },
+  { id: 'car',  pct: 0.15 },
+  { id: 'home', pct: 0.15 },
+  { id: 'pens', yearly: 0.003 },   // 0.3% מהצבירה בשנה — הפרש טיפוסי בדמי ניהול
+];
+
+function recalcPStack() {
+  let total = 0;
+
+  for (const row of PSTACK) {
+    const amount = Math.max(0, +document.getElementById('p_' + row.id).value || 0);
+    const saved  = row.yearly ? amount * row.yearly / 12 : amount * row.pct;
+    total += saved;
+    document.getElementById('pm_' + row.id).textContent = ils(saved);
+    document.getElementById('py_' + row.id).textContent = ils(saved * 12);
+  }
+
+  document.getElementById('pm_tot').innerHTML = `${ils(total)}<small>בחודש</small>`;
+  document.getElementById('py_tot').innerHTML = `${ils(total * 12)}<small>בשנה</small>`;
+}
+
+PSTACK.forEach(r =>
+  document.getElementById('p_' + r.id).addEventListener('input', recalcPStack)
+);
+recalcPStack();
+
 /* ההרשמה נשלחת כהודעת וואטסאפ מוכנה — אפס תלות בשרת או בשירות חיצוני.
    כשיהיה CRM אפשר להחליף כאן ב-fetch לשרת ולהשאיר את הוואטסאפ כגיבוי. */
 document.getElementById('joinForm').addEventListener('submit', e => {
@@ -1015,14 +1323,22 @@ document.getElementById('joinForm').addEventListener('submit', e => {
   const val = id => (document.getElementById(id).value || '').trim();
   const line = (label, v) => v ? `\n${label}: ${v}` : '';
 
-  const msg =
-    'הצטרפות לקבוצת הרכש של המוזיל — עמלות סליקה' +
-    line('שם', val('f_name')) +
-    line('עסק', val('f_biz')) +
-    line('טלפון', val('f_phone')) +
-    line('אימייל', val('f_mail')) +
-    line('מחזור חודשי', val('f_turn') ? '₪' + (+val('f_turn')).toLocaleString('he-IL') : '') +
-    line('עמלה היום', val('f_rate') ? val('f_rate') + '%' : '');
+  const shekel = id => val(id) ? '₪' + (+val(id)).toLocaleString('he-IL') : '';
+
+  const msg = VIEW === 'private'
+    ? 'הצטרפות לקבוצת המוזיל — משקי בית' +
+      line('שם', val('f_name')) +
+      line('טלפון', val('f_phone')) +
+      line('אימייל', val('f_mail')) +
+      line('חשבון חשמל חודשי', shekel('f_bill')) +
+      line('ספק חשמל היום', val('f_sup'))
+    : 'הצטרפות לקבוצת הרכש של המוזיל — עמלות סליקה' +
+      line('שם', val('f_name')) +
+      line('עסק', val('f_biz')) +
+      line('טלפון', val('f_phone')) +
+      line('אימייל', val('f_mail')) +
+      line('מחזור חודשי', shekel('f_turn')) +
+      line('עמלה היום', val('f_rate') ? val('f_rate') + '%' : '');
 
   window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`, '_blank');
   e.target.style.display = 'none';

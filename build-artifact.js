@@ -36,7 +36,7 @@ let out = src
   // הזרקת הגופנים המוטמעים בראש גיליון הסגנון
   .replace('<style>', '<style>' + fontCss)
   // שם קצר לגלריית הפרסום
-  .replace(/<title>[^<]*<\/title>/, '<title>המוזיל לעסקים</title>')
+  .replace(/<title>[^<]*<\/title>/, '<title>קבוצת המוזיל</title>')
   // תמונת השיתוף היא קובץ נפרד ולא קיימת בגרסה של קובץ בודד
   .replace(/^.*(og:image|twitter:image).*$\n?/gm, '');
 
