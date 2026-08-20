@@ -662,7 +662,6 @@
         <div class="yr" id="y_tot">—<small>בשנה</small></div>
       </div>
 
-      <div class="stack-note" id="stackNet"></div>
     </div>
 
     <p class="note" style="max-width:70ch">
@@ -995,11 +994,6 @@ function recalcStack() {
 
   document.getElementById('m_tot').innerHTML = `${ils(total)}<small>בחודש</small>`;
   document.getElementById('y_tot').innerHTML = `${ils(total * 12)}<small>בשנה</small>`;
-
-  const net = total * (1 - CATEGORY.ourCut);
-  document.getElementById('stackNet').innerHTML =
-    `<b>אתם יכולים רק להרוויח</b> — גם אחרי חלקנו (10%) נשארים אצלכם ` +
-    `<b>${ils(net)} בחודש</b>, כלומר <b>${ils(net * 12)} בשנה</b>.`;
 }
 
 STACK.forEach(r =>
