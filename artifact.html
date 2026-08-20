@@ -15,14 +15,14 @@
 <meta property="og:type"        content="website">
 <meta property="og:locale"      content="he_IL">
 <meta property="og:site_name"   content="המוזיל לעסקים">
-<meta property="og:title"       content="קבוצת המוזיל — משלמים פחות. לעסקים ולמשקי בית.">
+<meta property="og:title"       content="קבוצת המוזיל — מתאגדים ומשלמים פחות. לעסקים ולמשקי בית.">
 <meta property="og:description" content="מיזם חברתי-עסקי לכוח קנייה קבוצתי. מתחילים בעמלות סליקה. בלי דמי הצטרפות ובלי התחייבות — 90% מהחיסכון נשאר אצלכם.">
 
 
 
 <meta property="og:url"         content="./">
 <meta name="twitter:card"        content="summary_large_image">
-<meta name="twitter:title"       content="קבוצת המוזיל — משלמים פחות. לעסקים ולמשקי בית.">
+<meta name="twitter:title"       content="קבוצת המוזיל — מתאגדים ומשלמים פחות. לעסקים ולמשקי בית.">
 <meta name="twitter:description" content="מיזם חברתי-עסקי לכוח קנייה קבוצתי. 90% מהחיסכון נשאר אצלכם.">
 
 <meta name="theme-color" content="#0D6B54">
@@ -67,30 +67,31 @@
   body{
     margin:0; background:var(--paper); color:var(--ink);
     font-family:'Assistant', 'Segoe UI', Arial, sans-serif;
-    font-size:18px; line-height:1.7; -webkit-font-smoothing:antialiased;
+    font-size:calc(18px * var(--ts,1)); line-height:1.7; -webkit-font-smoothing:antialiased;
   }
   h1,h2,h3{font-family:'Frank Ruhl Libre', Georgia, serif; line-height:1.2; margin:0; font-weight:700;}
-  h1{font-size:clamp(34px,5.2vw,62px); font-weight:900; letter-spacing:-.5px}
-  h2{font-size:clamp(28px,3.6vw,42px); font-weight:700}
-  h3{font-size:22px}
+  h1{font-size:calc(clamp(34px,5.2vw,62px) * var(--ts,1)); font-weight:900; letter-spacing:-.5px}
+  h2{font-size:calc(clamp(28px,3.6vw,42px) * var(--ts,1)); font-weight:700}
+  h3{font-size:calc(22px * var(--ts,1))}
   p{margin:0 0 1em}
   a{color:inherit}
   .wrap{max-width:1080px; margin:0 auto; padding:0 24px}
   .section{padding:86px 0; border-top:1px solid var(--line)}
   section[id]{scroll-margin-top:90px}
   .eyebrow{
-    font-size:14px; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+    font-size:calc(14px * var(--ts,1)); font-weight:700; letter-spacing:.14em; text-transform:uppercase;
     color:var(--green); margin-bottom:14px;
   }
-  .lead{font-size:20px; color:var(--muted); max-width:62ch}
+  .lead{font-size:calc(20px * var(--ts,1)); color:var(--muted); max-width:62ch}
 
   /* ---------- ניווט ---------- */
   header{
     position:sticky; top:0; z-index:50; background:rgba(247,244,238,.92);
     backdrop-filter:blur(10px); border-bottom:1px solid var(--line);
   }
-  .nav{display:flex; align-items:center; justify-content:space-between; height:70px}
-  .logo{display:flex; align-items:center; gap:10px; font-family:'Frank Ruhl Libre',serif; font-weight:900; font-size:26px}
+  .nav{display:flex; align-items:center; justify-content:space-between;
+       min-height:70px; flex-wrap:wrap; row-gap:8px; padding-block:8px}
+  .logo{display:flex; align-items:center; gap:10px; font-family:'Frank Ruhl Libre',serif; font-weight:900; font-size:calc(26px * var(--ts,1))}
   /* השם ומתחתיו שורת המשנה — שתי שורות צפופות שנכנסות לגובה הסרגל */
   .logo-txt{display:flex; flex-direction:column; line-height:1.05; white-space:nowrap}
   .logo-sub{
@@ -104,7 +105,7 @@
   .tabs{display:flex; gap:4px; background:var(--green-soft); border:1px solid #CADED6; border-radius:999px; padding:4px}
   .tab{
     border:0; background:transparent; cursor:pointer; font-family:inherit;
-    font-size:16px; font-weight:700; color:var(--green-deep);
+    font-size:calc(16px * var(--ts,1)); font-weight:700; color:var(--green-deep);
     padding:9px 22px; border-radius:999px; transition:background .15s ease, color .15s ease;
   }
   .tab:hover{background:rgba(13,107,84,.09)}
@@ -123,7 +124,7 @@
   /* ---------- כפתורים ---------- */
   .btn{
     display:inline-block; padding:15px 30px; border-radius:10px; font-weight:700;
-    font-size:17px; text-decoration:none; border:2px solid transparent; cursor:pointer;
+    font-size:calc(17px * var(--ts,1)); text-decoration:none; border:2px solid transparent; cursor:pointer;
     font-family:inherit; transition:transform .12s ease, box-shadow .12s ease;
   }
   .btn-primary{background:var(--green); color:#fff; box-shadow:0 6px 18px rgba(13,107,84,.24)}
@@ -137,16 +138,16 @@
   .badge{
     display:inline-flex; align-items:center; gap:9px; background:var(--green-soft);
     color:var(--green-deep); border:1px solid #CADED6; padding:9px 17px;
-    border-radius:999px; font-size:15px; font-weight:700; margin-bottom:26px;
+    border-radius:999px; font-size:calc(15px * var(--ts,1)); font-weight:700; margin-bottom:26px;
   }
   .hero h1{max-width:19ch}
   .hero .sub{
-    font-family:'Frank Ruhl Libre',serif; font-size:clamp(19px,2.2vw,25px);
+    font-family:'Frank Ruhl Libre',serif; font-size:calc(clamp(19px,2.2vw,25px) * var(--ts,1));
     color:var(--green-deep); margin:18px 0 8px; font-weight:500;
   }
   .hero p.lead{margin-top:14px}
   .cta-row{display:flex; gap:14px; flex-wrap:wrap; margin-top:34px}
-  .trust{display:flex; gap:26px; flex-wrap:wrap; margin-top:34px; font-size:15.5px; color:var(--muted); font-weight:600}
+  .trust{display:flex; gap:26px; flex-wrap:wrap; margin-top:34px; font-size:calc(15.5px * var(--ts,1)); color:var(--muted); font-weight:600}
   .trust span{display:flex; align-items:center; gap:8px}
   .tick{color:var(--green); font-weight:900}
 
@@ -158,22 +159,22 @@
   }
   .stat-row{display:flex; justify-content:space-between; align-items:baseline; padding:15px 0; border-bottom:1px dashed var(--line)}
   .stat-row:last-child{border-bottom:0}
-  .stat-row .k{color:var(--muted); font-size:16px; font-weight:600}
-  .stat-row .v{font-family:'Frank Ruhl Libre',serif; font-size:30px; font-weight:900}
+  .stat-row .k{color:var(--muted); font-size:calc(16px * var(--ts,1)); font-weight:600}
+  .stat-row .v{font-family:'Frank Ruhl Libre',serif; font-size:calc(30px * var(--ts,1)); font-weight:900}
   .v.loss{color:var(--loss)}
   .v.good{color:var(--green-deep)}
-  .note{font-size:15px; color:var(--muted); margin-top:14px}
+  .note{font-size:calc(15px * var(--ts,1)); color:var(--muted); margin-top:14px}
   /* "דוגמה" גדול שחולש על שני הצדדים — הטקסט והטבלה */
   .ex-head{display:flex; align-items:center; gap:18px; margin-bottom:34px}
   .ex-head span{
     font-family:'Frank Ruhl Libre',serif; font-weight:900;
-    font-size:clamp(28px,3.4vw,40px); color:var(--gold); letter-spacing:.04em; flex:none;
+    font-size:calc(clamp(28px,3.4vw,40px) * var(--ts,1)); color:var(--gold); letter-spacing:.04em; flex:none;
   }
   .ex-head::after{content:''; flex:1; height:3px; background:var(--gold); opacity:.28; border-radius:2px}
 
   .ex-tag{
     display:inline-block; background:var(--gold); color:#fff; border-radius:999px;
-    padding:3px 13px; font-size:13px; font-weight:700; margin-bottom:12px;
+    padding:3px 13px; font-size:calc(13px * var(--ts,1)); font-weight:700; margin-bottom:12px;
   }
 
   /* השוואת "היום לבד" מול "בקבוצה" */
@@ -186,14 +187,15 @@
     background:var(--paper); border:1px solid var(--line); border-radius:12px;
     padding:16px 14px; text-align:center;
   }
-  .compare .tag{font-size:14px; font-weight:700; color:var(--muted); margin-bottom:6px}
-  .compare .rate{font-family:'Frank Ruhl Libre',serif; font-size:32px; font-weight:900; line-height:1}
-  .compare .amt{font-size:17px; font-weight:700; margin-top:6px}
+  .compare .tag{font-size:calc(14px * var(--ts,1)); font-weight:700; color:var(--muted); margin-bottom:6px}
+  .compare .rate{font-family:'Frank Ruhl Libre',serif; font-weight:900; line-height:1;
+                 font-size:min(calc(32px * var(--ts,1)), 8.5vw)}
+  .compare .amt{font-weight:700; margin-top:6px; font-size:min(calc(17px * var(--ts,1)), 5.4vw)}
   /* בלוק נפרד כדי ששני הכרטיסים ייראו זהים בכל רוחב מסך */
-  .compare .amt small{display:block; margin-top:2px; font-weight:600; color:var(--muted); font-size:13.5px}
+  .compare .amt small{display:block; margin-top:2px; font-weight:600; color:var(--muted); font-size:calc(13.5px * var(--ts,1))}
   .compare .rate.loss,.compare .amt.loss{color:var(--loss)}
   .compare .rate.good,.compare .amt.good{color:var(--green-deep)}
-  .compare .arrow{font-size:26px; color:var(--green); font-weight:900}
+  .compare .arrow{font-size:calc(26px * var(--ts,1)); color:var(--green); font-weight:900}
 
   .saved{
     margin-top:20px; background:var(--green-soft); border:1px solid #CADED6;
@@ -201,10 +203,10 @@
   }
   .saved-ttl{font-weight:700; color:var(--green-deep); margin-bottom:6px}
   .saved .stat-row{border-bottom-color:#CFE2DA; padding:11px 0}
-  .saved .v{font-size:26px}
+  .saved .v{font-size:calc(26px * var(--ts,1))}
   .net{
     margin-top:14px; padding-top:14px; border-top:1px solid #CFE2DA;
-    font-size:15px; color:#31544A;
+    font-size:calc(15px * var(--ts,1)); color:#31544A;
   }
 
   /* ---------- שלבים ---------- */
@@ -212,19 +214,19 @@
   .step{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:26px; box-shadow:var(--shadow)}
   .step .n{
     width:38px;height:38px;border-radius:10px;background:var(--green-soft);color:var(--green-deep);
-    display:grid;place-items:center;font-weight:900;font-size:18px;margin-bottom:16px;
+    display:grid;place-items:center;font-weight:900;font-size:calc(18px * var(--ts,1));margin-bottom:16px;
     font-family:'Frank Ruhl Libre',serif;
   }
-  .step h3{font-size:19px; margin-bottom:8px}
-  .step p{font-size:16px; color:var(--muted); margin:0}
+  .step h3{font-size:calc(19px * var(--ts,1)); margin-bottom:8px}
+  .step p{font-size:calc(16px * var(--ts,1)); color:var(--muted); margin:0}
 
   /* ---------- אפס סיכון ---------- */
   .risk{background:var(--ink); color:#F2F0EA; border-radius:20px; padding:56px 44px; margin-top:8px}
   .risk h2{color:#fff}
   .risk .lead{color:#B9C4C0}
-  .risk-table{width:100%; border-collapse:collapse; margin-top:34px; font-size:17px}
+  .risk-table{width:100%; border-collapse:collapse; margin-top:34px; font-size:calc(17px * var(--ts,1))}
   .risk-table th{
-    text-align:right; font-size:14px; letter-spacing:.08em; text-transform:uppercase;
+    text-align:right; font-size:calc(14px * var(--ts,1)); letter-spacing:.08em; text-transform:uppercase;
     color:#96A5A0; font-weight:700; padding:0 16px 14px; border-bottom:1px solid #2C3B37;
   }
   .risk-table th:first-child,.risk-table td:first-child{width:52%}
@@ -233,19 +235,19 @@
   .risk-table td{padding:20px 16px; border-bottom:1px solid #22302C; vertical-align:middle}
   .risk-table tr:last-child td{border-bottom:0}
   .risk-table td:first-child{font-weight:600}
-  .zero{color:#7FD3B4; font-weight:900; font-family:'Frank Ruhl Libre',serif; font-size:23px}
-  .win{color:var(--gold); font-weight:900; font-family:'Frank Ruhl Libre',serif; font-size:19px}
-  .risk-table .sub{display:block; font-size:13.5px; color:#93A29D; font-weight:600; margin-top:3px}
+  .zero{color:#7FD3B4; font-weight:900; font-family:'Frank Ruhl Libre',serif; font-size:calc(23px * var(--ts,1))}
+  .win{color:var(--gold); font-weight:900; font-family:'Frank Ruhl Libre',serif; font-size:calc(19px * var(--ts,1))}
+  .risk-table .sub{display:block; font-size:calc(13.5px * var(--ts,1)); color:#93A29D; font-weight:600; margin-top:3px}
   .split{
     margin-top:16px; background:#fff; border:1px solid #CADED6; border-radius:11px;
     padding:16px 18px; display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap;
   }
-  .split .you{font-weight:700; color:var(--green-deep); font-size:16px}
-  .split .you b{font-family:'Frank Ruhl Libre',serif; font-size:22px; display:block}
-  .split .us{font-size:14.5px; color:var(--muted); text-align:left}
+  .split .you{font-weight:700; color:var(--green-deep); font-size:calc(16px * var(--ts,1))}
+  .split .you b{font-family:'Frank Ruhl Libre',serif; font-size:calc(22px * var(--ts,1)); display:block}
+  .split .us{font-size:calc(14.5px * var(--ts,1)); color:var(--muted); text-align:left}
   .punch{
     margin-top:34px; padding:24px 26px; background:#1D2C28; border-right:4px solid #7FD3B4;
-    border-radius:10px; font-size:19px; font-weight:600; color:#EAF3F0;
+    border-radius:10px; font-size:calc(19px * var(--ts,1)); font-weight:600; color:#EAF3F0;
   }
 
   /* ---------- מחשבון ---------- */
@@ -253,17 +255,17 @@
   .calc-inputs{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:30px; box-shadow:var(--shadow)}
   .field{margin-bottom:22px}
   .field:last-child{margin-bottom:0}
-  .field label{display:block; font-weight:700; font-size:16px; margin-bottom:8px}
-  .field .hint{font-size:14px; color:var(--muted); font-weight:400}
+  .field label{display:block; font-weight:700; font-size:calc(16px * var(--ts,1)); margin-bottom:8px}
+  .field .hint{font-size:calc(14px * var(--ts,1)); color:var(--muted); font-weight:400}
   .input-wrap{position:relative}
   .field input{
-    width:100%; padding:14px 16px; font-size:20px; font-family:'Frank Ruhl Libre',serif; font-weight:700;
+    width:100%; padding:14px 16px; font-size:calc(20px * var(--ts,1)); font-family:'Frank Ruhl Libre',serif; font-weight:700;
     border:2px solid var(--line); border-radius:10px; background:var(--paper); color:var(--ink);
   }
   .field input:focus{outline:none; border-color:var(--green); background:#fff}
   .aside{
     margin-top:24px; padding-top:22px; border-top:1px dashed var(--line);
-    font-size:16px; color:var(--muted); line-height:1.65;
+    font-size:calc(16px * var(--ts,1)); color:var(--muted); line-height:1.65;
   }
   .aside b{color:var(--ink); display:block; margin-bottom:4px}
   .calc-out{background:var(--green-soft); border:1px solid #CADED6; border-radius:var(--radius); padding:30px}
@@ -271,22 +273,22 @@
     background:var(--loss-soft); border:1px solid #F0D5CE; border-radius:11px;
     padding:18px 20px; margin-bottom:24px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;
   }
-  .today .lbl{font-weight:700; color:#7E2E1D; font-size:16px}
-  .today .amt{font-family:'Frank Ruhl Libre',serif; font-size:32px; font-weight:900; color:var(--loss)}
+  .today .lbl{font-weight:700; color:#7E2E1D; font-size:calc(16px * var(--ts,1))}
+  .today .amt{font-family:'Frank Ruhl Libre',serif; font-size:calc(32px * var(--ts,1)); font-weight:900; color:var(--loss)}
   .save-grid{display:grid; gap:10px}
   .save-row{
     display:grid; grid-template-columns:auto 1fr auto; align-items:center; gap:14px;
     background:#fff; border:1px solid #D3E4DC; border-radius:10px; padding:14px 18px;
   }
-  .save-row .drop{font-weight:700; color:var(--green-deep); font-size:16px; white-space:nowrap}
+  .save-row .drop{font-weight:700; color:var(--green-deep); font-size:calc(16px * var(--ts,1)); white-space:nowrap}
   .bar{height:9px; background:#DCEAE4; border-radius:99px; overflow:hidden}
   .bar i{display:block; height:100%; background:var(--green); border-radius:99px}
-  .save-row .amt{font-family:'Frank Ruhl Libre',serif; font-weight:900; font-size:21px; color:var(--green-deep); text-align:left}
-  .save-row .amt small{display:block; font-size:13px; color:var(--muted); font-weight:600; font-family:'Assistant',sans-serif; white-space:nowrap}
+  .save-row .amt{font-family:'Frank Ruhl Libre',serif; font-weight:900; font-size:calc(21px * var(--ts,1)); color:var(--green-deep); text-align:left}
+  .save-row .amt small{display:block; font-size:calc(13px * var(--ts,1)); color:var(--muted); font-weight:600; font-family:'Assistant',sans-serif; white-space:nowrap}
   /* גריד לא מכווץ ילדים מתחת ל-min-content אלא אם אומרים לו במפורש */
   .calc > *, .cols > *, .save-row > *{min-width:0}
   .honest{
-    margin-top:22px; font-size:15.5px; color:#31544A; background:#fff; border-radius:10px;
+    margin-top:22px; font-size:calc(15.5px * var(--ts,1)); color:#31544A; background:#fff; border-radius:10px;
     padding:16px 18px; border:1px dashed #B6D2C7;
   }
 
@@ -296,23 +298,23 @@
   .tier-head{display:flex; align-items:center; gap:10px; margin-bottom:6px}
   .tier-n{
     width:30px;height:30px;border-radius:8px;background:var(--green-soft);color:var(--green-deep);
-    display:grid;place-items:center;font-weight:900;font-size:15px;font-family:'Frank Ruhl Libre',serif;flex:none;
+    display:grid;place-items:center;font-weight:900;font-size:calc(15px * var(--ts,1));font-family:'Frank Ruhl Libre',serif;flex:none;
   }
-  .tier h3{font-size:19px}
-  .tier .who{font-size:15px; color:var(--muted); margin:0 0 16px}
+  .tier h3{font-size:calc(19px * var(--ts,1))}
+  .tier .who{font-size:calc(15px * var(--ts,1)); color:var(--muted); margin:0 0 16px}
   .chips{display:flex; flex-wrap:wrap; gap:7px}
   .chip{
     background:var(--paper); border:1px solid var(--line); border-radius:999px;
-    padding:6px 13px; font-size:14.5px; font-weight:600; color:#3B4A45;
+    padding:6px 13px; font-size:calc(14.5px * var(--ts,1)); font-weight:600; color:#3B4A45;
   }
   .chip.live{background:var(--green); border-color:var(--green); color:#fff}
   .chip.more{background:transparent; border-style:dashed; color:var(--green-deep); font-weight:700}
-  .tier .branch{margin-top:14px; font-size:14.5px; color:var(--muted)}
-  .tier .branch b{color:var(--ink); display:block; margin-top:10px; font-size:15px}
+  .tier .branch{margin-top:14px; font-size:calc(14.5px * var(--ts,1)); color:var(--muted)}
+  .tier .branch b{color:var(--ink); display:block; margin-top:10px; font-size:calc(15px * var(--ts,1))}
   .more-i{color:var(--green-deep); font-weight:700}
   .branch-more{
     margin-top:18px; padding-top:16px; border-top:1px dashed var(--line);
-    font-size:14.5px; color:var(--muted); line-height:1.6;
+    font-size:calc(14.5px * var(--ts,1)); color:var(--muted); line-height:1.6;
   }
   .branch-more b{color:var(--ink)}
 
@@ -322,48 +324,48 @@
     display:grid; grid-template-columns:1.5fr 1.1fr .8fr .9fr .9fr; gap:12px;
     align-items:center; padding:14px 22px;
   }
-  .stack-head{background:var(--paper); border-bottom:1px solid var(--line); font-size:13.5px; font-weight:700; color:var(--muted)}
+  .stack-head{background:var(--paper); border-bottom:1px solid var(--line); font-size:calc(13.5px * var(--ts,1)); font-weight:700; color:var(--muted)}
   .stack-row{border-bottom:1px solid var(--line)}
   .stack-row:last-of-type{border-bottom:0}
   .stack-row .cat{font-weight:700}
-  .stack-row .cat small{display:block; font-weight:600; color:var(--muted); font-size:13px}
+  .stack-row .cat small{display:block; font-weight:600; color:var(--muted); font-size:calc(13px * var(--ts,1))}
   .stack-row input{
     width:100%; padding:9px 11px; border:2px solid var(--line); border-radius:8px;
-    background:var(--paper); font-family:'Frank Ruhl Libre',serif; font-weight:700; font-size:17px; color:var(--ink);
+    background:var(--paper); font-family:'Frank Ruhl Libre',serif; font-weight:700; font-size:calc(17px * var(--ts,1)); color:var(--ink);
   }
   .stack-row input:focus{outline:none; border-color:var(--green); background:#fff}
-  .stack-row .pct{font-weight:700; color:var(--muted); font-size:15px}
-  .stack-row .mo,.stack-row .yr{font-family:'Frank Ruhl Libre',serif; font-weight:900; color:var(--green-deep); font-size:19px}
+  .stack-row .pct{font-weight:700; color:var(--muted); font-size:calc(15px * var(--ts,1))}
+  .stack-row .mo,.stack-row .yr{font-family:'Frank Ruhl Libre',serif; font-weight:900; color:var(--green-deep); font-size:calc(19px * var(--ts,1))}
   /* שורת ענף — לא רלוונטית לכל עסק, לכן מסומנת ויזואלית */
   .stack-row.branch-row{background:var(--green-soft)}
   .branch-tag{
     display:inline-block; background:var(--green); color:#fff; border-radius:999px;
-    padding:2px 10px; font-size:12px; font-weight:700; margin-left:8px; vertical-align:middle;
+    padding:2px 10px; font-size:calc(12px * var(--ts,1)); font-weight:700; margin-left:8px; vertical-align:middle;
     font-family:'Assistant',sans-serif;
   }
   .stack-total{
     display:grid; grid-template-columns:1.5fr 1.1fr .8fr .9fr .9fr; gap:12px;
     align-items:center; padding:20px 22px; background:var(--green); color:#fff;
   }
-  .stack-total .lbl{font-weight:700; font-size:18px; grid-column:1 / span 3}
-  .stack-total .mo,.stack-total .yr{font-family:'Frank Ruhl Libre',serif; font-weight:900; font-size:26px}
-  .stack-total small{display:block; font-family:'Assistant',sans-serif; font-size:12.5px; font-weight:600; color:#BEDDD2}
-  .stack-note{padding:16px 22px; background:var(--green-soft); font-size:15px; color:#31544A; border-top:1px solid #CADED6}
+  .stack-total .lbl{font-weight:700; font-size:calc(18px * var(--ts,1)); grid-column:1 / span 3}
+  .stack-total .mo,.stack-total .yr{font-family:'Frank Ruhl Libre',serif; font-weight:900; font-size:calc(26px * var(--ts,1))}
+  .stack-total small{display:block; font-family:'Assistant',sans-serif; font-size:calc(12.5px * var(--ts,1)); font-weight:600; color:#BEDDD2}
+  .stack-note{padding:16px 22px; background:var(--green-soft); font-size:calc(15px * var(--ts,1)); color:#31544A; border-top:1px solid #CADED6}
 
   /* ---------- שקיפות ---------- */
   .values{display:grid; grid-template-columns:repeat(3,1fr); gap:22px; margin-top:40px}
   .value{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:28px; box-shadow:var(--shadow)}
-  .value h3{font-size:20px; margin-bottom:10px}
-  .value p{font-size:16px; color:var(--muted); margin:0}
+  .value h3{font-size:calc(20px * var(--ts,1)); margin-bottom:10px}
+  .value p{font-size:calc(16px * var(--ts,1)); color:var(--muted); margin:0}
 
   /* ---------- שאלות ---------- */
   details{background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:20px 24px; margin-bottom:12px}
   details[open]{border-color:#C9DBD4}
-  summary{font-weight:700; font-size:18px; cursor:pointer; list-style:none; display:flex; justify-content:space-between; gap:16px}
+  summary{font-weight:700; font-size:calc(18px * var(--ts,1)); cursor:pointer; list-style:none; display:flex; justify-content:space-between; gap:16px}
   summary::-webkit-details-marker{display:none}
-  summary::after{content:'+'; color:var(--green); font-weight:900; font-size:24px; line-height:1}
+  summary::after{content:'+'; color:var(--green); font-weight:900; font-size:calc(24px * var(--ts,1)); line-height:1}
   details[open] summary::after{content:'−'}
-  details p{margin:14px 0 0; color:var(--muted); font-size:16.5px}
+  details p{margin:14px 0 0; color:var(--muted); font-size:calc(16.5px * var(--ts,1))}
 
   /* ---------- טופס ---------- */
   .join{background:var(--green); color:#fff; border-radius:20px; padding:54px 44px; margin:10px 0 0}
@@ -373,33 +375,34 @@
   .form .full{grid-column:1/-1}
   .form input{
     width:100%; padding:15px 17px; border-radius:10px; border:2px solid rgba(255,255,255,.28);
-    background:rgba(255,255,255,.1); color:#fff; font-size:17px; font-family:inherit;
+    background:rgba(255,255,255,.1); color:#fff; font-size:calc(17px * var(--ts,1)); font-family:inherit;
   }
   .form input::placeholder{color:rgba(255,255,255,.68)}
   .form input:focus{outline:none; border-color:#fff; background:rgba(255,255,255,.17)}
   .form button{width:100%; background:#fff; color:var(--green-deep); border:0}
   .form-sep{
     background:rgba(255,255,255,.1); border:1px dashed rgba(255,255,255,.4);
-    border-radius:11px; padding:16px 18px; font-size:15.5px; color:#D6EDE4; line-height:1.6;
+    border-radius:11px; padding:16px 18px; font-size:calc(15.5px * var(--ts,1)); color:#D6EDE4; line-height:1.6;
   }
-  .form-sep b{display:block; color:#fff; font-size:17px; margin-bottom:5px}
-  .form-note{font-size:14.5px; color:#BEDDD2; margin-top:16px}
-  .thanks{display:none; background:rgba(255,255,255,.13); border:2px solid rgba(255,255,255,.4); border-radius:12px; padding:26px; margin-top:26px; font-size:19px; font-weight:600}
+  .form-sep b{display:block; color:#fff; font-size:calc(17px * var(--ts,1)); margin-bottom:5px}
+  .form-note{font-size:calc(14.5px * var(--ts,1)); color:#BEDDD2; margin-top:16px}
+  .thanks{display:none; background:rgba(255,255,255,.13); border:2px solid rgba(255,255,255,.4); border-radius:12px; padding:26px; margin-top:26px; font-size:calc(19px * var(--ts,1)); font-weight:600}
 
-  footer{padding-block:44px 60px; color:var(--muted); font-size:15px}
+  footer.wrap{padding-block:44px 60px}
+  footer{color:var(--muted); font-size:calc(15px * var(--ts,1))}
   .foot{display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap; align-items:center}
 
   @media (max-width:860px){
-    body{font-size:17px}
+    body{font-size:calc(17px * var(--ts,1))}
     .cols,.calc,.form{grid-template-columns:1fr}
     .tiers{grid-template-columns:1fr}
     /* הטבלה המצטברת נפרסת לכרטיסים — חמש עמודות לא נכנסות לטלפון */
     .stack-head{display:none}
     .stack-row{grid-template-columns:1fr 1fr; gap:8px 12px; padding:18px}
     .stack-row .cat,.stack-row .inp,.stack-row .pct{grid-column:1 / -1}
-    .stack-row .pct{color:var(--green-deep); font-size:14px}
-    .stack-row .mo::before{content:'לחודש'; display:block; font-family:'Assistant',sans-serif; font-size:12px; font-weight:600; color:var(--muted)}
-    .stack-row .yr::before{content:'לשנה'; display:block; font-family:'Assistant',sans-serif; font-size:12px; font-weight:600; color:var(--muted)}
+    .stack-row .pct{color:var(--green-deep); font-size:calc(14px * var(--ts,1))}
+    .stack-row .mo::before{content:'לחודש'; display:block; font-family:'Assistant',sans-serif; font-size:calc(12px * var(--ts,1)); font-weight:600; color:var(--muted)}
+    .stack-row .yr::before{content:'לשנה'; display:block; font-family:'Assistant',sans-serif; font-size:calc(12px * var(--ts,1)); font-weight:600; color:var(--muted)}
     .stack-row .yr{text-align:left}
     .stack-total{grid-template-columns:1fr 1fr; gap:10px}
     .stack-total .lbl{grid-column:1 / -1}
@@ -414,13 +417,13 @@
        בסרגל, והפעולה עוברת לסרגל תחתון קבוע — כך היא זמינה תמיד,
        בלי להחזיר כפתורים להירו. */
     header .nav .btn{display:none}
-    .logo{font-size:19px; gap:7px}
+    .logo{font-size:calc(19px * var(--ts,1)); gap:7px}
     .logo .mark{width:32px;height:32px}
     .mobile-cta{display:block}
-    body{padding-bottom:76px}
-    .logo .mark{width:29px;height:29px;font-size:16px}
+    body{padding-bottom:calc(var(--cta-h,64px) + 12px)}
+    .logo .mark{width:29px;height:29px;font-size:calc(16px * var(--ts,1))}
     .logo-sub{display:none}
-    .tab{padding:8px 16px; font-size:15px}
+    .tab{padding:8px 16px; font-size:calc(15px * var(--ts,1))}
   }
   @media (max-width:560px){
     .steps{grid-template-columns:1fr}
@@ -430,16 +433,197 @@
     .risk-table th,.risk-table td{padding-inline:0}
     /* במסכים צרים במיוחד (iPhone SE ‏— 320px) הלוגו ושתי הלשוניות
        לא נכנסים לשורה אחת, והלשוניות נדחפו אל מחוץ למסך */
-    .tab{padding:7px 12px; font-size:14px}
+    .tab{padding:7px 12px; font-size:calc(14px * var(--ts,1))}
     .tabs{gap:2px; padding:3px}
-    .logo{font-size:17px}
+    .logo{font-size:calc(17px * var(--ts,1))}
     .compare{gap:8px}
-    .compare .rate{font-size:26px}
+    .compare .rate{font-size:calc(26px * var(--ts,1))}
     .compare .side{padding-inline:10px}
+  }
+
+  /* ================================================================
+     נגישות ומסמכים משפטיים
+     ================================================================ */
+
+  /* דילוג לתוכן — מוסתר עד שמגיעים אליו במקלדת */
+  .skip-link{
+    position:fixed; inset-inline-start:-9999px; top:12px; z-index:200;
+    background:var(--green-deep); color:#fff; padding:13px 22px; border-radius:10px;
+    font-weight:700; text-decoration:none;
+  }
+  .skip-link:focus{inset-inline-start:12px}
+
+  /* ---------- כפתור הנגישות הצף ---------- */
+  .a11y-wrap{position:fixed; inset-block-end:20px; inset-inline-start:20px; z-index:120}
+  .a11y-btn{
+    width:54px; height:54px; border-radius:50%; border:2px solid #fff; cursor:pointer;
+    background:var(--green); color:#fff; display:grid; place-items:center;
+    box-shadow:0 4px 18px rgba(20,32,29,.28); padding:0;
+  }
+  .a11y-btn:hover{background:var(--green-deep)}
+  .a11y-btn:focus-visible{outline:3px solid var(--gold); outline-offset:3px}
+  .a11y-btn svg{width:30px; height:30px; display:block}
+
+  /* ---------- חזרה לראש העמוד ---------- */
+  .to-top{
+    position:fixed; inset-block-end:84px; inset-inline-start:24px; z-index:119;
+    width:46px; height:46px; border-radius:50%; cursor:pointer; padding:0;
+    background:var(--surface); color:var(--green-deep); border:2px solid var(--green);
+    display:grid; place-items:center; box-shadow:0 4px 16px rgba(20,32,29,.2);
+    opacity:0; visibility:hidden; transform:translateY(8px); transition:opacity .2s, transform .2s, visibility .2s;
+  }
+  .to-top.is-on{opacity:1; visibility:visible; transform:none}
+  .to-top:hover{background:var(--green); color:#fff}
+  .to-top:focus-visible{outline:3px solid var(--gold); outline-offset:3px}
+  .to-top svg{width:22px; height:22px; display:block}
+
+  .a11y-panel{
+    position:absolute; inset-block-end:66px; inset-inline-start:0; width:min(330px,calc(100vw - 40px));
+    background:var(--surface); border:1px solid var(--line); border-radius:16px;
+    box-shadow:0 10px 40px rgba(20,32,29,.22); padding:16px; max-height:78vh; overflow-y:auto;
+  }
+  .a11y-panel h2{font-size:calc(18px * var(--ts,1)); margin:0 0 4px}
+  .a11y-panel .hint{font-size:calc(13px * var(--ts,1)); color:var(--muted); margin:0 0 12px; line-height:1.5}
+  .a11y-grid{display:grid; grid-template-columns:1fr 1fr; gap:8px}
+  .a11y-opt{
+    display:flex; flex-direction:column; align-items:center; gap:5px; text-align:center;
+    background:var(--paper); border:2px solid var(--line); border-radius:11px;
+    padding:11px 6px; font:inherit; font-size:calc(13px * var(--ts,1)); font-weight:700; color:var(--ink); cursor:pointer;
+  }
+  .a11y-opt .ico{font-size:calc(19px * var(--ts,1)); line-height:1}
+  .a11y-opt:hover{border-color:var(--green)}
+  .a11y-opt[aria-pressed="true"]{background:var(--green); color:#fff; border-color:var(--green)}
+  .a11y-opt:focus-visible{outline:3px solid var(--gold); outline-offset:2px}
+  .a11y-reset{
+    grid-column:1/-1; background:transparent; border:2px dashed var(--line);
+    color:var(--muted); font-weight:700;
+  }
+  .a11y-foot{margin-top:12px; border-top:1px solid var(--line); padding-top:11px; font-size:calc(13.5px * var(--ts,1))}
+  .a11y-foot a{color:var(--green-deep); font-weight:700; display:block; margin-top:5px}
+
+  /* ---------- קישורים משפטיים בכותרת התחתונה ---------- */
+  .legal-links{display:flex; flex-wrap:wrap; gap:8px 18px; margin-top:14px}
+  .legal-links button{
+    background:none; border:0; padding:0; font:inherit; font-size:calc(15px * var(--ts,1)); cursor:pointer;
+    color:var(--green-deep); font-weight:700; text-decoration:underline; text-underline-offset:3px;
+  }
+  .legal-links button:hover{color:var(--green)}
+  .legal-links button:focus-visible{outline:3px solid var(--gold); outline-offset:3px; border-radius:4px}
+
+  /* ---------- חלוניות המסמכים ---------- */
+  .modal{
+    position:fixed; inset:0; z-index:200; background:rgba(20,32,29,.62);
+    display:grid; place-items:center; padding:20px;
+  }
+  .modal-card{
+    background:var(--surface); border-radius:16px; width:min(760px,100%);
+    max-height:88vh; display:flex; flex-direction:column; box-shadow:0 20px 60px rgba(20,32,29,.4);
+  }
+  .modal-head{
+    display:flex; align-items:center; justify-content:space-between; gap:16px;
+    padding:20px 24px; border-bottom:1px solid var(--line);
+  }
+  .modal-head h2{font-size:calc(23px * var(--ts,1)); margin:0}
+  .modal-close{
+    width:38px; height:38px; flex:none; border-radius:10px; border:2px solid var(--line);
+    background:var(--paper); font-size:calc(19px * var(--ts,1)); line-height:1; cursor:pointer; color:var(--ink);
+  }
+  .modal-close:hover{border-color:var(--green); color:var(--green-deep)}
+  .modal-close:focus-visible{outline:3px solid var(--gold); outline-offset:2px}
+  .doc{padding:22px 24px 28px; overflow-y:auto; font-size:calc(16px * var(--ts,1)); line-height:1.75; color:#2C3B36}
+  .doc h3{font-family:'Assistant',sans-serif; font-size:calc(17.5px * var(--ts,1)); color:var(--ink); margin:22px 0 6px}
+  .doc h3:first-child{margin-top:0}
+  .doc p{margin:0 0 11px}
+  .doc ul{margin:0 0 12px; padding-inline-start:20px}
+  .doc li{margin-bottom:6px}
+  .doc a{color:var(--green-deep); font-weight:700}
+  .doc .updated{font-size:calc(14px * var(--ts,1)); color:var(--muted); border-top:1px solid var(--line); padding-top:14px; margin-top:22px}
+  /* פרטים שהמפעיל צריך להשלים — מסומנים כדי שלא יישכחו בטעות */
+  .fill{background:#FBEFD3; border-bottom:2px dotted var(--gold); padding:1px 5px; border-radius:3px; font-weight:700}
+
+  @media (max-width:700px){
+    /* בטלפון סרגל הפעולה התחתון תופס את התחתית — הכפתורים עולים מעליו,
+       והכותרת התחתונה מקבלת מרווח כדי שלא תיחבא מאחוריהם */
+    .a11y-wrap{inset-block-end:calc(var(--cta-h,64px) + 14px); inset-inline-start:14px}
+    .to-top{inset-block-end:calc(var(--cta-h,64px) + 78px); inset-inline-start:18px}
+    footer.wrap{padding-block-end:calc(var(--cta-h,64px) + 116px)}
+    .a11y-panel{width:min(310px,calc(100vw - 28px))}
+    .modal{padding:0}
+    .modal-card{max-height:100vh; height:100%; border-radius:0; width:100%}
+  }
+
+  /* ================================================================
+     מצבי הנגישות עצמם
+     ================================================================ */
+
+  /* הגדלת התצוגה. העמוד בנוי ביחידות px, ולכן שינוי גודל גופן השורש
+     לא היה משפיע — zoom מגדיל את הכל באופן אחיד. התפריט מקבל הקטנה
+     נגדית כדי שיישאר שמיש גם בהגדלה מקסימלית. */
+  /* הגדלת התצוגה מגדילה את הטקסט עצמו ולא את הדף כולו.
+     zoom ברמת השורש היה נראה פשוט יותר, אבל הוא מחלק את אזור התצוגה
+     ומזיז כל רכיב position:fixed לאמצע המסך — הכפתורים הצפים וסרגל
+     הפעולה התחתון נתלשו ממקומם. הגדלת גופן משאירה את הפריסה שלמה
+     ומאפשרת לטקסט לזרום מחדש, וזו גם הדרישה בתקן. */
+  html.fs-1{--ts:1.14}
+  html.fs-2{--ts:1.28}
+  html.fs-3{--ts:1.45}
+
+  html.a11y-space p,html.a11y-space li,html.a11y-space .lead,html.a11y-space .doc{
+    line-height:2.1 !important; letter-spacing:.04em; word-spacing:.14em;
+  }
+
+  html.a11y-readable *{font-family:Arial,Helvetica,sans-serif !important; letter-spacing:0 !important}
+
+  html.a11y-links a:not(.btn),html.a11y-links .legal-links button{
+    text-decoration:underline !important; text-underline-offset:3px; font-weight:700;
+  }
+
+  html.a11y-mono body{filter:grayscale(1)}
+
+  html.a11y-motion *,html.a11y-motion *::before,html.a11y-motion *::after{
+    animation:none !important; transition:none !important;
+  }
+  html.a11y-motion{scroll-behavior:auto !important}
+
+  html.a11y-cursor,html.a11y-cursor *{
+    cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='42' height='42' viewBox='0 0 42 42'%3E%3Cpath d='M5 2 L5 33 L13 26 L18 38 L25 35 L20 23 L31 23 Z' fill='%23000' stroke='%23fff' stroke-width='2.5'/%3E%3C/svg%3E") 4 2, auto !important;
+  }
+
+  html.a11y-focus :focus{outline:4px solid #C08A1E !important; outline-offset:3px !important}
+
+  /* ניגודיות גבוהה — שחור/צהוב. הכלל גורף בכוונה, כי חלק מהמשטחים
+     בעמוד צבועים ישירות ולא דרך משתנה. */
+  /* הגוף מוחרג מהכלל הגורף במפורש. חריגה דרך כלל נפרד לא הייתה עובדת:
+     שרשרת ה-:not מעלה את הסגוליות של הכלל הגורף מעל כל כלל פשוט על body,
+     ו-!important בשני הצדדים מכריע לטובת הסגולי יותר. */
+  html.a11y-contrast *:not(svg):not(path):not(rect):not(text):not(body){
+    background-color:transparent !important; color:#FFF !important;
+    border-color:#FFF !important; box-shadow:none !important; text-shadow:none !important;
+  }
+  html.a11y-contrast,html.a11y-contrast body{background-color:#000 !important; color:#FFF !important}
+  html.a11y-contrast .a11y-panel,html.a11y-contrast .modal-card,
+  html.a11y-contrast .a11y-opt,html.a11y-contrast input,
+  html.a11y-contrast .modal-close,html.a11y-contrast .btn,
+  html.a11y-contrast details{background-color:#000 !important; border:2px solid #FFF !important}
+  html.a11y-contrast .modal{background:rgba(0,0,0,.9) !important}
+  html.a11y-contrast a,html.a11y-contrast b,html.a11y-contrast strong,
+  html.a11y-contrast summary,html.a11y-contrast .btn,
+  html.a11y-contrast .legal-links button,html.a11y-contrast h1,
+  html.a11y-contrast h2,html.a11y-contrast h3{color:#FFEB3B !important}
+  html.a11y-contrast .a11y-opt[aria-pressed="true"]{background-color:#FFEB3B !important; color:#000 !important}
+  html.a11y-contrast .a11y-opt[aria-pressed="true"] *{color:#000 !important}
+  html.a11y-contrast .tab.is-on{background-color:#FFEB3B !important; color:#000 !important}
+  html.a11y-contrast .fill{background-color:#333 !important}
+
+  /* מי שביקש ממערכת ההפעלה פחות תנועה — מקבל את זה בלי לגעת בתפריט */
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none !important; transition:none !important}
+    html{scroll-behavior:auto !important}
   }
 </style>
 </head>
 <body>
+<a class="skip-link" href="#main">דילוג לתוכן הראשי</a>
 
 <header>
   <div class="wrap nav">
@@ -448,15 +632,17 @@
         <rect width="64" height="64" rx="15" fill="#0D6B54"/>
         <text x="40" y="45" font-family="Assistant,Arial,Helvetica,sans-serif" font-size="38" font-weight="700" fill="#ffffff" text-anchor="middle">₪</text><path d="M19 26 L19 40 M14.5 35 L19 40.5 L23.5 35" fill="none" stroke="#C08A1E" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
       </svg></span>
-      <span class="logo-txt">קבוצת המוזיל<span class="logo-sub">משלמים פחות</span></span>
+      <span class="logo-txt">קבוצת המוזיל<span class="logo-sub">מתאגדים ומשלמים פחות</span></span>
     </div>
     <div class="tabs" role="tablist">
       <button class="tab is-on" data-view="business" role="tab">לעסקים</button>
       <button class="tab"       data-view="private"  role="tab">לפרטיים</button>
     </div>
-    <a href="#join" class="btn btn-primary" style="padding:11px 22px;font-size:16px">להצטרפות</a>
+    <a href="#join" class="btn btn-primary" style="padding:11px 22px;font-size:calc(16px * var(--ts,1))">להצטרפות</a>
   </div>
 </header>
+
+<main id="main" tabindex="-1">
 
 
 <!-- ============================================================
@@ -605,7 +791,7 @@
     </div>
 
     <!-- ---------- הטבלה המצטברת ---------- -->
-    <h3 style="font-size:26px; margin:52px 0 8px">וכשמחברים את הכל — זה מצטבר</h3>
+    <h3 style="font-size:calc(26px * var(--ts,1)); margin:52px 0 8px">וכשמחברים את הכל — זה מצטבר</h3>
     <p class="lead" style="margin-bottom:0">
       החליפו את המספרים במה שאתם באמת משלמים, ותראו את הסכום שלכם.
       השורה האחרונה היא דוגמה ענפית — מי שלא קונה חומרי גלם פשוט יאפס אותה.
@@ -622,7 +808,7 @@
 
       <div class="stack-row">
         <div class="cat">עמלות סליקה<small>על מחזור אשראי חודשי</small></div>
-        <div class="inp"><input id="s_clear" type="number" min="0" step="1000" value="100000" inputmode="numeric"></div>
+        <div class="inp"><input id="s_clear" aria-label="מחזור חודשי בכרטיסי אשראי, בשקלים" type="number" min="0" step="1000" value="100000" inputmode="numeric"></div>
         <div class="pct">0.9% ← 0.75%</div>
         <div class="mo" id="m_clear"></div>
         <div class="yr" id="y_clear"></div>
@@ -630,7 +816,7 @@
 
       <div class="stack-row">
         <div class="cat">חשמל לעסק<small>חשבון חודשי ממוצע</small></div>
-        <div class="inp"><input id="s_elec" type="number" min="0" step="50" value="1500" inputmode="numeric"></div>
+        <div class="inp"><input id="s_elec" aria-label="הוצאת חשמל חודשית לעסק, בשקלים" type="number" min="0" step="50" value="1500" inputmode="numeric"></div>
         <div class="pct">7%</div>
         <div class="mo" id="m_elec"></div>
         <div class="yr" id="y_elec"></div>
@@ -638,7 +824,7 @@
 
       <div class="stack-row">
         <div class="cat">ביטוח עסק<small>פרמיה חודשית</small></div>
-        <div class="inp"><input id="s_ins" type="number" min="0" step="50" value="500" inputmode="numeric"></div>
+        <div class="inp"><input id="s_ins" aria-label="הוצאת ביטוחים חודשית לעסק, בשקלים" type="number" min="0" step="50" value="500" inputmode="numeric"></div>
         <div class="pct">12%</div>
         <div class="mo" id="m_ins"></div>
         <div class="yr" id="y_ins"></div>
@@ -646,7 +832,7 @@
 
       <div class="stack-row">
         <div class="cat">הנהלת חשבונות<small>ריטיינר חודשי</small></div>
-        <div class="inp"><input id="s_acc" type="number" min="0" step="50" value="1000" inputmode="numeric"></div>
+        <div class="inp"><input id="s_acc" aria-label="הוצאת הנהלת חשבונות חודשית, בשקלים" type="number" min="0" step="50" value="1000" inputmode="numeric"></div>
         <div class="pct">10%</div>
         <div class="mo" id="m_acc"></div>
         <div class="yr" id="y_acc"></div>
@@ -654,7 +840,7 @@
 
       <div class="stack-row">
         <div class="cat">אינטרנט וסלולר עסקי<small>סך החבילות בחודש</small></div>
-        <div class="inp"><input id="s_tel" type="number" min="0" step="50" value="400" inputmode="numeric"></div>
+        <div class="inp"><input id="s_tel" aria-label="הוצאת תקשורת חודשית לעסק, בשקלים" type="number" min="0" step="50" value="400" inputmode="numeric"></div>
         <div class="pct">15%</div>
         <div class="mo" id="m_tel"></div>
         <div class="yr" id="y_tel"></div>
@@ -665,7 +851,7 @@
           <span class="branch-tag">לפי הענף</span>
           חומרי גלם<small>לדוגמה מסעדה או בית קפה — רכש חודשי</small>
         </div>
-        <div class="inp"><input id="s_raw" type="number" min="0" step="500" value="25000" inputmode="numeric"></div>
+        <div class="inp"><input id="s_raw" aria-label="הוצאת חומרי גלם חודשית, בשקלים" type="number" min="0" step="500" value="25000" inputmode="numeric"></div>
         <div class="pct">6%</div>
         <div class="mo" id="m_raw"></div>
         <div class="yr" id="y_raw"></div>
@@ -870,7 +1056,7 @@
       </div>
     </div>
 
-    <h3 style="font-size:26px; margin:52px 0 8px">וכשמחברים את הכל — זה מצטבר</h3>
+    <h3 style="font-size:calc(26px * var(--ts,1)); margin:52px 0 8px">וכשמחברים את הכל — זה מצטבר</h3>
     <p class="lead" style="margin-bottom:0">
       החליפו את המספרים במה שאתם באמת משלמים, ותראו את הסכום שלכם.
     </p>
@@ -886,7 +1072,7 @@
 
       <div class="stack-row">
         <div class="cat">חשמל לבית<small>חשבון חודשי ממוצע</small></div>
-        <div class="inp"><input id="p_elec" type="number" min="0" step="50" value="600" inputmode="numeric"></div>
+        <div class="inp"><input id="p_elec" aria-label="חשבון חשמל חודשי לבית, בשקלים" type="number" min="0" step="50" value="600" inputmode="numeric"></div>
         <div class="pct">7%</div>
         <div class="mo" id="pm_elec"></div>
         <div class="yr" id="py_elec"></div>
@@ -894,7 +1080,7 @@
 
       <div class="stack-row">
         <div class="cat">סלולר<small>סך כל הקווים במשפחה</small></div>
-        <div class="inp"><input id="p_cell" type="number" min="0" step="20" value="200" inputmode="numeric"></div>
+        <div class="inp"><input id="p_cell" aria-label="הוצאת סלולר חודשית למשפחה, בשקלים" type="number" min="0" step="20" value="200" inputmode="numeric"></div>
         <div class="pct">20%</div>
         <div class="mo" id="pm_cell"></div>
         <div class="yr" id="py_cell"></div>
@@ -902,7 +1088,7 @@
 
       <div class="stack-row">
         <div class="cat">אינטרנט וטלוויזיה<small>תשתית, ספק וחבילות צפייה</small></div>
-        <div class="inp"><input id="p_net" type="number" min="0" step="20" value="250" inputmode="numeric"></div>
+        <div class="inp"><input id="p_net" aria-label="הוצאת אינטרנט וטלוויזיה חודשית, בשקלים" type="number" min="0" step="20" value="250" inputmode="numeric"></div>
         <div class="pct">15%</div>
         <div class="mo" id="pm_net"></div>
         <div class="yr" id="py_net"></div>
@@ -910,7 +1096,7 @@
 
       <div class="stack-row">
         <div class="cat">ביטוח רכב<small>חובה ומקיף, לחודש</small></div>
-        <div class="inp"><input id="p_car" type="number" min="0" step="25" value="350" inputmode="numeric"></div>
+        <div class="inp"><input id="p_car" aria-label="עלות ביטוח רכב לחודש, בשקלים" type="number" min="0" step="25" value="350" inputmode="numeric"></div>
         <div class="pct">15%</div>
         <div class="mo" id="pm_car"></div>
         <div class="yr" id="py_car"></div>
@@ -918,7 +1104,7 @@
 
       <div class="stack-row">
         <div class="cat">ביטוח דירה<small>מבנה ותכולה, לחודש</small></div>
-        <div class="inp"><input id="p_home" type="number" min="0" step="10" value="120" inputmode="numeric"></div>
+        <div class="inp"><input id="p_home" aria-label="עלות ביטוח דירה לחודש, בשקלים" type="number" min="0" step="10" value="120" inputmode="numeric"></div>
         <div class="pct">15%</div>
         <div class="mo" id="pm_home"></div>
         <div class="yr" id="py_home"></div>
@@ -929,7 +1115,7 @@
           <span class="branch-tag">הכסף הגדול</span>
           דמי ניהול בפנסיה<small>הזינו את הצבירה שלכם, לא הפקדה חודשית</small>
         </div>
-        <div class="inp"><input id="p_pens" type="number" min="0" step="10000" value="500000" inputmode="numeric"></div>
+        <div class="inp"><input id="p_pens" aria-label="סך הצבירה בפנסיה, בשקלים" type="number" min="0" step="10000" value="500000" inputmode="numeric"></div>
         <div class="pct">0.3% לשנה</div>
         <div class="mo" id="pm_pens"></div>
         <div class="yr" id="py_pens"></div>
@@ -1136,6 +1322,8 @@
   </div>
 </section>
 
+</main>
+
 <!-- סרגל פעולה קבוע — מוצג רק בטלפון, מחליף את כפתור הכותרת -->
 <div class="mobile-cta">
   <a href="#join" class="btn btn-primary">להצטרפות לקבוצה — חינם</a>
@@ -1143,16 +1331,306 @@
 
 <footer class="wrap">
   <div class="foot">
-    <div class="logo" style="font-size:21px">
+    <div class="logo" style="font-size:calc(21px * var(--ts,1))">
       <span class="mark" style="width:31px;height:31px"><svg viewBox="0 0 64 64" aria-hidden="true">
         <rect width="64" height="64" rx="15" fill="#0D6B54"/>
         <text x="40" y="45" font-family="Assistant,Arial,Helvetica,sans-serif" font-size="38" font-weight="700" fill="#ffffff" text-anchor="middle">₪</text><path d="M19 26 L19 40 M14.5 35 L19 40.5 L23.5 35" fill="none" stroke="#C08A1E" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
       </svg></span>
-      <span class="logo-txt">קבוצת המוזיל<span class="logo-sub">משלמים פחות</span></span>
+      <span class="logo-txt">קבוצת המוזיל<span class="logo-sub">מתאגדים ומשלמים פחות</span></span>
     </div>
     <div>מיזם חברתי-עסקי לכוח קנייה קבוצתי · כל הזכויות שמורות</div>
+    <nav class="legal-links" aria-label="מסמכי האתר">
+      <button type="button" data-doc="doc-a11y">הצהרת נגישות</button>
+      <button type="button" data-doc="doc-terms">תנאי שימוש</button>
+      <button type="button" data-doc="doc-rules">תקנון האתר</button>
+    </nav>
   </div>
 </footer>
+
+<!-- חזרה לראש העמוד — מופיע רק אחרי שגוללים, כדי לא להעמיס על המסך הראשון -->
+<button class="to-top" id="toTop" aria-label="חזרה לראש העמוד" title="חזרה לראש העמוד">
+  <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor"
+       stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 19V5M5 12l7-7 7 7"/>
+  </svg>
+</button>
+
+<!-- ==================== תפריט נגישות ==================== -->
+<div class="a11y-wrap">
+  <button class="a11y-btn" id="a11yBtn" aria-expanded="false" aria-controls="a11yPanel"
+          aria-label="פתיחת תפריט הנגישות" title="תפריט נגישות">
+    <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
+      <circle cx="12" cy="3.8" r="2"/>
+      <path d="M20.4 7.1a1.1 1.1 0 0 0-1.3-.8l-4.6 1a10.6 10.6 0 0 1-5 0l-4.6-1a1.1 1.1 0 1 0-.5 2.1l4.3 1v3.2l-2 6.9a1.1 1.1 0 0 0 2.1.6L12 15l3.2 5.1a1.1 1.1 0 0 0 2.1-.6l-2-6.9V9.4l4.3-1a1.1 1.1 0 0 0 .8-1.3z"/>
+    </svg>
+  </button>
+
+  <div class="a11y-panel" id="a11yPanel" role="dialog" aria-label="תפריט נגישות" hidden>
+    <h2>נגישות</h2>
+    <p class="hint">הבחירה נשמרת בדפדפן שלכם ותחזור גם בביקור הבא.</p>
+
+    <div class="a11y-grid">
+      <button class="a11y-opt" data-a11y="font"     aria-pressed="false"><span class="ico" aria-hidden="true">A⁺</span>הגדלת תצוגה</button>
+      <button class="a11y-opt" data-a11y="contrast" aria-pressed="false"><span class="ico" aria-hidden="true">◐</span>ניגודיות גבוהה</button>
+      <button class="a11y-opt" data-a11y="mono"     aria-pressed="false"><span class="ico" aria-hidden="true">◑</span>גווני אפור</button>
+      <button class="a11y-opt" data-a11y="links"    aria-pressed="false"><span class="ico" aria-hidden="true">🔗</span>הדגשת קישורים</button>
+      <button class="a11y-opt" data-a11y="readable" aria-pressed="false"><span class="ico" aria-hidden="true">א</span>גופן קריא</button>
+      <button class="a11y-opt" data-a11y="space"    aria-pressed="false"><span class="ico" aria-hidden="true">↕</span>ריווח שורות</button>
+      <button class="a11y-opt" data-a11y="motion"   aria-pressed="false"><span class="ico" aria-hidden="true">⏸</span>עצירת תנועה</button>
+      <button class="a11y-opt" data-a11y="cursor"   aria-pressed="false"><span class="ico" aria-hidden="true">➤</span>סמן גדול</button>
+      <button class="a11y-opt" data-a11y="focus"    aria-pressed="false"><span class="ico" aria-hidden="true">⌨</span>סימון מיקוד</button>
+      <button class="a11y-opt a11y-reset" id="a11yReset"><span class="ico" aria-hidden="true">↺</span>איפוס כל ההגדרות</button>
+    </div>
+
+    <div class="a11y-foot">
+      נתקלתם בבעיית נגישות?
+      <a href="#" data-doc="doc-a11y">קראו את הצהרת הנגישות ופנו אלינו</a>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== הצהרת נגישות ==================== -->
+<div class="modal" id="doc-a11y" role="dialog" aria-modal="true" aria-labelledby="doc-a11y-t" hidden>
+  <div class="modal-card">
+    <div class="modal-head">
+      <h2 id="doc-a11y-t">הצהרת נגישות</h2>
+      <button class="modal-close" aria-label="סגירה">✕</button>
+    </div>
+    <div class="doc">
+      <h3>המחויבות שלנו</h3>
+      <p>
+        קבוצת המוזיל היא מיזם שכל כולו עוסק בהנגשת כוח קנייה לאנשים שאין להם אותו.
+        היה זה חסר היגיון אם האתר עצמו לא היה נגיש. אנחנו רואים בהנגשת האתר חלק
+        מהותי מהשירות, ופועלים כדי שכל אדם — לרבות אנשים עם מוגבלות — יוכל לגלוש
+        בו בעצמאות, בנוחות ובכבוד.
+      </p>
+
+      <h3>רמת הנגישות באתר</h3>
+      <p>
+        אנו פועלים להתאמת האתר להוראות תקנות שוויון זכויות לאנשים עם מוגבלות
+        (התאמות נגישות לשירות), התשע"ג-2013, ולתקן הישראלי ת"י 5568 המבוסס על
+        הנחיות <span dir="ltr">WCAG 2.0</span> ברמה AA.
+      </p>
+      <p>
+        <b>לשם שקיפות מלאה:</b> נכון למועד עדכון הצהרה זו טרם בוצעה באתר בדיקת
+        נגישות על ידי מורשה נגישות מוסמך, ולפיכך איננו מצהירים על עמידה מלאה
+        ומאושרת בתקן. אנחנו מתקנים ומשפרים באופן שוטף, וכל פנייה בנושא מטופלת.
+      </p>
+
+      <h3>ההתאמות שבוצעו באתר</h3>
+      <ul>
+        <li>תפריט נגישות קבוע: הגדלת תצוגה, ניגודיות גבוהה, גווני אפור, גופן קריא, ריווח שורות מוגדל, הדגשת קישורים, סמן עכבר גדול, סימון מיקוד ועצירת תנועה.</li>
+        <li>ניווט מלא באמצעות מקלדת, לרבות קישור "דילוג לתוכן הראשי" וסימון ברור של הרכיב הממוקד.</li>
+        <li>מבנה סמנטי תקין: כותרות היררכיות, אזורי ניווט מסומנים ותוויות לכל שדות הטופס והלחצנים.</li>
+        <li>ניגודיות צבעים גבוהה בטקסט העיקרי, ואי-הסתמכות על צבע כאמצעי היחיד להעברת מידע.</li>
+        <li>טקסט חלופי לרכיבים גרפיים, והסתרת גרפיקה דקורטיבית מקוראי מסך.</li>
+        <li>התאמה מלאה למסכי טלפון ולוח, וכיבוד העדפת "הפחתת תנועה" של מערכת ההפעלה.</li>
+        <li>הימנעות מתוכן נפתח אוטומטית, מהבהוב או ניגון אוטומטי.</li>
+      </ul>
+
+      <h3>מגבלות ידועות</h3>
+      <p>
+        ייתכנו באתר רכיבים שטרם הונגשו במלואם, בעיקר תכנים חיצוניים שאינם בשליטתנו
+        (למשל מעבר לאפליקציית וואטסאפ בעת ההרשמה). אנו פועלים לצמצם פערים אלה.
+        אם נתקלתם ברכיב שאינו נגיש — נשמח מאוד לדעת, וזו הדרך המהירה ביותר לתקן.
+      </p>
+
+      <h3>פנייה בנושא נגישות</h3>
+      <p>
+        רכז הנגישות שלנו זמין עבורכם. אנא פרטו בפנייה את הדף שבו נתקלתם בבעיה,
+        את מהות הבעיה ואת אופן הגלישה (סוג הדפדפן והמכשיר), כדי שנוכל לאתר ולתקן במהירות.
+      </p>
+      <ul>
+        <li>שם רכז הנגישות: <span class="fill">להשלמה</span></li>
+        <li>טלפון וואטסאפ: <a href="https://wa.me/972506911937" dir="ltr">050-691-1937</a></li>
+        <li>דואר אלקטרוני: <span class="fill">להשלמה</span></li>
+      </ul>
+      <p>נשתדל להשיב לכל פנייה בתוך <b>עד שני ימי עסקים</b>.</p>
+
+      <p class="updated">הצהרה זו עודכנה לאחרונה בתאריך 20.08.2026.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== תנאי שימוש ==================== -->
+<div class="modal" id="doc-terms" role="dialog" aria-modal="true" aria-labelledby="doc-terms-t" hidden>
+  <div class="modal-card">
+    <div class="modal-head">
+      <h2 id="doc-terms-t">תנאי שימוש</h2>
+      <button class="modal-close" aria-label="סגירה">✕</button>
+    </div>
+    <div class="doc">
+      <h3>1. כללי</h3>
+      <p>
+        אתר זה מופעל על ידי <span class="fill">שם הישות המשפטית</span>,
+        ח.פ./ע.מ. <span class="fill">מספר</span> (להלן: "המפעיל", "אנחנו").
+        השימוש באתר, לרבות עיון בתכניו והשארת פרטים בטופס ההצטרפות, מהווה
+        הסכמה לתנאים אלה. אם אינכם מסכימים להם — אנא הימנעו משימוש באתר.
+      </p>
+      <p>
+        התנאים מנוסחים בלשון זכר מטעמי נוחות בלבד, ומופנים לכל המגדרים כאחד.
+      </p>
+
+      <h3>2. מהות האתר</h3>
+      <p>
+        האתר הוא דף מידע והרשמה למיזם לאיגוד כוח קנייה קבוצתי. האתר אינו
+        חנות מקוונת, אינו מבצע עסקאות ואינו גובה תשלום כלשהו. ההרשמה דרכו היא
+        הבעת עניין בלבד, ואינה יוצרת התקשרות מחייבת בין הצדדים.
+      </p>
+
+      <h3>3. הנתונים והדוגמאות המוצגים באתר</h3>
+      <p>
+        <b>זהו הסעיף החשוב ביותר במסמך זה.</b> הסכומים, אחוזי החיסכון והתרחישים
+        המוצגים באתר — לרבות במחשבוני החיסכון ובכרטיסי הדוגמה — הם
+        <b>הערכה להמחשה בלבד</b> ואינם הצעה, התחייבות, הבטחת תוצאה או ייעוץ.
+        התוצאה בפועל תלויה בתנאי השוק, במספר המשתתפים בקבוצה, בזהות הספקים
+        ובנתוניו הפרטניים של כל משתתף, ועשויה להיות שונה מהותית מן המוצג.
+      </p>
+      <p>
+        אין באמור באתר משום ייעוץ פיננסי, ביטוחי, פנסיוני, מיסויי או משפטי,
+        ואין להסתמך עליו כתחליף לייעוץ מקצועי ואישי מגורם מורשה.
+      </p>
+
+      <h3>4. הגבלת אחריות</h3>
+      <p>
+        האתר ותכניו מוצגים כמות שהם <span dir="ltr">("AS IS")</span>. אנו עושים
+        מאמץ שהמידע יהיה מדויק ומעודכן, אך איננו אחראים לשגיאות, להשמטות או
+        לאי-דיוקים, ואיננו אחראים לכל נזק — ישיר או עקיף — שייגרם כתוצאה
+        מהסתמכות על תוכן האתר או משימוש בו. השימוש באתר הוא באחריותכם הבלעדית.
+      </p>
+      <p>
+        איננו מתחייבים כי האתר יפעל ברציפות, ללא תקלות או ללא הפסקות, ואיננו
+        אחראים לנזק שייגרם מחוסר זמינות.
+      </p>
+
+      <h3>5. קניין רוחני</h3>
+      <p>
+        כל זכויות הקניין הרוחני באתר — לרבות העיצוב, המותג "קבוצת המוזיל", הלוגו,
+        הטקסטים ומבנה המידע — שייכות למפעיל. אין להעתיק, לשכפל, להפיץ או לעשות
+        שימוש מסחרי בתוכן האתר ללא אישור מראש ובכתב.
+      </p>
+
+      <h3>6. פרטיות ומידע אישי</h3>
+      <p>
+        הפרטים שתמסרו בטופס ההצטרפות ישמשו ליצירת קשר בנוגע למיזם בלבד.
+        מסירת הפרטים היא מרצון ואינה חובה חוקית. פירוט מלא בדבר אופן השימוש
+        במידע והזכות להסרה מופיע בתקנון האתר.
+      </p>
+
+      <h3>7. קישורים לאתרים חיצוניים</h3>
+      <p>
+        באתר עשויים להופיע קישורים לשירותים חיצוניים (למשל וואטסאפ). איננו
+        אחראים לתוכנם, לזמינותם או למדיניות הפרטיות שלהם, והשימוש בהם כפוף
+        לתנאיהם.
+      </p>
+
+      <h3>8. שינויים בתנאים</h3>
+      <p>
+        אנו רשאים לעדכן תנאים אלה מעת לעת. הנוסח המחייב הוא זה המפורסם באתר
+        במועד השימוש, ותאריך העדכון מופיע בתחתית המסמך.
+      </p>
+
+      <h3>9. דין וסמכות שיפוט</h3>
+      <p>
+        על תנאים אלה יחולו דיני מדינת ישראל בלבד. סמכות השיפוט הבלעדית בכל
+        עניין הנובע מהם נתונה לבתי המשפט המוסמכים במחוז
+        <span class="fill">מחוז</span>.
+      </p>
+
+      <p class="updated">עודכן לאחרונה בתאריך 20.08.2026.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== תקנון האתר ==================== -->
+<div class="modal" id="doc-rules" role="dialog" aria-modal="true" aria-labelledby="doc-rules-t" hidden>
+  <div class="modal-card">
+    <div class="modal-head">
+      <h2 id="doc-rules-t">תקנון האתר</h2>
+      <button class="modal-close" aria-label="סגירה">✕</button>
+    </div>
+    <div class="doc">
+      <h3>1. מהות השירות</h3>
+      <p>
+        קבוצת המוזיל מאגדת עסקים ומשקי בית לקבוצת רכישה משותפת, ופונה בשמם
+        לספקים בהליך תחרותי ("מכרז הפוך") לשם השגת תנאים טובים מאלה שהיה
+        משיג משתתף בודד. אנו מייצגים את צד הלקוחות בלבד.
+      </p>
+
+      <h3>2. ההרשמה לקבוצה</h3>
+      <ul>
+        <li>ההרשמה היא <b>ללא עלות, ללא דמי הצטרפות וללא דמי מנוי</b>.</li>
+        <li>ההרשמה אינה מחייבת אתכם להתקשר עם ספק כלשהו ואינה יוצרת התחייבות כספית.</li>
+        <li>אין "קבוצה ראשונה" או "שנייה" — ההרשמה מכניסה אתכם לכלל הקטגוריות שייפתחו.</li>
+        <li>ההשתתפות מותנית במסירת פרטי קשר נכונים ומדויקים.</li>
+      </ul>
+
+      <h3>3. מודל התמורה</h3>
+      <ul>
+        <li>התמורה שלנו היא <b>10% מתוך החיסכון שהושג בפועל</b>, ו-90% מהחיסכון נשארים אצל המשתתף.</li>
+        <li>לא הושג חיסכון — <b>לא משולמת לנו כל תמורה</b>.</li>
+        <li>הושג חיסכון והמשתתף בחר שלא לעבור לספק החדש — לא משולמת לנו כל תמורה.</li>
+        <li>אין ולא ייגבו דמי טיפול, דמי רישום או תשלום כלשהו שאינו נגזרת של חיסכון שהושג בפועל.</li>
+        <li>אופן החישוב, אופן התשלום ומשך הגבייה ייקבעו בהסכם פרטני שייחתם מול כל משתתף לפני ביצוע מעבר, ולא יחייבו איש בטרם נחתם.</li>
+      </ul>
+
+      <h3>4. אי-תלות בספקים</h3>
+      <p>
+        איננו גובים עמלה, טובת הנאה או תשלום כלשהו מן הספקים. מקור ההכנסה
+        היחיד שלנו הוא הנקוב בסעיף 3. הדבר נועד להבטיח שהאינטרס שלנו יהיה
+        זהה לשלכם: להשיג את המחיר הנמוך ביותר, ולא להעביר אתכם ספק.
+      </p>
+
+      <h3>5. חופש הבחירה</h3>
+      <p>
+        ההחלטה אם לעבור לספק הזוכה נתונה לכל משתתף בנפרד. הקבוצה אינה מחליטה
+        עבור חבריה, ואיננו חותמים בשם משתתף על מסמך כלשהו.
+      </p>
+
+      <h3>6. שקיפות</h3>
+      <p>
+        בתום כל הליך תחרותי נפרסם למשתתפי אותה קטגוריה את מספר ההצעות שהתקבלו,
+        את טווח ההצעות ואת זהות הזוכה. איננו מקיימים הליכים חסויים מול המשתתפים.
+      </p>
+
+      <h3>7. מידע ופרטיות</h3>
+      <ul>
+        <li>הפרטים שתמסרו ישמשו ליצירת קשר ולניהול השתתפותכם בקבוצה בלבד.</li>
+        <li>לספקים מועברים <b>נתונים מצרפיים בלבד</b> — כגון מספר המשתתפים והיקף הצריכה הכולל.</li>
+        <li>פרטים מזהים של משתתף לא יימסרו לספק ללא הסכמה מפורשת ומראש של אותו משתתף.</li>
+        <li>לא נמכור, נשכיר או נסחר במידע שלכם, ולא נעביר אותו לצד שלישי לצרכי שיווק.</li>
+        <li>ניתן לבקש בכל עת עיון במידע, תיקונו או מחיקתו והסרה מרשימת הדיוור, בפנייה לערוצי הקשר שבאתר. הבקשה תטופל בתוך זמן סביר.</li>
+      </ul>
+
+      <h3>8. סייגים</h3>
+      <p>
+        המפעיל אינו ספק של השירותים הנרכשים ואינו צד להתקשרות שבין המשתתף
+        לספק. באחריות הספק בלבד לספק את השירות, ותלונות בעניין טיב השירות
+        יופנו אליו. עם זאת — נסייע בכל פנייה כזו במסגרת האפשר, שכן זהו
+        אינטרס מובהק של הקבוצה כולה.
+      </p>
+      <p>
+        המפעיל רשאי שלא לצרף או להפסיק השתתפות של מי שמסר פרטים כוזבים,
+        פועל בחוסר תום לב או פוגע בהתנהלות הקבוצה.
+      </p>
+
+      <h3>9. שינויים בתקנון</h3>
+      <p>
+        אנו רשאים לעדכן תקנון זה. הנוסח המחייב הוא זה המפורסם באתר במועד
+        השימוש. שינוי מהותי יובא לידיעת המשתתפים הרשומים.
+      </p>
+
+      <h3>10. יצירת קשר</h3>
+      <p>
+        בכל שאלה: <a href="https://wa.me/972506911937" dir="ltr">050-691-1937</a>
+        · דואר אלקטרוני: <span class="fill">להשלמה</span>
+      </p>
+
+      <p class="updated">עודכן לאחרונה בתאריך 20.08.2026.</p>
+    </div>
+  </div>
+</div>
+
 
 <script>
 /* -----------------------------------------------------------------
@@ -1343,6 +1821,167 @@ document.getElementById('joinForm').addEventListener('submit', e => {
   window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`, '_blank');
   e.target.style.display = 'none';
   document.getElementById('thanks').style.display = 'block';
+});
+
+/* -----------------------------------------------------------------
+   תפריט נגישות.
+   כל מצב הוא class על אלמנט השורש, כדי שיחול על העמוד כולו —
+   כולל החלוניות המשפטיות שנפתחות מעליו. הבחירה נשמרת ב-localStorage
+   ומוחלת מיד בטעינה הבאה.
+   "הגדלת תצוגה" היא מחזורית (100% ← 112% ← 126% ← 142% ← חזרה),
+   ולכן היא נשמרת כמספר ולא כמצב דלוק/כבוי.
+------------------------------------------------------------------ */
+const A11Y_KEY   = 'hamozil-a11y';
+const A11Y_MODES = ['contrast','mono','links','readable','space','motion','cursor','focus'];
+const FONT_STEPS = 4;   // 0 = ללא הגדלה
+
+let a11y = { font: 0, modes: [] };
+
+try {
+  const saved = JSON.parse(localStorage.getItem(A11Y_KEY) || '{}');
+  if (saved && typeof saved === 'object') {
+    a11y.font  = Number(saved.font) || 0;
+    a11y.modes = Array.isArray(saved.modes) ? saved.modes.filter(m => A11Y_MODES.includes(m)) : [];
+  }
+} catch (e) { /* מצב פרטי או אחסון חסום — פשוט ממשיכים בברירת המחדל */ }
+
+function applyA11y() {
+  const root = document.documentElement;
+
+  for (let i = 1; i < FONT_STEPS; i++) root.classList.toggle('fs-' + i, a11y.font === i);
+  A11Y_MODES.forEach(m => root.classList.toggle('a11y-' + m, a11y.modes.includes(m)));
+
+  document.querySelectorAll('.a11y-opt[data-a11y]').forEach(b => {
+    const k = b.dataset.a11y;
+    b.setAttribute('aria-pressed', k === 'font' ? String(a11y.font > 0) : String(a11y.modes.includes(k)));
+  });
+
+  const fontBtn = document.querySelector('[data-a11y="font"]');
+  if (fontBtn) fontBtn.lastChild.textContent =
+    a11y.font ? `הגדלה ${[100,112,126,142][a11y.font]}%` : 'הגדלת תצוגה';
+
+  try { localStorage.setItem(A11Y_KEY, JSON.stringify(a11y)); } catch (e) {}
+}
+
+document.querySelectorAll('.a11y-opt[data-a11y]').forEach(btn =>
+  btn.addEventListener('click', () => {
+    const k = btn.dataset.a11y;
+    if (k === 'font') {
+      a11y.font = (a11y.font + 1) % FONT_STEPS;
+    } else {
+      const i = a11y.modes.indexOf(k);
+      if (i > -1) a11y.modes.splice(i, 1); else a11y.modes.push(k);
+    }
+    applyA11y();
+  })
+);
+
+document.getElementById('a11yReset').addEventListener('click', () => {
+  a11y = { font: 0, modes: [] };
+  applyA11y();
+});
+
+/* פתיחה וסגירה של התפריט */
+const a11yBtn   = document.getElementById('a11yBtn');
+const a11yPanel = document.getElementById('a11yPanel');
+
+function toggleA11yPanel(open) {
+  a11yPanel.hidden = !open;
+  a11yBtn.setAttribute('aria-expanded', String(open));
+  a11yBtn.setAttribute('aria-label', open ? 'סגירת תפריט הנגישות' : 'פתיחת תפריט הנגישות');
+  if (open) a11yPanel.querySelector('.a11y-opt').focus();
+}
+
+a11yBtn.addEventListener('click', () => toggleA11yPanel(a11yPanel.hidden));
+
+document.addEventListener('click', e => {
+  if (!a11yPanel.hidden && !e.target.closest('.a11y-wrap')) toggleA11yPanel(false);
+});
+
+applyA11y();
+
+/* -----------------------------------------------------------------
+   חזרה לראש העמוד.
+   מופיע רק אחרי גלילה של מסך שלם, ומכבד את מצב "עצירת תנועה"
+   וגם את העדפת מערכת ההפעלה להפחתת תנועה.
+------------------------------------------------------------------ */
+const toTop = document.getElementById('toTop');
+
+/* סרגל הפעולה התחתון גדל לשתי שורות כשמגדילים את הטקסט. מדידת גובהו
+   בפועל מונעת מהכפתורים הצפים ומהכותרת התחתונה להיחבא מאחוריו. */
+const cta = document.querySelector('.mobile-cta');
+const syncCta = () =>
+  document.documentElement.style.setProperty('--cta-h', cta.offsetHeight + 'px');
+new ResizeObserver(syncCta).observe(cta);
+syncCta();
+
+const onScroll = () => toTop.classList.toggle('is-on', window.scrollY > window.innerHeight * 0.6);
+window.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+
+toTop.addEventListener('click', () => {
+  const still = document.documentElement.classList.contains('a11y-motion') ||
+                window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  window.scrollTo({ top: 0, behavior: still ? 'auto' : 'smooth' });
+  /* מחזירים גם את המיקוד לראש העמוד, אחרת גולש מקלדת היה ממשיך
+     מהמקום שבו היה למרות שהתצוגה קפצה למעלה */
+  document.getElementById('main').focus({ preventScroll: true });
+});
+
+/* -----------------------------------------------------------------
+   החלוניות המשפטיות.
+   המיקוד נלכד בתוך החלונית כל עוד היא פתוחה, וחוזר בסגירה
+   לרכיב שממנו נפתחה — כדי שגולש מקלדת לא "יאבד את מקומו".
+------------------------------------------------------------------ */
+let lastFocus = null;
+
+function openDoc(id) {
+  const m = document.getElementById(id);
+  if (!m) return;
+  lastFocus = document.activeElement;
+  m.hidden = false;
+  document.body.style.overflow = 'hidden';
+  m.querySelector('.modal-close').focus();
+}
+
+function closeDoc(m) {
+  m.hidden = true;
+  document.body.style.overflow = '';
+  if (lastFocus) lastFocus.focus();
+}
+
+document.querySelectorAll('[data-doc]').forEach(el =>
+  el.addEventListener('click', e => {
+    e.preventDefault();
+    if (!a11yPanel.hidden) toggleA11yPanel(false);
+    openDoc(el.dataset.doc);
+  })
+);
+
+document.querySelectorAll('.modal').forEach(m => {
+  m.querySelector('.modal-close').addEventListener('click', () => closeDoc(m));
+  /* לחיצה על הרקע האפור סוגרת, לחיצה בתוך הכרטיס לא */
+  m.addEventListener('mousedown', e => { if (e.target === m) closeDoc(m); });
+});
+
+document.addEventListener('keydown', e => {
+  const open = [...document.querySelectorAll('.modal')].find(m => !m.hidden);
+
+  if (e.key === 'Escape') {
+    if (open) closeDoc(open);
+    else if (!a11yPanel.hidden) { toggleA11yPanel(false); a11yBtn.focus(); }
+    return;
+  }
+
+  if (e.key !== 'Tab' || !open) return;
+
+  const f = [...open.querySelectorAll('button, [href], input, select, textarea')]
+    .filter(el => !el.disabled && el.offsetParent !== null);
+  if (!f.length) return;
+
+  const first = f[0], last = f[f.length - 1];
+  if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+  else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
 });
 </script>
 </body>
