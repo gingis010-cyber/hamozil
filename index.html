@@ -558,7 +558,7 @@
      שתי תצוגות באותו קובץ. הלשוניות מחליפות ביניהן,
      והמצב נשמר ב-hash כדי שאפשר יהיה לשלוח קישור ישיר (#private).
      ============================================================ -->
-<div id="view-business">
+<div class="view-business">
 
 <!-- ==================== הירו ==================== -->
 <section class="wrap hero">
@@ -643,6 +643,7 @@
     </div>
 
     <!-- ---------- הטבלה המצטברת ---------- -->
+    <div class="cumulative" hidden>
     <h3 style="font-size:calc(26px * var(--ts,1)); margin:52px 0 8px">וכשמחברים את הכל — זה מצטבר</h3>
     <p class="lead" style="margin-bottom:0">
       החליפו את המספרים במה שאתם באמת משלמים, ותראו את הסכום שלכם.
@@ -722,9 +723,225 @@
       איך הסכומים מצטברים. המחיר בפועל בכל קטגוריה ייקבע במכרז ותלוי בכמה עסקים יצטרפו,
       ואנחנו נפרסם כל תוצאה בשקיפות מלאה. גם כאן: <b>אתם יכולים רק להרוויח.</b>
     </p>
+    </div><!-- .cumulative -->
   </div>
 </section>
 
+</div><!-- view-business -->
+
+<div class="view-private" hidden>
+
+<!-- ==================== הירו — פרטי ==================== -->
+<section class="wrap hero">
+  <div class="badge">● נלחמים במחירים — ככל שנהיה יותר, כוח המיקוח מתגבר</div>
+  <h1>משפחה אחת לא מזיזה ספק.<br>אלף משפחות מזיזות שוק.</h1>
+  <div class="sub">מיזם חברתי שמייצר כוח קנייה קבוצתי למשקי בית</div>
+  <p class="lead">
+    על החשמל, הסלולר, האינטרנט והביטוחים אתם משלמים את המחיר של לקוח בודד.
+    ועד עובדים גדול משלם על אותם שירותים בדיוק הרבה פחות — לא כי התמקח טוב יותר,
+    אלא כי הביא איתו אלפי לקוחות. <b>המוזיל מאגד משקי בית לקבוצה אחת ענקית</b>,
+    ומביא את הספקים להתחרות עליכם — ולהשיג את המחיר הנמוך ביותר.
+  </p>
+  <div class="trust" style="margin-top:30px">
+    <span><b class="tick">✓</b> ללא דמי הצטרפות</span>
+    <span><b class="tick">✓</b> ללא התחייבות</span>
+    <span><b class="tick">✓</b> ההחלטה תמיד שלכם</span>
+    <span><b class="tick">✓</b> אתם יכולים רק להרוויח</span>
+  </div>
+</section>
+
+<!-- ==================== שכבות + מצטבר — פרטי ==================== -->
+<section class="section" id="more-p">
+  <div class="wrap">
+    <div class="eyebrow">קבוצה אחת, הרבה קטגוריות</div>
+    <h2>נרשמים פעם אחת — ומקבלים הצעות על כל ההוצאות</h2>
+    <p class="lead" style="margin-top:16px">
+      אין קבוצה ראשונה ושנייה. יש <b>קבוצה אחת</b>, ובתוכה קטגוריות.
+      קודם כל יוצאים למכרז על מה שכל בית בישראל משלם — ואחר כך על מה
+      שמתאים דווקא לכם. אותה הצטרפות אחת, עוד ועוד הוצאות שיורדות.
+    </p>
+
+    <div class="tiers">
+      <div class="tier">
+        <div class="tier-head"><div class="tier-n">1</div><h3>כל בית בישראל</h3></div>
+        <p class="who">אין משק בית שלא משלם את אלה — כאן הקבוצה הכי גדולה והכוח הכי חזק</p>
+        <div class="chips">
+          <span class="chip">חשמל לבית</span>
+          <span class="chip">סלולר</span>
+          <span class="chip">אינטרנט וטלוויזיה</span>
+          <span class="chip">גז בישול</span>
+          <span class="chip">עמלות בנק</span>
+          <span class="chip more">ועוד…</span>
+        </div>
+      </div>
+
+      <div class="tier">
+        <div class="tier-head"><div class="tier-n">2</div><h3>הכסף הגדול</h3></div>
+        <p class="who">כאן החיסכון לא נמדד בשקלים בחודש אלא בעשרות אלפים לאורך החיים</p>
+        <div class="chips">
+          <span class="chip">דמי ניהול בפנסיה וגמל</span>
+          <span class="chip">ביטוח רכב</span>
+          <span class="chip">ביטוח דירה</span>
+          <span class="chip">ביטוח בריאות</span>
+          <span class="chip">ריבית משכנתא</span>
+          <span class="chip more">ועוד…</span>
+        </div>
+      </div>
+
+      <div class="tier">
+        <div class="tier-head"><div class="tier-n">3</div><h3>רכישות ושירותים</h3></div>
+        <p class="who">כאן הפערים הכי גדולים, כי כמעט אף אחד לא משווה מחירים</p>
+        <div class="branch">
+          <b>לבית</b>
+          מזגנים · מקרר ומכונת כביסה · דוד שמש · פאנלים סולאריים · <span class="more-i">ועוד…</span>
+          <b>לרכב</b>
+          צמיגים · מצבר · טיפולים ושמן · טסט · <span class="more-i">ועוד…</span>
+          <b>לבריאות</b>
+          יישור שיניים ושתלים · משקפיים ועדשות · לייזר · <span class="more-i">ועוד…</span>
+          <b>לילדים</b>
+          שיעורי נהיגה · פסיכומטרי · חוגים · קייטנות · <span class="more-i">ועוד…</span>
+        </div>
+        <div class="branch-more">
+          וזו רק דוגמה. <b>לכל משפחה יש את ההוצאות שלה</b> — תגידו לנו על מה
+          אתם משלמים, ונבנה גם לזה קבוצה.
+        </div>
+      </div>
+    </div>
+
+    <div class="cumulative" hidden>
+    <h3 style="font-size:calc(26px * var(--ts,1)); margin:52px 0 8px">וכשמחברים את הכל — זה מצטבר</h3>
+    <p class="lead" style="margin-bottom:0">
+      החליפו את המספרים במה שאתם באמת משלמים, ותראו את הסכום שלכם.
+    </p>
+
+    <div class="stack">
+      <div class="stack-head">
+        <div>קטגוריה</div>
+        <div>הסכום שלכם</div>
+        <div>חיסכון</div>
+        <div>לחודש</div>
+        <div>לשנה</div>
+      </div>
+
+      <div class="stack-row">
+        <div class="cat">חשמל לבית<small>חשבון חודשי ממוצע</small></div>
+        <div class="inp"><input id="p_elec" aria-label="חשבון חשמל חודשי לבית, בשקלים" type="number" min="0" step="50" value="600" inputmode="numeric"></div>
+        <div class="pct">7%</div>
+        <div class="mo" id="pm_elec"></div>
+        <div class="yr" id="py_elec"></div>
+      </div>
+
+      <div class="stack-row">
+        <div class="cat">סלולר<small>סך כל הקווים במשפחה</small></div>
+        <div class="inp"><input id="p_cell" aria-label="הוצאת סלולר חודשית למשפחה, בשקלים" type="number" min="0" step="20" value="200" inputmode="numeric"></div>
+        <div class="pct">20%</div>
+        <div class="mo" id="pm_cell"></div>
+        <div class="yr" id="py_cell"></div>
+      </div>
+
+      <div class="stack-row">
+        <div class="cat">אינטרנט וטלוויזיה<small>תשתית, ספק וחבילות צפייה</small></div>
+        <div class="inp"><input id="p_net" aria-label="הוצאת אינטרנט וטלוויזיה חודשית, בשקלים" type="number" min="0" step="20" value="250" inputmode="numeric"></div>
+        <div class="pct">15%</div>
+        <div class="mo" id="pm_net"></div>
+        <div class="yr" id="py_net"></div>
+      </div>
+
+      <div class="stack-row">
+        <div class="cat">ביטוח רכב<small>חובה ומקיף, לחודש</small></div>
+        <div class="inp"><input id="p_car" aria-label="עלות ביטוח רכב לחודש, בשקלים" type="number" min="0" step="25" value="350" inputmode="numeric"></div>
+        <div class="pct">15%</div>
+        <div class="mo" id="pm_car"></div>
+        <div class="yr" id="py_car"></div>
+      </div>
+
+      <div class="stack-row">
+        <div class="cat">ביטוח דירה<small>מבנה ותכולה, לחודש</small></div>
+        <div class="inp"><input id="p_home" aria-label="עלות ביטוח דירה לחודש, בשקלים" type="number" min="0" step="10" value="120" inputmode="numeric"></div>
+        <div class="pct">15%</div>
+        <div class="mo" id="pm_home"></div>
+        <div class="yr" id="py_home"></div>
+      </div>
+
+      <div class="stack-row branch-row">
+        <div class="cat">
+          <span class="branch-tag">הכסף הגדול</span>
+          דמי ניהול בפנסיה<small>הזינו את הצבירה שלכם, לא הפקדה חודשית</small>
+        </div>
+        <div class="inp"><input id="p_pens" aria-label="סך הצבירה בפנסיה, בשקלים" type="number" min="0" step="10000" value="500000" inputmode="numeric"></div>
+        <div class="pct">0.3% לשנה</div>
+        <div class="mo" id="pm_pens"></div>
+        <div class="yr" id="py_pens"></div>
+      </div>
+
+      <div class="stack-total">
+        <div class="lbl">סך החיסכון שלכם</div>
+        <div class="mo" id="pm_tot">—<small>בחודש</small></div>
+        <div class="yr" id="py_tot">—<small>בשנה</small></div>
+      </div>
+    </div>
+
+    <p class="note" style="max-width:70ch">
+      <b>אחוזי החיסכון כאן הם הערכה שמרנית להמחשה</b>, לא הבטחה — הם נועדו להראות
+      איך הסכומים מצטברים. המחיר בפועל בכל קטגוריה ייקבע במכרז ותלוי בכמה משקי בית
+      יצטרפו, ואנחנו נפרסם כל תוצאה בשקיפות מלאה. גם כאן: <b>אתם יכולים רק להרוויח.</b>
+    </p>
+    <p class="note" style="max-width:70ch">
+      <b>שימו לב לשורת הפנסיה:</b> הפרש קטן בדמי הניהול נראה זניח, אבל הוא נגבה
+      מהצבירה כל שנה מחדש — ולאורך עשרות שנות חיסכון הוא מסתכם בעשרות אלפי שקלים.
+      זו כנראה ההוצאה הכי גדולה שאתם לא שמים לב אליה.
+    </p>
+    </div><!-- .cumulative -->
+  </div>
+</section>
+
+
+
+</div><!-- view-private -->
+
+<!-- ==================== אפס סיכון ==================== -->
+<section class="section" id="risk">
+  <div class="wrap">
+    <div class="risk">
+      <div class="eyebrow" style="color:#7FD3B4">אפס סיכון</div>
+      <h2>אי אפשר להפסיד כסף בהשתתפות. פשוטו כמשמעו.</h2>
+      <p class="lead">
+        אנחנו לא גובים דמי הצטרפות, לא דמי מנוי ולא דמי טיפול.
+        אנחנו מקבלים <b style="color:#fff">10% מתוך החיסכון שהשגנו לכם</b> — וזהו.
+        <b style="color:#7FD3B4">90% מהחיסכון נשאר אצלכם, כל חודש.</b>
+        אלה כל התרחישים שקיימים:
+      </p>
+      <table class="risk-table">
+        <thead>
+          <tr><th>מה קרה</th><th>כמה תשלמו לנו</th><th>כמה נרוויח</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>לא הצלחנו להשיג מחיר טוב משלכם</td>
+            <td><span class="zero">₪0</span></td>
+            <td><span class="zero">₪0</span></td>
+          </tr>
+          <tr>
+            <td>השגנו מחיר טוב יותר — ואתם מחליטים לא לעבור</td>
+            <td><span class="zero">₪0</span></td>
+            <td><span class="zero">₪0</span></td>
+          </tr>
+          <tr>
+            <td>השגנו, עברתם, ואתם חוסכים כל חודש</td>
+            <td><span class="win">10% מהחיסכון</span><small class="sub">ו-90% נשארים אצלכם</small></td>
+            <td><span class="win">אותם 10%</span><small class="sub">ולא שקל מעבר</small></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="punch">
+        אין תרחיש שבו אנחנו מרוויחים ואתם לא.<br>
+        אנחנו מקבלים 10% ממה שהשארנו לכם בכיס — <b>אף פעם לא מהכיס עצמו.</b>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="view-business">
 <!-- ==================== הבעיה ==================== -->
 <section class="section" id="problem">
   <div class="wrap">
@@ -827,174 +1044,9 @@
   </div>
 </section>
 
-</div>
+</div><!-- view-business -->
 
-<div id="view-private" hidden>
-
-<!-- ==================== הירו — פרטי ==================== -->
-<section class="wrap hero">
-  <div class="badge">● נלחמים במחירים — ככל שנהיה יותר, כוח המיקוח מתגבר</div>
-  <h1>משפחה אחת לא מזיזה ספק.<br>אלף משפחות מזיזות שוק.</h1>
-  <div class="sub">מיזם חברתי שמייצר כוח קנייה קבוצתי למשקי בית</div>
-  <p class="lead">
-    על החשמל, הסלולר, האינטרנט והביטוחים אתם משלמים את המחיר של לקוח בודד.
-    ועד עובדים גדול משלם על אותם שירותים בדיוק הרבה פחות — לא כי התמקח טוב יותר,
-    אלא כי הביא איתו אלפי לקוחות. <b>המוזיל מאגד משקי בית לקבוצה אחת ענקית</b>,
-    ומביא את הספקים להתחרות עליכם — ולהשיג את המחיר הנמוך ביותר.
-  </p>
-  <div class="trust" style="margin-top:30px">
-    <span><b class="tick">✓</b> ללא דמי הצטרפות</span>
-    <span><b class="tick">✓</b> ללא התחייבות</span>
-    <span><b class="tick">✓</b> ההחלטה תמיד שלכם</span>
-    <span><b class="tick">✓</b> אתם יכולים רק להרוויח</span>
-  </div>
-</section>
-
-<!-- ==================== שכבות + מצטבר — פרטי ==================== -->
-<section class="section" id="more-p">
-  <div class="wrap">
-    <div class="eyebrow">קבוצה אחת, הרבה קטגוריות</div>
-    <h2>נרשמים פעם אחת — ומקבלים הצעות על כל ההוצאות</h2>
-    <p class="lead" style="margin-top:16px">
-      אין קבוצה ראשונה ושנייה. יש <b>קבוצה אחת</b>, ובתוכה קטגוריות.
-      קודם כל יוצאים למכרז על מה שכל בית בישראל משלם — ואחר כך על מה
-      שמתאים דווקא לכם. אותה הצטרפות אחת, עוד ועוד הוצאות שיורדות.
-    </p>
-
-    <div class="tiers">
-      <div class="tier">
-        <div class="tier-head"><div class="tier-n">1</div><h3>כל בית בישראל</h3></div>
-        <p class="who">אין משק בית שלא משלם את אלה — כאן הקבוצה הכי גדולה והכוח הכי חזק</p>
-        <div class="chips">
-          <span class="chip">חשמל לבית</span>
-          <span class="chip">סלולר</span>
-          <span class="chip">אינטרנט וטלוויזיה</span>
-          <span class="chip">גז בישול</span>
-          <span class="chip">עמלות בנק</span>
-          <span class="chip more">ועוד…</span>
-        </div>
-      </div>
-
-      <div class="tier">
-        <div class="tier-head"><div class="tier-n">2</div><h3>הכסף הגדול</h3></div>
-        <p class="who">כאן החיסכון לא נמדד בשקלים בחודש אלא בעשרות אלפים לאורך החיים</p>
-        <div class="chips">
-          <span class="chip">דמי ניהול בפנסיה וגמל</span>
-          <span class="chip">ביטוח רכב</span>
-          <span class="chip">ביטוח דירה</span>
-          <span class="chip">ביטוח בריאות</span>
-          <span class="chip">ריבית משכנתא</span>
-          <span class="chip more">ועוד…</span>
-        </div>
-      </div>
-
-      <div class="tier">
-        <div class="tier-head"><div class="tier-n">3</div><h3>רכישות ושירותים</h3></div>
-        <p class="who">כאן הפערים הכי גדולים, כי כמעט אף אחד לא משווה מחירים</p>
-        <div class="branch">
-          <b>לבית</b>
-          מזגנים · מקרר ומכונת כביסה · דוד שמש · פאנלים סולאריים · <span class="more-i">ועוד…</span>
-          <b>לרכב</b>
-          צמיגים · מצבר · טיפולים ושמן · טסט · <span class="more-i">ועוד…</span>
-          <b>לבריאות</b>
-          יישור שיניים ושתלים · משקפיים ועדשות · לייזר · <span class="more-i">ועוד…</span>
-          <b>לילדים</b>
-          שיעורי נהיגה · פסיכומטרי · חוגים · קייטנות · <span class="more-i">ועוד…</span>
-        </div>
-        <div class="branch-more">
-          וזו רק דוגמה. <b>לכל משפחה יש את ההוצאות שלה</b> — תגידו לנו על מה
-          אתם משלמים, ונבנה גם לזה קבוצה.
-        </div>
-      </div>
-    </div>
-
-    <h3 style="font-size:calc(26px * var(--ts,1)); margin:52px 0 8px">וכשמחברים את הכל — זה מצטבר</h3>
-    <p class="lead" style="margin-bottom:0">
-      החליפו את המספרים במה שאתם באמת משלמים, ותראו את הסכום שלכם.
-    </p>
-
-    <div class="stack">
-      <div class="stack-head">
-        <div>קטגוריה</div>
-        <div>הסכום שלכם</div>
-        <div>חיסכון</div>
-        <div>לחודש</div>
-        <div>לשנה</div>
-      </div>
-
-      <div class="stack-row">
-        <div class="cat">חשמל לבית<small>חשבון חודשי ממוצע</small></div>
-        <div class="inp"><input id="p_elec" aria-label="חשבון חשמל חודשי לבית, בשקלים" type="number" min="0" step="50" value="600" inputmode="numeric"></div>
-        <div class="pct">7%</div>
-        <div class="mo" id="pm_elec"></div>
-        <div class="yr" id="py_elec"></div>
-      </div>
-
-      <div class="stack-row">
-        <div class="cat">סלולר<small>סך כל הקווים במשפחה</small></div>
-        <div class="inp"><input id="p_cell" aria-label="הוצאת סלולר חודשית למשפחה, בשקלים" type="number" min="0" step="20" value="200" inputmode="numeric"></div>
-        <div class="pct">20%</div>
-        <div class="mo" id="pm_cell"></div>
-        <div class="yr" id="py_cell"></div>
-      </div>
-
-      <div class="stack-row">
-        <div class="cat">אינטרנט וטלוויזיה<small>תשתית, ספק וחבילות צפייה</small></div>
-        <div class="inp"><input id="p_net" aria-label="הוצאת אינטרנט וטלוויזיה חודשית, בשקלים" type="number" min="0" step="20" value="250" inputmode="numeric"></div>
-        <div class="pct">15%</div>
-        <div class="mo" id="pm_net"></div>
-        <div class="yr" id="py_net"></div>
-      </div>
-
-      <div class="stack-row">
-        <div class="cat">ביטוח רכב<small>חובה ומקיף, לחודש</small></div>
-        <div class="inp"><input id="p_car" aria-label="עלות ביטוח רכב לחודש, בשקלים" type="number" min="0" step="25" value="350" inputmode="numeric"></div>
-        <div class="pct">15%</div>
-        <div class="mo" id="pm_car"></div>
-        <div class="yr" id="py_car"></div>
-      </div>
-
-      <div class="stack-row">
-        <div class="cat">ביטוח דירה<small>מבנה ותכולה, לחודש</small></div>
-        <div class="inp"><input id="p_home" aria-label="עלות ביטוח דירה לחודש, בשקלים" type="number" min="0" step="10" value="120" inputmode="numeric"></div>
-        <div class="pct">15%</div>
-        <div class="mo" id="pm_home"></div>
-        <div class="yr" id="py_home"></div>
-      </div>
-
-      <div class="stack-row branch-row">
-        <div class="cat">
-          <span class="branch-tag">הכסף הגדול</span>
-          דמי ניהול בפנסיה<small>הזינו את הצבירה שלכם, לא הפקדה חודשית</small>
-        </div>
-        <div class="inp"><input id="p_pens" aria-label="סך הצבירה בפנסיה, בשקלים" type="number" min="0" step="10000" value="500000" inputmode="numeric"></div>
-        <div class="pct">0.3% לשנה</div>
-        <div class="mo" id="pm_pens"></div>
-        <div class="yr" id="py_pens"></div>
-      </div>
-
-      <div class="stack-total">
-        <div class="lbl">סך החיסכון שלכם</div>
-        <div class="mo" id="pm_tot">—<small>בחודש</small></div>
-        <div class="yr" id="py_tot">—<small>בשנה</small></div>
-      </div>
-    </div>
-
-    <p class="note" style="max-width:70ch">
-      <b>אחוזי החיסכון כאן הם הערכה שמרנית להמחשה</b>, לא הבטחה — הם נועדו להראות
-      איך הסכומים מצטברים. המחיר בפועל בכל קטגוריה ייקבע במכרז ותלוי בכמה משקי בית
-      יצטרפו, ואנחנו נפרסם כל תוצאה בשקיפות מלאה. גם כאן: <b>אתם יכולים רק להרוויח.</b>
-    </p>
-    <p class="note" style="max-width:70ch">
-      <b>שימו לב לשורת הפנסיה:</b> הפרש קטן בדמי הניהול נראה זניח, אבל הוא נגבה
-      מהצבירה כל שנה מחדש — ולאורך עשרות שנות חיסכון הוא מסתכם בעשרות אלפי שקלים.
-      זו כנראה ההוצאה הכי גדולה שאתם לא שמים לב אליה.
-    </p>
-  </div>
-</section>
-
-
-
+<div class="view-private" hidden>
 <!-- ==================== דוגמה — פרטי ==================== -->
 <section class="section" id="problem-p">
   <div class="wrap">
@@ -1052,7 +1104,7 @@
   </div>
 </section>
 
-</div>
+</div><!-- view-private -->
 
 <!-- ==================== איך זה עובד ==================== -->
 <section class="section" id="how">
@@ -1079,48 +1131,6 @@
         <div class="n">4</div>
         <h3>יוצאים למכרזים</h3>
         <p data-p="כשיש מספיק משקי בית בקטגוריה, הספקים מתחרים עליה. כל משפחה מקבלת את ההצעה שמתאימה לה — ומחליטה בעצמה. אין קבוצה שמחליטה בשבילכם.">כשיש מספיק עסקים בקטגוריה, הספקים מתחרים עליה. כל עסק מקבל את ההצעה שמתאימה לו — ומחליט בעצמו. אין קבוצה שמחליטה בשבילכם.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ==================== אפס סיכון ==================== -->
-<section class="section" id="risk">
-  <div class="wrap">
-    <div class="risk">
-      <div class="eyebrow" style="color:#7FD3B4">אפס סיכון</div>
-      <h2>אי אפשר להפסיד כסף בהשתתפות. פשוטו כמשמעו.</h2>
-      <p class="lead">
-        אנחנו לא גובים דמי הצטרפות, לא דמי מנוי ולא דמי טיפול.
-        אנחנו מקבלים <b style="color:#fff">10% מתוך החיסכון שהשגנו לכם</b> — וזהו.
-        <b style="color:#7FD3B4">90% מהחיסכון נשאר אצלכם, כל חודש.</b>
-        אלה כל התרחישים שקיימים:
-      </p>
-      <table class="risk-table">
-        <thead>
-          <tr><th>מה קרה</th><th>כמה תשלמו לנו</th><th>כמה נרוויח</th></tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>לא הצלחנו להשיג מחיר טוב משלכם</td>
-            <td><span class="zero">₪0</span></td>
-            <td><span class="zero">₪0</span></td>
-          </tr>
-          <tr>
-            <td>השגנו מחיר טוב יותר — ואתם מחליטים לא לעבור</td>
-            <td><span class="zero">₪0</span></td>
-            <td><span class="zero">₪0</span></td>
-          </tr>
-          <tr>
-            <td>השגנו, עברתם, ואתם חוסכים כל חודש</td>
-            <td><span class="win">10% מהחיסכון</span><small class="sub">ו-90% נשארים אצלכם</small></td>
-            <td><span class="win">אותם 10%</span><small class="sub">ולא שקל מעבר</small></td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="punch">
-        אין תרחיש שבו אנחנו מרוויחים ואתם לא.<br>
-        אנחנו מקבלים 10% ממה שהשארנו לכם בכיס — <b>אף פעם לא מהכיס עצמו.</b>
       </div>
     </div>
   </div>
@@ -1572,8 +1582,8 @@ function setView(v, scroll) {
   VIEW = (v === 'private') ? 'private' : 'business';
   const priv = VIEW === 'private';
 
-  document.getElementById('view-business').hidden = priv;
-  document.getElementById('view-private').hidden  = !priv;
+  document.querySelectorAll('.view-business').forEach(v => v.hidden = priv);
+  document.querySelectorAll('.view-private').forEach(v => v.hidden = !priv);
 
   document.querySelectorAll('.tab').forEach(t =>
     t.classList.toggle('is-on', t.dataset.view === VIEW));
