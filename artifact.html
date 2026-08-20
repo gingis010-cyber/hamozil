@@ -1797,7 +1797,7 @@ window.__a11ywCfg = {"side":"right","color":"#0D6B54","statement":"[data-doc=\"d
  *
  *  התאמה אישית (לא חובה) דרך data- על תגית הסקריפט:
  *      data-side="right|left"   — צד הכפתור (ברירת מחדל right)
- *      data-color="#0D6B54"     — צבע המותג
+ *      data-color="#0D6B54"     — צבע המותג (הכפתור עצמו כחול קבוע)
  *      data-statement="#..."    — סלקטור שלחיצה עליו פותחת את הצהרת הנגישות
  *      data-lang="he"
  *
@@ -1815,6 +1815,10 @@ window.__a11ywCfg = {"side":"right","color":"#0D6B54","statement":"[data-doc=\"d
   var D   = window.__a11ywCfg || (S.dataset || {});
   var SIDE  = D.side === 'left' ? 'left' : 'right';
   var BRAND = D.color || '#0D6B54';
+  /* כפתור הנגישות כחול תמיד, בכל אתר ובלי תלות בצבע המותג. הכחול הוא
+     הצבע המזוהה עם סמל הנגישות הבינלאומי, וגולש שמחפש את הסרגל מזהה
+     אותו מיד. #005A9C נותן ניגודיות 7.14:1 מול הסמל הלבן — רמה AAA. */
+  var A11Y_BLUE = '#005A9C';
   var STMT  = D.statement || '[data-doc="doc-a11y"]';
   var KEY   = 'a11y-widget-state';
 
@@ -1876,13 +1880,13 @@ window.__a11ywCfg = {"side":"right","color":"#0D6B54","statement":"[data-doc=\"d
            ':not(.a11yw-panel):not(.a11yw-panel *):not(.a11yw-btn):not(.a11yw-btn *)';
 
   var CSS = `
-:root{--a11y-brand:${BRAND}}
+:root{--a11y-brand:${BRAND}; --a11y-blue:${A11Y_BLUE}}
 
 /* ---------- הכפתור הצף ---------- */
 .a11yw-btn{
   position:fixed; inset-block-end:var(--a11yw-offset,20px); ${SIDE}:20px; z-index:2147483000;
   width:56px; height:56px; border-radius:50%; border:2px solid #fff; padding:0; cursor:pointer;
-  background:var(--a11y-brand); color:#fff; display:grid; place-items:center;
+  background:var(--a11y-blue); color:#fff; display:grid; place-items:center;
   box-shadow:0 4px 20px rgba(0,0,0,.3); font-family:inherit;
 }
 .a11yw-btn:hover{filter:brightness(1.12)}
@@ -1899,7 +1903,7 @@ window.__a11ywCfg = {"side":"right","color":"#0D6B54","statement":"[data-doc=\"d
 .a11yw-panel.is-open{transform:none}
 .a11yw-panel *{box-sizing:border-box}
 .a11yw-head{
-  background:var(--a11y-brand); color:#fff; padding:16px 18px;
+  background:var(--a11y-blue); color:#fff; padding:16px 18px;
   display:flex; align-items:center; justify-content:space-between; gap:12px; flex:none;
 }
 .a11yw-head h2{margin:0; font-size:19px; font-weight:700; color:#fff}
