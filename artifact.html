@@ -108,6 +108,15 @@
   .tab.is-on{background:var(--green); color:#fff}
   .tab:focus-visible{outline:3px solid var(--gold); outline-offset:2px}
 
+  /* סרגל פעולה תחתון — מוצג רק בטלפון (ראו מדיה קווארי בהמשך) */
+  .mobile-cta{
+    display:none; position:fixed; inset:auto 0 0 0; z-index:60;
+    background:rgba(247,244,238,.96); backdrop-filter:blur(10px);
+    border-top:1px solid var(--line); padding:12px 16px;
+    padding-bottom:calc(12px + env(safe-area-inset-bottom));
+  }
+  .mobile-cta .btn{display:block; text-align:center; padding:14px}
+
   .soon-bar{
     margin-top:20px; background:var(--green-soft); border:1px dashed #9CC6B7;
     border-radius:12px; padding:16px 20px; font-size:16px; color:#2E5147; line-height:1.6;
@@ -157,6 +166,14 @@
   .v.loss{color:var(--loss)}
   .v.good{color:var(--green-deep)}
   .note{font-size:15px; color:var(--muted); margin-top:14px}
+  /* "דוגמה" גדול שחולש על שני הצדדים — הטקסט והטבלה */
+  .ex-head{display:flex; align-items:center; gap:18px; margin-bottom:34px}
+  .ex-head span{
+    font-family:'Frank Ruhl Libre',serif; font-weight:900;
+    font-size:clamp(28px,3.4vw,40px); color:var(--gold); letter-spacing:.04em; flex:none;
+  }
+  .ex-head::after{content:''; flex:1; height:3px; background:var(--gold); opacity:.28; border-radius:2px}
+
   .ex-tag{
     display:inline-block; background:var(--gold); color:#fff; border-radius:999px;
     padding:3px 13px; font-size:13px; font-weight:700; margin-bottom:12px;
@@ -393,10 +410,14 @@
     .section{padding:64px 0}
   }
   @media (max-width:700px){
-    /* בטלפון הסרגל צר מדי לשלושה אלמנטים — הלשוניות חשובות יותר
-       מכפתור הכותרת (יש שני כפתורי פעולה בהירו מיד מתחתיו) */
+    /* בטלפון אין מקום ללוגו + שתי לשוניות + כפתור. הלשוניות נשארות
+       בסרגל, והפעולה עוברת לסרגל תחתון קבוע — כך היא זמינה תמיד,
+       בלי להחזיר כפתורים להירו. */
     header .nav .btn{display:none}
-    .logo{font-size:20px; gap:8px}
+    .logo{font-size:19px; gap:7px}
+    .logo .mark{width:32px;height:32px}
+    .mobile-cta{display:block}
+    body{padding-bottom:76px}
     .logo .mark{width:29px;height:29px;font-size:16px}
     .logo-sub{display:none}
     .tab{padding:8px 16px; font-size:15px}
@@ -438,7 +459,7 @@
 
 <!-- ==================== הירו ==================== -->
 <section class="wrap hero">
-  <div class="badge">● נלחמים במחירים — ככל שנהיה יותר, המחיר טוב יותר</div>
+  <div class="badge">● נלחמים במחירים — ככל שנהיה יותר, כוח המיקוח מתגבר</div>
   <h1>עסק אחד לא מזיז ספק.<br>מאה עסקים מזיזים שוק.</h1>
   <div class="sub">מיזם חברתי-עסקי שמייצר כוח קנייה קבוצתי</div>
   <p class="lead">
@@ -446,11 +467,7 @@
     המוזיל מאגד עסקים קטנים, בינוניים וגדולים לקבוצת רכש אחת ענקית, ומביא את הספקים
     להתחרות עליכם כקבוצה — ולהשיג את המחיר הנמוך ביותר.
   </p>
-  <div class="cta-row">
-    <a href="#join" class="btn btn-primary">אני רוצה להצטרף לקבוצה</a>
-    <a href="#calc" class="btn btn-ghost">קודם תראו לי כמה אני משלם</a>
-  </div>
-  <div class="trust">
+  <div class="trust" style="margin-top:30px">
     <span><b class="tick">✓</b> ללא דמי הצטרפות</span>
     <span><b class="tick">✓</b> ללא התחייבות</span>
     <span><b class="tick">✓</b> ההחלטה תמיד שלכם</span>
@@ -460,9 +477,11 @@
 
 <!-- ==================== הבעיה ==================== -->
 <section class="section" id="problem">
+  <div class="wrap">
+    <div class="ex-head"><span>דוגמה</span></div>
+  </div>
   <div class="wrap cols">
     <div>
-      <div class="eyebrow">דוגמה</div>
       <h2>היום אתם משלמים לחברת הסליקה על כל שקל שנכנס לעסק</h2>
       <p class="lead" style="margin-top:18px">
         עמלת סליקה היא ההוצאה שהכי קל לשכוח ממנה — היא לא מגיעה כחשבונית, היא פשוט
@@ -871,6 +890,11 @@
     </div>
   </div>
 </section>
+
+<!-- סרגל פעולה קבוע — מוצג רק בטלפון, מחליף את כפתור הכותרת -->
+<div class="mobile-cta">
+  <a href="#join" class="btn btn-primary">להצטרפות לקבוצה — חינם</a>
+</div>
 
 <footer class="wrap">
   <div class="foot">
