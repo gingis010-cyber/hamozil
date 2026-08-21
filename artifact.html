@@ -1792,7 +1792,7 @@ document.querySelectorAll('.tab').forEach(t =>
   t.addEventListener('click', () => setView(t.dataset.view, true)));
 
 /* קישור ישיר לצד הפרטי: hamozil.com/#private */
-if (location.hash === '#private') setView('private');
+if (location.hash.startsWith('#private')) setView('private');
 
 /* -----------------------------------------------------------------
    חיסכון מצטבר על פני כמה קטגוריות.
