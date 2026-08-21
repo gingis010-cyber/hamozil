@@ -1965,7 +1965,7 @@ let myRef = '';
 
 function shareUrl() {
   const q = myRef ? '?ref=' + encodeURIComponent(myRef) : '';
-  const root = SITE.replace(/(business|private)/$/, '');
+  const root = SITE.replace(/(business|private)\/$/, '');
   return root + (VIEW === 'private' ? 'private/' : 'business/') + q;
 }
 
