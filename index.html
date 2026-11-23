@@ -301,20 +301,21 @@
   /* ---------- איפה אני עומד ----------
      הענפים והמוצרים מגיעים מהאובייקט STANDING בתחתית הקובץ — ענף חדש
      או מוצר חדש = עריכת הרשימה שם בלבד, בלי לגעת ב-HTML ובלי במסד. */
-  .sectors{display:flex; flex-wrap:wrap; gap:10px; margin-top:30px}
-  .sector{
-    border:2px solid var(--line); background:var(--surface); color:var(--ink); cursor:pointer;
-    font-family:inherit; font-weight:700; font-size:calc(16px * var(--ts,1));
-    padding:10px 20px; border-radius:999px; transition:background .15s ease, border-color .15s ease;
-  }
-  .sector:hover{border-color:var(--green)}
-  .sector[aria-checked="true"]{background:var(--green); border-color:var(--green); color:#fff}
-  .sector:focus-visible{outline:3px solid var(--gold); outline-offset:2px}
-  .sector small{font-weight:600; opacity:.85; font-size:.86em}
   .st-card{
     background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
-    padding:30px; box-shadow:var(--shadow); margin-top:20px;
+    padding:30px; box-shadow:var(--shadow); margin-top:30px;
   }
+  .st-pick{max-width:460px}
+  .st-pick label{display:block; font-weight:700; font-size:calc(17px * var(--ts,1)); margin-bottom:8px}
+  .st-pick select{
+    width:100%; padding:13px 14px; font-family:'Assistant',sans-serif; font-size:calc(18px * var(--ts,1)); font-weight:700;
+    border:2px solid var(--green); border-radius:10px; background:var(--green-soft); color:var(--green-deep); cursor:pointer;
+  }
+  .st-pick select:focus{outline:3px solid var(--gold); outline-offset:2px}
+  .st-group{margin-top:26px; padding-top:22px; border-top:1px dashed var(--line)}
+  .st-group h3{font-size:calc(21px * var(--ts,1))}
+  .st-sub{color:var(--muted); font-size:calc(15px * var(--ts,1)); margin:4px 0 16px}
+  .st-res-h{font-size:calc(20px * var(--ts,1)); margin:14px 0 2px}
   .st-items{display:grid; grid-template-columns:1fr 1fr; gap:18px 24px}
   .st-item label{display:block; font-weight:700; font-size:calc(16px * var(--ts,1)); margin-bottom:7px}
   .st-item label .u{font-weight:400; color:var(--muted); font-size:calc(14px * var(--ts,1))}
@@ -368,7 +369,7 @@
     .st-foot{grid-template-columns:1fr}
     .st-foot .btn{width:100%}
     .st-cta .acts .btn{width:100%; text-align:center}
-    .sector{padding:9px 16px; font-size:calc(15px * var(--ts,1))}
+    .st-pick{max-width:none}
   }
 
   /* ---------- שלוש השכבות ---------- */
@@ -770,14 +771,17 @@
     <div class="eyebrow">איפה אני עומד</div>
     <h2>כמה אתם משלמים — לעומת עסקים כמוכם?</h2>
     <p class="lead" style="margin-top:16px">
-      בחרו את הענף שלכם, מלאו את המחירים שאתם יודעים (לא חייבים את כולם),
-      ותראו מיד איפה אתם עומדים מול עסקים אחרים מאותו ענף.
+      בחרו את סוג העסק, מלאו את המחירים שאתם יודעים (לא חייבים את כולם),
+      ותראו מיד איפה אתם עומדים מול עסקים כמוכם — על המוצרים של הענף שלכם,
+      ועל ההוצאות שיש לכל עסק.
     </p>
 
-    <div class="sectors" id="stSectors" role="radiogroup" aria-label="הענף שלכם"></div>
-
     <form class="st-card" id="stForm" novalidate>
-      <div class="st-items" id="stItems"></div>
+      <div class="st-pick">
+        <label for="stSector">סוג העסק שלכם</label>
+        <select id="stSector"></select>
+      </div>
+      <div id="stGroups"></div>
       <div class="st-foot">
         <div>
           <label for="stSize">מחזור חודשי של העסק, בערך <span class="u">(לא חובה)</span></label>
@@ -2173,52 +2177,187 @@ if (navigator.share) {
 }
 
 /* -----------------------------------------------------------------
-   איפה אני עומד — השוואת מחירים אנונימית לפי ענף.
+   איפה אני עומד — השוואת מחירים אנונימית לפי סוג העסק.
 
-   כל התוכן נבנה מהרשימה הזו. ענף חדש או מוצר חדש = שורה חדשה כאן,
+   כל התוכן נבנה מהרשימות האלה. סוג עסק חדש או מוצר חדש = שורה חדשה כאן,
    בלי לגעת ב-HTML ובלי במסד (המסד מקבל כל ענף וכל מוצר).
+
+   שתי קבוצות מוצרים בכל בדיקה:
+   - המוצרים של הענף — מושווים מול עסקים מאותו ענף בלבד.
+   - GENERAL, הוצאות שיש לכל עסק — מושוות מול כל העסקים מכל הענפים
+     (נשמרות בענף 'all'), ולכן ההשוואה עליהן נפתחת הכי מהר.
+
    key של ענף ושל מוצר: אותיות אנגליות קטנות, ספרות וקו תחתון בלבד.
+   מוצר שמופיע בכמה ענפים — אותו key בכל מקום (למשל חזה עוף).
    unit: 'pct' לאחוזים, 'ils' לשקלים. per: "לחודש", "לק״ג" וכו'.
    מוצר טוב להשוואה = משהו שכל עסק בענף קונה באותה יחידה בדיוק.
 ------------------------------------------------------------------ */
-const CLEARING = { key: 'clearing_pct', name: 'עמלת סליקה באשראי', unit: 'pct', max: 5 };
-const BOOKING  = { key: 'booking_app_month', name: 'אפליקציית זימון תורים', unit: 'ils', per: 'לחודש' };
-const GLOVES   = { key: 'gloves_nitrile_100', name: 'כפפות ניטריל, קופסה של 100', unit: 'ils' };
+const P = {   // מוצרים שחוזרים בכמה ענפים
+  wolt:        { key: 'wolt_pct', name: 'עמלת וולט', unit: 'pct', per: 'מכל הזמנה', max: 60 },
+  booking:     { key: 'booking_app_month', name: 'אפליקציית זימון תורים', unit: 'ils', per: 'לחודש' },
+  gloves:      { key: 'gloves_nitrile_100', name: 'כפפות ניטריל, קופסה של 100', unit: 'ils' },
+  couch:       { key: 'couch_paper_roll', name: 'נייר למיטת טיפולים', unit: 'ils', per: 'לגליל' },
+  liability:   { key: 'liability_insurance_year', name: 'ביטוח אחריות מקצועית', unit: 'ils', per: 'לשנה' },
+  laundry:     { key: 'towel_laundry_kg', name: 'כביסת מגבות', unit: 'ils', per: 'לק״ג' },
+  chicken:     { key: 'chicken_breast_kg', name: 'חזה עוף טרי', unit: 'ils', per: 'לק״ג' },
+  oil:         { key: 'canola_oil_18l', name: 'ג׳ריקן שמן קנולה 18 ליטר', unit: 'ils' },
+  flour:       { key: 'flour_25kg', name: 'שק קמח 25 ק״ג', unit: 'ils' },
+  coffee:      { key: 'coffee_beans_kg', name: 'קפה פולים', unit: 'ils', per: 'לק״ג' },
+  pos:         { key: 'pos_system_month', name: 'מערכת קופה', unit: 'ils', per: 'לחודש' },
+  tillRoll:    { key: 'till_roll_80mm', name: 'גליל נייר לקופה 80 מ״מ', unit: 'ils', per: 'לגליל' },
+  courier:     { key: 'courier_parcel_5kg', name: 'משלוח חבילה עד 5 ק״ג', unit: 'ils', per: 'למשלוח' },
+  bags:        { key: 'tshirt_bags_kg', name: 'שקיות גופייה', unit: 'ils', per: 'לק״ג' },
+  cleaning:    { key: 'cleaning_month', name: 'ניקיון', unit: 'ils', per: 'לחודש' },
+};
+
+const GENERAL = [
+  { key: 'clearing_pct', name: 'עמלת סליקה באשראי', unit: 'pct', max: 5 },
+  { key: 'bookkeeping_month', name: 'הנהלת חשבונות', unit: 'ils', per: 'לחודש' },
+  { key: 'invoicing_app_month', name: 'תוכנה להפקת חשבוניות', unit: 'ils', per: 'לחודש' },
+  { key: 'internet_phone_month', name: 'אינטרנט וטלפון לעסק', unit: 'ils', per: 'לחודש' },
+  { key: 'business_insurance_year', name: 'ביטוח עסק', unit: 'ils', per: 'לשנה' },
+];
 
 const STANDING = {
   need: 5,            // מאיזה מספר עסקים נפתחת ההשוואה על מוצר (חייב להתאים למסד)
+  allKey: 'all',      // הענף שבו נשמרות ההוצאות הכלליות
   rpc: 'hamozil_share_prices',
   counts: 'hamozil_sector_counts',
+  /* group = הכותרת בתפריט הבחירה. who = איך קוראים לכל הענף במשפט ("כשיצטרפו מספיק …") */
   sectors: [
-    { key: 'food', name: 'מסעדות ובתי קפה', short: 'המסעדות ובתי הקפה', items: [
-      { key: 'wolt_pct', name: 'עמלת וולט', unit: 'pct', per: 'מכל הזמנה', max: 60 },
-      CLEARING,
-      { key: 'canola_oil_18l', name: 'ג׳ריקן שמן קנולה 18 ליטר', unit: 'ils' },
+    { group: 'אוכל ומשקאות', key: 'restaurant', name: 'מסעדות', who: 'מסעדות', items: [
+      P.wolt, P.oil,
       { key: 'gas_cylinder_48kg', name: 'בלון גז 48 ק״ג', unit: 'ils' },
-      { key: 'chicken_breast_kg', name: 'חזה עוף טרי', unit: 'ils', per: 'לק״ג' },
-      { key: 'coffee_beans_kg', name: 'קפה פולים', unit: 'ils', per: 'לק״ג' },
+      P.chicken,
+      { key: 'ground_beef_kg', name: 'בשר בקר טחון', unit: 'ils', per: 'לק״ג' },
+      { key: 'takeaway_box_1l_100', name: 'קופסאות טייק אוויי 1 ליטר עם מכסה, 100 יחידות', unit: 'ils' },
     ]},
-    { key: 'beauty', name: 'מספרות וקוסמטיקה', short: 'המספרות והקוסמטיקה', items: [
-      CLEARING, BOOKING, GLOVES,
-      { key: 'towel_laundry_kg', name: 'כביסת מגבות', unit: 'ils', per: 'לק״ג' },
+    { group: 'אוכל ומשקאות', key: 'cafe', name: 'בתי קפה', who: 'בתי קפה', items: [
+      P.coffee,
+      { key: 'milk_3pct_1l', name: 'חלב 3%', unit: 'ils', per: 'לליטר' },
+      { key: 'paper_cup_8oz_1000', name: 'כוסות נייר 8 אונקיות, 1,000 יחידות', unit: 'ils' },
+      { key: 'croissant_frozen_unit', name: 'קרואסון קפוא', unit: 'ils', per: 'ליחידה' },
+      P.wolt,
     ]},
-    { key: 'retail', name: 'חנויות', short: 'החנויות', items: [
-      CLEARING,
-      { key: 'pos_system_month', name: 'מערכת קופה', unit: 'ils', per: 'לחודש' },
-      { key: 'till_roll_80mm', name: 'גליל נייר לקופה 80 מ״מ', unit: 'ils', per: 'לגליל' },
-      { key: 'courier_parcel_5kg', name: 'משלוח חבילה עד 5 ק״ג', unit: 'ils', per: 'למשלוח' },
+    { group: 'אוכל ומשקאות', key: 'pizza', name: 'פיצריות', who: 'פיצריות', items: [
+      P.flour,
+      { key: 'mozzarella_grated_kg', name: 'גבינת מוצרלה מגוררת', unit: 'ils', per: 'לק״ג' },
+      { key: 'tomato_paste_kg', name: 'רסק עגבניות', unit: 'ils', per: 'לק״ג' },
+      { key: 'pizza_box_family', name: 'קרטון לפיצה משפחתית', unit: 'ils', per: 'ליחידה' },
+      P.wolt,
     ]},
-    { key: 'clinic', name: 'קליניקות ומטפלים', short: 'הקליניקות והמטפלים', items: [
-      CLEARING, BOOKING, GLOVES,
-      { key: 'couch_paper_roll', name: 'נייר למיטת טיפולים', unit: 'ils', per: 'לגליל' },
-      { key: 'liability_insurance_year', name: 'ביטוח אחריות מקצועית', unit: 'ils', per: 'לשנה' },
+    { group: 'אוכל ומשקאות', key: 'bakery', name: 'מאפיות וקונדיטוריות', who: 'מאפיות וקונדיטוריות', items: [
+      P.flour,
+      { key: 'fresh_yeast_kg', name: 'שמרים טריים', unit: 'ils', per: 'לק״ג' },
+      { key: 'butter_kg', name: 'חמאה', unit: 'ils', per: 'לק״ג' },
+      { key: 'sugar_25kg', name: 'שק סוכר 25 ק״ג', unit: 'ils' },
+      { key: 'eggs_tray_30_l', name: 'מגש 30 ביצים, גודל L', unit: 'ils' },
     ]},
-    { key: 'general', name: 'עסק אחר', short: 'העסקים', items: [
-      CLEARING,
-      { key: 'bookkeeping_month', name: 'הנהלת חשבונות', unit: 'ils', per: 'לחודש' },
-      { key: 'internet_phone_month', name: 'אינטרנט וטלפון לעסק', unit: 'ils', per: 'לחודש' },
-      { key: 'business_insurance_year', name: 'ביטוח עסק', unit: 'ils', per: 'לשנה' },
+    { group: 'אוכל ומשקאות', key: 'butcher', name: 'אטליזים וקצביות', who: 'אטליזים וקצביות', items: [
+      { key: 'entrecote_kg', name: 'אנטריקוט טרי', unit: 'ils', per: 'לק״ג' },
+      { key: 'beef_shoulder_kg', name: 'כתף בקר', unit: 'ils', per: 'לק״ג' },
+      P.chicken,
+      { key: 'chicken_thigh_kg', name: 'פרגיות', unit: 'ils', per: 'לק״ג' },
+      { key: 'vacuum_bags_20x30_100', name: 'שקיות ואקום 20×30, 100 יחידות', unit: 'ils' },
     ]},
+    { group: 'אוכל ומשקאות', key: 'catering', name: 'קייטרינג ואוכל ביתי', who: 'עסקי קייטרינג ואוכל ביתי', items: [
+      P.chicken, P.oil,
+      { key: 'rice_25kg', name: 'שק אורז 25 ק״ג', unit: 'ils' },
+      { key: 'takeaway_box_1l_100', name: 'קופסאות טייק אוויי 1 ליטר עם מכסה, 100 יחידות', unit: 'ils' },
+      { key: 'gas_cylinder_12kg', name: 'בלון גז 12 ק״ג', unit: 'ils' },
+    ]},
+    { group: 'אוכל ומשקאות', key: 'grocery', name: 'מכולות ומינימרקטים', who: 'מכולות ומינימרקטים', items: [
+      { key: 'cola_24_cans', name: 'ארגז קולה, 24 פחיות', unit: 'ils' },
+      { key: 'water_6x15l', name: 'שישיית מים 1.5 ליטר', unit: 'ils' },
+      P.bags, P.tillRoll, P.pos,
+    ]},
+
+    { group: 'יופי וטיפוח', key: 'barber', name: 'מספרות', who: 'מספרות', items: [
+      P.booking,
+      { key: 'razor_blades_100', name: 'סכיני גילוח, 100 יחידות', unit: 'ils' },
+      { key: 'hair_color_tube_60ml', name: 'צבע לשיער, שפופרת 60 מ״ל', unit: 'ils' },
+      P.laundry, P.gloves,
+    ]},
+    { group: 'יופי וטיפוח', key: 'nails', name: 'ציפורניים', who: 'מכוני ציפורניים', items: [
+      P.booking,
+      { key: 'gel_polish_bottle', name: 'לק ג׳ל', unit: 'ils', per: 'לבקבוקון' },
+      { key: 'acetone_1l', name: 'אצטון', unit: 'ils', per: 'לליטר' },
+      { key: 'nail_files_100', name: 'פצירות, 100 יחידות', unit: 'ils' },
+      P.gloves,
+    ]},
+    { group: 'יופי וטיפוח', key: 'cosmetics', name: 'קוסמטיקה והסרת שיער', who: 'קוסמטיקאיות ומכוני הסרת שיער', items: [
+      P.booking,
+      { key: 'wax_kg', name: 'שעווה', unit: 'ils', per: 'לק״ג' },
+      P.couch, P.gloves, P.laundry,
+    ]},
+
+    { group: 'בריאות וכושר', key: 'clinic', name: 'קליניקות ומטפלים', who: 'קליניקות ומטפלים', items: [
+      P.booking, P.gloves, P.couch, P.liability,
+    ]},
+    { group: 'בריאות וכושר', key: 'dental', name: 'מרפאות שיניים', who: 'מרפאות שיניים', items: [
+      P.gloves,
+      { key: 'face_masks_50', name: 'מסכות כירורגיות, 50 יחידות', unit: 'ils' },
+      { key: 'lab_crown_unit', name: 'כתר חרסינה ממעבדה', unit: 'ils', per: 'ליחידה' },
+      P.liability, P.booking,
+    ]},
+    { group: 'בריאות וכושר', key: 'fitness', name: 'חדרי כושר וסטודיו', who: 'חדרי כושר וסטודיו', items: [
+      { key: 'members_app_month', name: 'מערכת לניהול מנויים', unit: 'ils', per: 'לחודש' },
+      { key: 'third_party_insurance_year', name: 'ביטוח צד ג׳', unit: 'ils', per: 'לשנה' },
+      P.cleaning, P.laundry,
+    ]},
+
+    { group: 'חנויות', key: 'fashion', name: 'חנויות בגדים', who: 'חנויות בגדים', items: [
+      { key: 'hangers_100', name: 'קולבים, 100 יחידות', unit: 'ils' },
+      { key: 'paper_bags_100', name: 'שקיות נייר עם ידיות, 100 יחידות', unit: 'ils' },
+      P.pos, P.courier,
+    ]},
+    { group: 'חנויות', key: 'ecommerce', name: 'חנויות אונליין', who: 'חנויות אונליין', items: [
+      P.courier,
+      { key: 'store_platform_month', name: 'מערכת החנות באתר (שופיפיי, ויקס וכו׳)', unit: 'ils', per: 'לחודש' },
+      { key: 'online_clearing_pct', name: 'עמלת סליקה באתר', unit: 'pct', max: 10 },
+      { key: 'shipping_box_medium', name: 'קרטון משלוח בינוני', unit: 'ils', per: 'ליחידה' },
+      { key: 'bubble_wrap_roll', name: 'ניילון בועות', unit: 'ils', per: 'לגליל' },
+    ]},
+    { group: 'חנויות', key: 'retail', name: 'חנויות אחרות', who: 'חנויות', items: [
+      P.pos, P.tillRoll, P.bags, P.courier,
+    ]},
+
+    { group: 'רכב', key: 'garage', name: 'מוסכים', who: 'מוסכים', items: [
+      { key: 'engine_oil_5w30_l', name: 'שמן מנוע 5W-30', unit: 'ils', per: 'לליטר' },
+      { key: 'tire_205_55_r16', name: 'צמיג 205/55R16', unit: 'ils', per: 'ליחידה' },
+      { key: 'coolant_l', name: 'נוזל קירור', unit: 'ils', per: 'לליטר' },
+      { key: 'car_ac_gas_kg', name: 'גז למזגן רכב', unit: 'ils', per: 'לק״ג' },
+      { key: 'industrial_paper_roll', name: 'נייר תעשייתי', unit: 'ils', per: 'לגליל' },
+    ]},
+
+    { group: 'תיירות ואירוח', key: 'lodging', name: 'צימרים ובתי הארחה', who: 'צימרים ובתי הארחה', items: [
+      { key: 'booking_com_pct', name: 'עמלת בוקינג', unit: 'pct', max: 40 },
+      { key: 'airbnb_pct', name: 'עמלת איירביאנבי', unit: 'pct', max: 40 },
+      { key: 'linen_laundry_set', name: 'כביסת סט מצעים', unit: 'ils', per: 'לסט' },
+      { key: 'turnover_cleaning', name: 'ניקיון יחידה בין אורחים', unit: 'ils', per: 'לניקיון' },
+    ]},
+
+    { group: 'בנייה ובית', key: 'construction', name: 'קבלנים ושיפוצים', who: 'קבלנים ועסקי שיפוצים', items: [
+      { key: 'cement_bag_25kg', name: 'שק מלט 25 ק״ג', unit: 'ils' },
+      { key: 'block_20cm_unit', name: 'בלוק 20', unit: 'ils', per: 'ליחידה' },
+      { key: 'waste_container_8m3', name: 'מכולה לפינוי פסולת 8 קוב', unit: 'ils', per: 'לפינוי' },
+      { key: 'contractor_insurance_year', name: 'ביטוח קבלנים', unit: 'ils', per: 'לשנה' },
+    ]},
+
+    { group: 'חינוך וילדים', key: 'kindergarten', name: 'גנים פרטיים ומעונות', who: 'גנים פרטיים ומעונות', items: [
+      { key: 'child_lunch_day', name: 'ארוחת צהריים מקייטרינג', unit: 'ils', per: 'לילד ליום' },
+      { key: 'child_accident_insurance_year', name: 'ביטוח תאונות אישיות', unit: 'ils', per: 'לילד לשנה' },
+      P.cleaning,
+    ]},
+
+    { group: 'משרדים ושירותים', key: 'office', name: 'משרדים ונותני שירות', who: 'משרדים ונותני שירות', items: [
+      { key: 'a4_paper_box_5', name: 'נייר צילום A4, קרטון של 5 חבילות', unit: 'ils' },
+      { key: 'office_software_month', name: 'תוכנה לניהול המשרד', unit: 'ils', per: 'לחודש' },
+      { key: 'it_support_month', name: 'תמיכה במחשבים', unit: 'ils', per: 'לחודש' },
+      P.cleaning,
+    ]},
+
+    { group: 'אחר', key: 'other', name: 'עסק אחר', who: 'עסקים', items: [] },
   ],
 };
 
@@ -2266,33 +2405,54 @@ function stRpc(fn, body) {
   }).then(r => r.ok ? r.json() : Promise.reject(new Error('http ' + r.status)));
 }
 
-function stChips() {
-  stEl('stSectors').innerHTML = STANDING.sectors.map(s => {
-    const n = stCounts[s.key];
-    const on = stSector && stSector.key === s.key;
-    return `<button type="button" class="sector" role="radio" data-sector="${s.key}"
-              aria-checked="${on}" tabindex="${on ? 0 : -1}">${s.name}${n ? ` <small>· ${stNum(n)} עסקים</small>` : ''}</button>`;
-  }).join('');
+/* תפריט סוגי העסקים, מקובץ לפי group */
+function stOptions() {
+  const sel = stEl('stSector');
+  const groups = [];
+  for (const s of STANDING.sectors) {
+    let g = groups.find(x => x.name === s.group);
+    if (!g) groups.push(g = { name: s.group, list: [] });
+    g.list.push(s);
+  }
+  sel.innerHTML = groups.map(g =>
+    `<optgroup label="${g.name}">` +
+    g.list.map(s => {
+      const n = stCounts[s.key];
+      return `<option value="${s.key}">${s.name}${n ? ` · ${stNum(n)} עסקים שיתפו` : ''}</option>`;
+    }).join('') +
+    '</optgroup>').join('');
+  if (stSector) sel.value = stSector.key;
 }
 
-function stPick(key, focus) {
-  stSector = STANDING.sectors.find(s => s.key === key) || STANDING.sectors[0];
-  stChips();
-  const saved = stLoad(stSector.key);
-  stEl('stItems').innerHTML = stSector.items.map(it => {
+function stInputs(items, saved, prefix) {
+  return items.map(it => {
     const unit = it.unit === 'pct' ? 'באחוזים' : 'בשקלים';
+    const id = 'st_' + prefix + '_' + it.key;
     return `<div class="st-item">
-        <label for="st_${it.key}">${it.name} <span class="u">(${unit}${it.per ? ', ' + it.per : ''})</span></label>
-        <input id="st_${it.key}" data-item="${it.key}" type="number" inputmode="decimal" min="0" step="any"
+        <label for="${id}">${it.name} <span class="u">(${unit}${it.per ? ', ' + it.per : ''})</span></label>
+        <input id="${id}" type="number" inputmode="decimal" min="0" step="any"
                placeholder="השאירו ריק אם לא יודעים" value="${saved[it.key] != null ? saved[it.key] : ''}">
       </div>`;
   }).join('');
+}
+
+function stPick(key) {
+  stSector = STANDING.sectors.find(s => s.key === key) || STANDING.sectors[0];
+  stEl('stSector').value = stSector.key;
+  const mine = stSector.items.length ? `
+    <div class="st-group">
+      <h3>המוצרים של ${stSector.name}</h3>
+      <p class="st-sub">מושווים מול עסקים מאותו סוג בלבד</p>
+      <div class="st-items">${stInputs(stSector.items, stLoad(stSector.key), 's')}</div>
+    </div>` : '';
+  stEl('stGroups').innerHTML = mine + `
+    <div class="st-group">
+      <h3>הוצאות שיש לכל עסק</h3>
+      <p class="st-sub">מושוות מול כל העסקים, מכל הענפים</p>
+      <div class="st-items">${stInputs(GENERAL, stLoad(STANDING.allKey), 'g')}</div>
+    </div>`;
   stEl('stOut').innerHTML = '';
   stEl('stMsg').hidden = true;
-  if (focus) {
-    const b = document.querySelector(`.sector[data-sector="${stSector.key}"]`);
-    if (b) b.focus();
-  }
 }
 
 function stSay(msg) {
@@ -2307,7 +2467,7 @@ function stRow(it, r, need) {
   if (!r.open) {
     const pct = Math.min(100, Math.round(r.n / need * 100));
     const txt = r.n <= 1
-      ? `אתם הראשונים ששיתפו את המוצר הזה בענף. ההשוואה תיפתח כשיגיעו ${need} עסקים.`
+      ? `אתם הראשונים ששיתפו את המוצר הזה. ההשוואה תיפתח כשיגיעו ${need} עסקים.`
       : `שיתפו עד עכשיו <b>${r.n} מתוך ${need}</b> עסקים שצריך כדי לפתוח את ההשוואה על המוצר הזה.`;
     return `<div class="res">
         <div class="res-top"><span class="res-name">${it.name}</span><span class="res-mine">${mine}${per}</span></div>
@@ -2317,9 +2477,9 @@ function stRow(it, r, need) {
       </div>`;
   }
 
-  let cls = 'v-mid', word = 'באמצע הענף';
-  if (r.mine > r.p75) { cls = 'v-hi'; word = 'יקר מרוב העסקים בענף'; }
-  else if (r.mine < r.p25) { cls = 'v-lo'; word = 'זול מרוב העסקים בענף'; }
+  let cls = 'v-mid', word = 'באמצע';
+  if (r.mine > r.p75) { cls = 'v-hi'; word = 'יקר מרוב העסקים'; }
+  else if (r.mine < r.p25) { cls = 'v-lo'; word = 'זול מרוב העסקים'; }
 
   /* הסקאלה: מימין הזול, משמאל היקר (כיוון הקריאה בעברית) */
   let lo = Math.min(r.p25, r.mine), hi = Math.max(r.p75, r.mine);
@@ -2346,22 +2506,27 @@ function stRow(it, r, need) {
     </div>`;
 }
 
-function stShow(data) {
+function stBlock(title, items, data) {
+  if (!data || !data.items) return '';
+  const rows = items.filter(it => data.items[it.key])
+                    .map(it => stRow(it, data.items[it.key], data.need || STANDING.need));
+  return rows.length ? `<h3 class="st-res-h">${title}</h3>${rows.join('')}` : '';
+}
+
+function stShow(sectorData, generalData) {
   const s = stSector;
-  const rows = s.items.filter(it => data.items && data.items[it.key])
-                      .map(it => stRow(it, data.items[it.key], data.need || STANDING.need));
   stEl('stOut').innerHTML = `
     <div class="st-res">
-      <h3 style="margin-top:8px">התוצאה שלכם · ${s.name}</h3>
-      ${rows.join('')}
+      ${stBlock('המוצרים של ' + s.name + ' · מול עסקים מאותו סוג', s.items, sectorData)}
+      ${stBlock('הוצאות שיש לכל עסק · מול כל העסקים', GENERAL, generalData)}
     </div>
     <div class="st-cta">
       <h3>רוצים לשלם פחות על הסל הזה?</h3>
-      <p>כשיצטרפו מספיק עסקים מ${s.short}, נצא בשמם למכרז מול הספקים על סל המוצרים הזה,
+      <p>כשיצטרפו מספיק ${s.who}, נצא למכרז משותף מול הספקים על סל המוצרים הזה,
          ונפרסם את התוצאה בשקיפות. בלי דמי הצטרפות, ואנחנו מקבלים רק 10% ממה שתחסכו.</p>
       <div class="acts">
         <button type="button" class="btn btn-primary" id="stJoin">להצטרף לקבוצת הרכש</button>
-        <button type="button" class="btn btn-ghost" id="stShare">לשלוח לעוד בעל עסק מהענף</button>
+        <button type="button" class="btn btn-ghost" id="stShare">לשלוח לעוד בעל עסק כמוני</button>
       </div>
     </div>`;
   stEl('stJoin').addEventListener('click', stToJoin);
@@ -2369,42 +2534,57 @@ function stShow(data) {
   stEl('stOut').scrollIntoView({ behavior: stStill() ? 'auto' : 'smooth', block: 'start' });
 }
 
-async function stSubmit(e) {
-  e.preventDefault();
-  stSay('');
+/* קורא את השדות של קבוצה אחת. מחזיר null אם יש מספר לא סביר (וההודעה כבר הוצגה) */
+function stCollect(items, prefix) {
   const vals = {};
-  for (const it of stSector.items) {
-    const raw = (stEl('st_' + it.key).value || '').trim();
+  for (const it of items) {
+    const input = stEl('st_' + prefix + '_' + it.key);
+    const raw = (input.value || '').trim();
     if (!raw) continue;
     const v = +raw;
     const max = it.max || 1000000;
     if (!isFinite(v) || v <= 0 || v > max) {
       stSay(`המספר ב"${it.name}" לא נראה סביר. ` +
             (it.unit === 'pct' ? 'אחוזים כותבים כמספר בלבד, למשל 1.2' : 'כותבים את המחיר בשקלים, בלי סימנים'));
-      stEl('st_' + it.key).focus();
-      return;
+      input.focus();
+      return null;
     }
     vals[it.key] = Math.round(v * 100) / 100;
   }
-  if (!Object.keys(vals).length) {
+  return vals;
+}
+
+async function stSubmit(e) {
+  e.preventDefault();
+  stSay('');
+  const mine = stCollect(stSector.items, 's');
+  if (!mine) return;
+  const gen = stCollect(GENERAL, 'g');
+  if (!gen) return;
+  const hasMine = Object.keys(mine).length > 0;
+  const hasGen = Object.keys(gen).length > 0;
+  if (!hasMine && !hasGen) {
     stSay('מלאו לפחות מחיר אחד — מספיק אחד שאתם יודעים.');
     return;
   }
-  stKeep(stSector.key, vals);
+  if (hasMine) stKeep(stSector.key, mine);
+  if (hasGen) stKeep(STANDING.allKey, gen);
 
   const btn = stEl('stGo');
   const label = btn.textContent;
   btn.disabled = true;
   btn.textContent = 'בודקים…';
+  const size = stEl('stSize').value || null;
+  const device = stDevice();
+  const call = (sector, items) => stRpc(STANDING.rpc, {
+    p_sector: sector, p_device: device, p_items: items, p_size: size,
+  }).then(d => { if (!d || !d.ok) throw new Error((d && d.error) || 'failed'); return d; });
   try {
-    const data = await stRpc(STANDING.rpc, {
-      p_sector: stSector.key,
-      p_device: stDevice(),
-      p_items: vals,
-      p_size: stEl('stSize').value || null,
-    });
-    if (!data || !data.ok) throw new Error((data && data.error) || 'failed');
-    stShow(data);
+    const [sd, gd] = await Promise.all([
+      hasMine ? call(stSector.key, mine) : null,
+      hasGen ? call(STANDING.allKey, gen) : null,
+    ]);
+    stShow(sd, gd);
   } catch (err) {
     stSay('משהו לא עבד בשמירה. נסו שוב בעוד רגע.');
   } finally {
@@ -2416,7 +2596,7 @@ async function stSubmit(e) {
 function stToJoin() {
   if (VIEW !== 'business') setView('business');
   const biz = stEl('f_biz');
-  if (biz && !biz.value.trim() && stSector.key !== 'general') biz.value = stSector.name;
+  if (biz && !biz.value.trim() && stSector.key !== 'other') biz.value = stSector.name;
   stEl('join').scrollIntoView({ behavior: stStill() ? 'auto' : 'smooth', block: 'start' });
   stEl('f_name').focus({ preventScroll: true });
 }
@@ -2424,33 +2604,21 @@ function stToJoin() {
 function stShareSector() {
   const root = SITE.replace(/(business|private)\/$/, '');
   const url = root + '?s=' + stSector.key + '#standing';
-  const text = `בדקתי כמה אני משלם לעומת עסקים אחרים בענף שלי (${stSector.name}). ` +
+  const text = `בדקתי כמה אני משלם לעומת עסקים אחרים מהסוג שלי (${stSector.name}). ` +
                'זה אנונימי לגמרי, בלי שם ובלי טלפון, וכל עסק שמשתף מקרב את ההשוואה לכולנו:';
   window.open('https://wa.me/?text=' + encodeURIComponent(text + '\n' + url), '_blank');
 }
 
-/* בחירת ענף: לחיצה, וגם חיצים במקלדת כמו בקבוצת כפתורי בחירה רגילה */
-stEl('stSectors').addEventListener('click', e => {
-  const b = e.target.closest('.sector');
-  if (b) stPick(b.dataset.sector, true);
-});
-stEl('stSectors').addEventListener('keydown', e => {
-  if (!['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(e.key)) return;
-  e.preventDefault();
-  const list = STANDING.sectors;
-  const i = list.findIndex(s => s.key === stSector.key);
-  /* בעברית החץ השמאלי מתקדם */
-  const step = (e.key === 'ArrowLeft' || e.key === 'ArrowDown') ? 1 : -1;
-  stPick(list[(i + step + list.length) % list.length].key, true);
-});
+stEl('stSector').addEventListener('change', e => stPick(e.target.value));
 stEl('stForm').addEventListener('submit', stSubmit);
 
-/* ענף מהקישור (?s=food), אחרת הראשון ברשימה */
+/* סוג העסק מהקישור (?s=restaurant), אחרת הראשון ברשימה */
+stOptions();
 stPick(new URLSearchParams(location.search).get('s') || STANDING.sectors[0].key);
 
 /* כמה עסקים כבר שיתפו בכל ענף — מוצג רק מ-5 ומעלה. בשקט אם נכשל. */
 stRpc(STANDING.counts).then(c => {
-  if (c && typeof c === 'object') { stCounts = c; stChips(); }
+  if (c && typeof c === 'object') { stCounts = c; stOptions(); }
 }).catch(() => {});
 
 /* -----------------------------------------------------------------
