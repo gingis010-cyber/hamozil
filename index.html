@@ -26,6 +26,18 @@
 <meta name="twitter:description" content="מיזם חברתי-עסקי לכוח קנייה קבוצתי. בלי דמי הצטרפות ובלי התחייבות.">
 <meta name="twitter:image"       content="https://gingis010-cyber.github.io/hamozil/og-image-v2.png">
 <meta name="theme-color" content="#0D6B54">
+<!-- מידע מובנה לגוגל. המוזיל אינו עסק עם כתובת ושעות, ולכן הסוג הוא ארגון,
+     ורק עובדות אמיתיות: שם, תיאור, כתובת האתר והלוגו. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "קבוצת המוזיל",
+  "description": "מיזם חברתי-עסקי שמאגד עסקים קטנים ומשקי בית לכוח קנייה קבוצתי. בלי דמי הצטרפות ובלי התחייבות.",
+  "url": "https://gingis010-cyber.github.io/hamozil/",
+  "logo": "https://gingis010-cyber.github.io/hamozil/og-image-v2.png"
+}
+</script>
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22%230D6B54%22%2F%3E%3Ctext%20x%3D%2240%22%20y%3D%2245%22%20font-family%3D%22Arial%2CHelvetica%2Csans-serif%22%20font-size%3D%2238%22%20font-weight%3D%22700%22%20fill%3D%22%23ffffff%22%20text-anchor%3D%22middle%22%3E%E2%82%AA%3C%2Ftext%3E%3Cpath%20d%3D%22M19%2026%20L19%2040%20M14.5%2035%20L19%2040.5%20L23.5%2035%22%20fill%3D%22none%22%20stroke%3D%22%23C08A1E%22%20stroke-width%3D%224.2%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -134,6 +146,7 @@
     border-radius:999px; font-size:calc(15px * var(--ts,1)); font-weight:700; margin-bottom:26px;
   }
   .hero h1{max-width:19ch}
+  .hero .hero-h{font-size:calc(clamp(34px,5.2vw,62px) * var(--ts,1)); font-weight:900; letter-spacing:-.5px; max-width:19ch}
   .hero .sub{
     font-family:'Frank Ruhl Libre',serif; font-size:calc(clamp(19px,2.2vw,25px) * var(--ts,1));
     color:var(--green-deep); margin:18px 0 8px; font-weight:500;
@@ -283,6 +296,79 @@
   .honest{
     margin-top:22px; font-size:calc(15.5px * var(--ts,1)); color:#31544A; background:#fff; border-radius:10px;
     padding:16px 18px; border:1px dashed #B6D2C7;
+  }
+
+  /* ---------- איפה אני עומד ----------
+     הענפים והמוצרים מגיעים מהאובייקט STANDING בתחתית הקובץ — ענף חדש
+     או מוצר חדש = עריכת הרשימה שם בלבד, בלי לגעת ב-HTML ובלי במסד. */
+  .sectors{display:flex; flex-wrap:wrap; gap:10px; margin-top:30px}
+  .sector{
+    border:2px solid var(--line); background:var(--surface); color:var(--ink); cursor:pointer;
+    font-family:inherit; font-weight:700; font-size:calc(16px * var(--ts,1));
+    padding:10px 20px; border-radius:999px; transition:background .15s ease, border-color .15s ease;
+  }
+  .sector:hover{border-color:var(--green)}
+  .sector[aria-checked="true"]{background:var(--green); border-color:var(--green); color:#fff}
+  .sector:focus-visible{outline:3px solid var(--gold); outline-offset:2px}
+  .sector small{font-weight:600; opacity:.85; font-size:.86em}
+  .st-card{
+    background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
+    padding:30px; box-shadow:var(--shadow); margin-top:20px;
+  }
+  .st-items{display:grid; grid-template-columns:1fr 1fr; gap:18px 24px}
+  .st-item label{display:block; font-weight:700; font-size:calc(16px * var(--ts,1)); margin-bottom:7px}
+  .st-item label .u{font-weight:400; color:var(--muted); font-size:calc(14px * var(--ts,1))}
+  .st-item input, .st-foot select{
+    width:100%; padding:12px 14px; font-size:calc(19px * var(--ts,1)); font-family:'Frank Ruhl Libre',serif; font-weight:700;
+    border:2px solid var(--line); border-radius:10px; background:var(--paper); color:var(--ink);
+  }
+  .st-foot select{font-family:'Assistant',sans-serif; font-size:calc(16px * var(--ts,1)); font-weight:600}
+  .st-item input:focus, .st-foot select:focus{outline:none; border-color:var(--green); background:#fff}
+  .st-foot{
+    display:grid; grid-template-columns:1fr auto; gap:16px; align-items:end;
+    margin-top:24px; padding-top:22px; border-top:1px dashed var(--line);
+  }
+  .st-foot label{display:block; font-weight:700; font-size:calc(15px * var(--ts,1)); margin-bottom:7px}
+  .st-foot label .u{font-weight:400; color:var(--muted)}
+  .st-foot .btn{white-space:nowrap}
+  .st-privacy{font-size:calc(14.5px * var(--ts,1)); color:var(--muted); margin:16px 0 0}
+  .st-msg{margin:14px 0 0; font-weight:700; color:var(--loss)}
+  .st-res{display:grid; gap:12px; margin-top:22px}
+  .res{background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:18px 20px; box-shadow:var(--shadow)}
+  .res-top{display:flex; justify-content:space-between; align-items:baseline; gap:6px 14px; flex-wrap:wrap}
+  .res-name{font-weight:700; font-size:calc(17px * var(--ts,1))}
+  .res-mine{font-family:'Frank Ruhl Libre',serif; font-weight:900; font-size:calc(22px * var(--ts,1))}
+  .res-mine small{font-family:'Assistant',sans-serif; font-size:calc(13px * var(--ts,1)); font-weight:600; color:var(--muted)}
+  .verdict{display:inline-block; font-weight:700; font-size:calc(14.5px * var(--ts,1)); padding:3px 12px; border-radius:999px; margin-top:8px}
+  .v-hi{background:var(--loss-soft); color:var(--loss)}
+  .v-lo{background:var(--green-soft); color:var(--green-deep)}
+  .v-mid{background:#F1ECE2; color:var(--ink)}
+  .scale{position:relative; height:12px; background:#ECE6DA; border-radius:99px; margin:20px 9px 8px}
+  .scale .band{position:absolute; top:0; bottom:0; background:#AFD1C3; border-radius:99px}
+  .scale .med{position:absolute; top:-5px; bottom:-5px; width:3px; margin-inline-start:-1px; background:var(--green-deep); border-radius:2px}
+  .scale .me{
+    position:absolute; top:50%; width:20px; height:20px; border-radius:50%;
+    transform:translate(50%,-50%); background:var(--gold); border:3px solid #fff; box-shadow:0 1px 5px rgba(20,32,29,.35);
+  }
+  .scale-lbl{display:flex; justify-content:space-between; font-size:calc(13px * var(--ts,1)); color:var(--muted); font-weight:600}
+  .res-txt{font-size:calc(15.5px * var(--ts,1)); color:var(--muted); margin:8px 0 0}
+  .res-txt b{color:var(--ink)}
+  .prog{height:8px; background:#ECE6DA; border-radius:99px; overflow:hidden; margin:14px 0 6px}
+  .prog i{display:block; height:100%; background:var(--gold); border-radius:99px}
+  .st-cta{background:var(--green-soft); border:1px solid #CADED6; border-radius:var(--radius); padding:26px; margin-top:16px}
+  .st-cta h3{margin-bottom:8px}
+  .st-cta p{color:#31544A; margin:0}
+  .st-cta .acts{display:flex; flex-wrap:wrap; gap:12px; margin-top:18px}
+  /* .btn-ghost הכללי בדף לבן (נועד לרקע הירוק הכהה) — כאן הרקע בהיר */
+  .st-cta .btn-ghost{border-color:var(--green-deep); color:var(--green-deep); background:transparent}
+  .st-cta .btn-ghost:hover{background:var(--green-deep); color:#fff; border-color:var(--green-deep)}
+  @media (max-width:700px){
+    .st-card{padding:22px 18px}
+    .st-items{grid-template-columns:1fr}
+    .st-foot{grid-template-columns:1fr}
+    .st-foot .btn{width:100%}
+    .st-cta .acts .btn{width:100%; text-align:center}
+    .sector{padding:9px 16px; font-size:calc(15px * var(--ts,1))}
   }
 
   /* ---------- שלוש השכבות ---------- */
@@ -665,11 +751,55 @@
     המוזיל מאגד עסקים קטנים, בינוניים וגדולים לקבוצת רכש אחת ענקית, ומביא את הספקים
     להתחרות עליכם כקבוצה — ולהשיג את המחיר הנמוך ביותר.
   </p>
+  <div class="cta-row">
+    <a href="#standing" class="btn btn-primary">כמה אתם משלמים לעומת עסקים כמוכם?</a>
+  </div>
   <div class="trust" style="margin-top:30px">
     <span><b class="tick">✓</b> ללא דמי הצטרפות</span>
     <span><b class="tick">✓</b> ללא התחייבות</span>
     <span><b class="tick">✓</b> ההחלטה תמיד שלכם</span>
     <span><b class="tick">✓</b> אתם יכולים רק להרוויח</span>
+  </div>
+</section>
+
+<!-- ==================== איפה אני עומד ====================
+     הענפים, המוצרים והיחידות יושבים ב-STANDING בתחתית הקובץ.
+     ה-HTML כאן הוא רק שלד — התוכן נבנה מהרשימה. -->
+<section class="section" id="standing">
+  <div class="wrap">
+    <div class="eyebrow">איפה אני עומד</div>
+    <h2>כמה אתם משלמים — לעומת עסקים כמוכם?</h2>
+    <p class="lead" style="margin-top:16px">
+      בחרו את הענף שלכם, מלאו את המחירים שאתם יודעים (לא חייבים את כולם),
+      ותראו מיד איפה אתם עומדים מול עסקים אחרים מאותו ענף.
+    </p>
+
+    <div class="sectors" id="stSectors" role="radiogroup" aria-label="הענף שלכם"></div>
+
+    <form class="st-card" id="stForm" novalidate>
+      <div class="st-items" id="stItems"></div>
+      <div class="st-foot">
+        <div>
+          <label for="stSize">מחזור חודשי של העסק, בערך <span class="u">(לא חובה)</span></label>
+          <select id="stSize">
+            <option value="">מעדיפים לא לציין</option>
+            <option value="s1">עד 50 אלף ₪</option>
+            <option value="s2">50 עד 150 אלף ₪</option>
+            <option value="s3">150 עד 500 אלף ₪</option>
+            <option value="s4">מעל 500 אלף ₪</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary" id="stGo">תראו לי איפה אני עומד</button>
+      </div>
+      <p class="st-msg" id="stMsg" role="alert" hidden></p>
+      <p class="st-privacy">
+        אנונימי לגמרי: נשמרים רק הענף והמחירים, בלי שם, בלי טלפון ובלי שם העסק.
+        המחירים לפני מע״מ. ההשוואה על כל מוצר נפתחת רק כשיש בו לפחות 5 עסקים,
+        כדי שאף אחד לא יזוהה לפי המחיר שלו.
+      </p>
+    </form>
+
+    <div id="stOut" aria-live="polite"></div>
   </div>
 </section>
 
@@ -829,7 +959,9 @@
 <!-- ==================== הירו — פרטי ==================== -->
 <section class="wrap hero">
   <div class="badge">● נלחמים במחירים — ככל שנהיה יותר, כוח המיקוח מתגבר</div>
-  <h1>משפחה אחת לא מזיזה ספק.<br>אלף משפחות מזיזות שוק.</h1>
+  <!-- כותרת ראשית אחת בלבד בעמוד (גוגל ונגישות): של העסקים היא h1,
+       וזו מעוצבת זהה אבל מסומנת h2, כי שתי התצוגות יושבות באותו עמוד -->
+  <h2 class="hero-h">משפחה אחת לא מזיזה ספק.<br>אלף משפחות מזיזות שוק.</h2>
   <div class="sub">מיזם חברתי שמייצר כוח קנייה קבוצתי למשקי בית</div>
   <p class="lead">
     על החשמל, הסלולר, האינטרנט והביטוחים אתם משלמים את המחיר של לקוח בודד.
@@ -1654,6 +1786,7 @@
       <ul>
         <li>הפרטים שתמסרו ישמשו ליצירת קשר ולניהול השתתפותכם בקבוצה בלבד.</li>
         <li>לספקים מועברים <b>נתונים מצרפיים בלבד</b> — כגון מספר המשתתפים והיקף הצריכה הכולל.</li>
+        <li>בהשוואת המחירים ("איפה אני עומד") נשמרים הענף, המחירים וגודל העסק אם נמסר — בלי שם, בלי טלפון ובלי שם העסק. השוואה על מוצר מוצגת רק כשיש בו לפחות 5 עסקים, ומוצגים בה טווחים ולא מחירים של עסק מסוים. כדי שתיקון מחיר לא ייספר פעמיים, הדפדפן שומר אצלכם מזהה אקראי שאינו מזהה אתכם.</li>
         <li>פרטים מזהים של משתתף לא יימסרו לספק ללא הסכמה מפורשת ומראש של אותו משתתף.</li>
         <li>לא נמכור, נשכיר או נסחר במידע שלכם, ולא נעביר אותו לצד שלישי לצרכי שיווק.</li>
         <li>ניתן לבקש בכל עת עיון במידע, תיקונו או מחיקתו והסרה מרשימת הדיוור, בפנייה לערוצי הקשר שבאתר. הבקשה תטופל בתוך זמן סביר.</li>
@@ -2038,6 +2171,287 @@ document.querySelectorAll('[data-share]').forEach(b =>
 if (navigator.share) {
   document.querySelectorAll('[data-share="native"]').forEach(b => b.hidden = false);
 }
+
+/* -----------------------------------------------------------------
+   איפה אני עומד — השוואת מחירים אנונימית לפי ענף.
+
+   כל התוכן נבנה מהרשימה הזו. ענף חדש או מוצר חדש = שורה חדשה כאן,
+   בלי לגעת ב-HTML ובלי במסד (המסד מקבל כל ענף וכל מוצר).
+   key של ענף ושל מוצר: אותיות אנגליות קטנות, ספרות וקו תחתון בלבד.
+   unit: 'pct' לאחוזים, 'ils' לשקלים. per: "לחודש", "לק״ג" וכו'.
+   מוצר טוב להשוואה = משהו שכל עסק בענף קונה באותה יחידה בדיוק.
+------------------------------------------------------------------ */
+const CLEARING = { key: 'clearing_pct', name: 'עמלת סליקה באשראי', unit: 'pct', max: 5 };
+const BOOKING  = { key: 'booking_app_month', name: 'אפליקציית זימון תורים', unit: 'ils', per: 'לחודש' };
+const GLOVES   = { key: 'gloves_nitrile_100', name: 'כפפות ניטריל, קופסה של 100', unit: 'ils' };
+
+const STANDING = {
+  need: 5,            // מאיזה מספר עסקים נפתחת ההשוואה על מוצר (חייב להתאים למסד)
+  rpc: 'hamozil_share_prices',
+  counts: 'hamozil_sector_counts',
+  sectors: [
+    { key: 'food', name: 'מסעדות ובתי קפה', short: 'המסעדות ובתי הקפה', items: [
+      { key: 'wolt_pct', name: 'עמלת וולט', unit: 'pct', per: 'מכל הזמנה', max: 60 },
+      CLEARING,
+      { key: 'canola_oil_18l', name: 'ג׳ריקן שמן קנולה 18 ליטר', unit: 'ils' },
+      { key: 'gas_cylinder_48kg', name: 'בלון גז 48 ק״ג', unit: 'ils' },
+      { key: 'chicken_breast_kg', name: 'חזה עוף טרי', unit: 'ils', per: 'לק״ג' },
+      { key: 'coffee_beans_kg', name: 'קפה פולים', unit: 'ils', per: 'לק״ג' },
+    ]},
+    { key: 'beauty', name: 'מספרות וקוסמטיקה', short: 'המספרות והקוסמטיקה', items: [
+      CLEARING, BOOKING, GLOVES,
+      { key: 'towel_laundry_kg', name: 'כביסת מגבות', unit: 'ils', per: 'לק״ג' },
+    ]},
+    { key: 'retail', name: 'חנויות', short: 'החנויות', items: [
+      CLEARING,
+      { key: 'pos_system_month', name: 'מערכת קופה', unit: 'ils', per: 'לחודש' },
+      { key: 'till_roll_80mm', name: 'גליל נייר לקופה 80 מ״מ', unit: 'ils', per: 'לגליל' },
+      { key: 'courier_parcel_5kg', name: 'משלוח חבילה עד 5 ק״ג', unit: 'ils', per: 'למשלוח' },
+    ]},
+    { key: 'clinic', name: 'קליניקות ומטפלים', short: 'הקליניקות והמטפלים', items: [
+      CLEARING, BOOKING, GLOVES,
+      { key: 'couch_paper_roll', name: 'נייר למיטת טיפולים', unit: 'ils', per: 'לגליל' },
+      { key: 'liability_insurance_year', name: 'ביטוח אחריות מקצועית', unit: 'ils', per: 'לשנה' },
+    ]},
+    { key: 'general', name: 'עסק אחר', short: 'העסקים', items: [
+      CLEARING,
+      { key: 'bookkeeping_month', name: 'הנהלת חשבונות', unit: 'ils', per: 'לחודש' },
+      { key: 'internet_phone_month', name: 'אינטרנט וטלפון לעסק', unit: 'ils', per: 'לחודש' },
+      { key: 'business_insurance_year', name: 'ביטוח עסק', unit: 'ils', per: 'לשנה' },
+    ]},
+  ],
+};
+
+const stEl = id => document.getElementById(id);
+const stNum = v => (+v).toLocaleString('he-IL', { maximumFractionDigits: 2 });
+const stFmt = (it, v) => it.unit === 'pct' ? stNum(v) + '%' : '₪' + stNum(v);
+const stStill = () => document.documentElement.classList.contains('a11y-motion') ||
+                      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* מזהה אקראי של הדפדפן — כדי שמי שמתקן מחיר לא ייספר פעמיים.
+   הוא לא מזהה אדם, ונשמר רק אצל הגולש. בלי אחסון (גלישה פרטית) — מזהה לביקור הזה. */
+let stTmpDevice = '';
+function stDevice() {
+  const make = () => (window.crypto && crypto.randomUUID)
+    ? crypto.randomUUID()
+    : 'd' + Date.now().toString(36) + Math.random().toString(36).slice(2, 12);
+  try {
+    let d = localStorage.getItem('hz_device');
+    if (!d) { d = make(); localStorage.setItem('hz_device', d); }
+    return d;
+  } catch (e) {
+    return stTmpDevice || (stTmpDevice = make());
+  }
+}
+function stLoad(key) {
+  try { return JSON.parse(localStorage.getItem('hz_prices_' + key) || '{}') || {}; }
+  catch (e) { return {}; }
+}
+function stKeep(key, vals) {
+  try { localStorage.setItem('hz_prices_' + key, JSON.stringify(vals)); } catch (e) {}
+}
+
+let stSector = null;
+let stCounts = {};
+
+function stRpc(fn, body) {
+  return fetch(DB.url + '/rest/v1/rpc/' + fn, {
+    method: 'POST',
+    headers: {
+      apikey: DB.key,
+      Authorization: 'Bearer ' + DB.key,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(body || {}),
+  }).then(r => r.ok ? r.json() : Promise.reject(new Error('http ' + r.status)));
+}
+
+function stChips() {
+  stEl('stSectors').innerHTML = STANDING.sectors.map(s => {
+    const n = stCounts[s.key];
+    const on = stSector && stSector.key === s.key;
+    return `<button type="button" class="sector" role="radio" data-sector="${s.key}"
+              aria-checked="${on}" tabindex="${on ? 0 : -1}">${s.name}${n ? ` <small>· ${stNum(n)} עסקים</small>` : ''}</button>`;
+  }).join('');
+}
+
+function stPick(key, focus) {
+  stSector = STANDING.sectors.find(s => s.key === key) || STANDING.sectors[0];
+  stChips();
+  const saved = stLoad(stSector.key);
+  stEl('stItems').innerHTML = stSector.items.map(it => {
+    const unit = it.unit === 'pct' ? 'באחוזים' : 'בשקלים';
+    return `<div class="st-item">
+        <label for="st_${it.key}">${it.name} <span class="u">(${unit}${it.per ? ', ' + it.per : ''})</span></label>
+        <input id="st_${it.key}" data-item="${it.key}" type="number" inputmode="decimal" min="0" step="any"
+               placeholder="השאירו ריק אם לא יודעים" value="${saved[it.key] != null ? saved[it.key] : ''}">
+      </div>`;
+  }).join('');
+  stEl('stOut').innerHTML = '';
+  stEl('stMsg').hidden = true;
+  if (focus) {
+    const b = document.querySelector(`.sector[data-sector="${stSector.key}"]`);
+    if (b) b.focus();
+  }
+}
+
+function stSay(msg) {
+  stEl('stMsg').textContent = msg;
+  stEl('stMsg').hidden = !msg;
+}
+
+function stRow(it, r, need) {
+  const mine = stFmt(it, r.mine);
+  const per = it.per ? ` <small>${it.per}</small>` : '';
+
+  if (!r.open) {
+    const pct = Math.min(100, Math.round(r.n / need * 100));
+    const txt = r.n <= 1
+      ? `אתם הראשונים ששיתפו את המוצר הזה בענף. ההשוואה תיפתח כשיגיעו ${need} עסקים.`
+      : `שיתפו עד עכשיו <b>${r.n} מתוך ${need}</b> עסקים שצריך כדי לפתוח את ההשוואה על המוצר הזה.`;
+    return `<div class="res">
+        <div class="res-top"><span class="res-name">${it.name}</span><span class="res-mine">${mine}${per}</span></div>
+        <span class="verdict v-mid">ההשוואה עוד לא נפתחה</span>
+        <div class="prog" aria-hidden="true"><i style="width:${pct}%"></i></div>
+        <p class="res-txt">${txt} המחירים שלכם שמורים בדפדפן — כשתחזרו לדף ותלחצו שוב, תראו את התוצאה.</p>
+      </div>`;
+  }
+
+  let cls = 'v-mid', word = 'באמצע הענף';
+  if (r.mine > r.p75) { cls = 'v-hi'; word = 'יקר מרוב העסקים בענף'; }
+  else if (r.mine < r.p25) { cls = 'v-lo'; word = 'זול מרוב העסקים בענף'; }
+
+  /* הסקאלה: מימין הזול, משמאל היקר (כיוון הקריאה בעברית) */
+  let lo = Math.min(r.p25, r.mine), hi = Math.max(r.p75, r.mine);
+  const pad = (hi - lo) * 0.15 || Math.abs(hi) * 0.1 || 1;
+  lo = Math.max(0, lo - pad); hi = hi + pad;
+  const pos = v => ((v - lo) / (hi - lo) * 100).toFixed(1);
+  const bandW = Math.max(2, pos(r.p75) - pos(r.p25));
+
+  const gap = r.mine > r.median
+    ? ` אם תגיעו לאמצע, זה <b>${stFmt(it, r.mine - r.median)} פחות</b>${it.per ? ' ' + it.per : ''}.`
+    : '';
+
+  return `<div class="res">
+      <div class="res-top"><span class="res-name">${it.name}</span><span class="res-mine">${mine}${per}</span></div>
+      <span class="verdict ${cls}">${word}</span>
+      <div class="scale" role="img" aria-label="רוב העסקים משלמים בין ${stFmt(it, r.p25)} ל-${stFmt(it, r.p75)}, ואתם ${mine}">
+        <span class="band" style="inset-inline-start:${pos(r.p25)}%; width:${bandW}%"></span>
+        <span class="med" style="inset-inline-start:${pos(r.median)}%"></span>
+        <span class="me" style="inset-inline-start:${pos(r.mine)}%"></span>
+      </div>
+      <div class="scale-lbl" aria-hidden="true"><span>זול יותר</span><span>יקר יותר</span></div>
+      <p class="res-txt">מתוך <b>${r.n}</b> עסקים ששיתפו: <b>${r.lower}</b> משלמים פחות מכם ו-<b>${r.higher}</b> משלמים יותר.
+        רוב העסקים משלמים בין <b>${stFmt(it, r.p25)}</b> ל-<b>${stFmt(it, r.p75)}</b>, והאמצע הוא <b>${stFmt(it, r.median)}</b>.${gap}</p>
+    </div>`;
+}
+
+function stShow(data) {
+  const s = stSector;
+  const rows = s.items.filter(it => data.items && data.items[it.key])
+                      .map(it => stRow(it, data.items[it.key], data.need || STANDING.need));
+  stEl('stOut').innerHTML = `
+    <div class="st-res">
+      <h3 style="margin-top:8px">התוצאה שלכם · ${s.name}</h3>
+      ${rows.join('')}
+    </div>
+    <div class="st-cta">
+      <h3>רוצים לשלם פחות על הסל הזה?</h3>
+      <p>כשיצטרפו מספיק עסקים מ${s.short}, נצא בשמם למכרז מול הספקים על סל המוצרים הזה,
+         ונפרסם את התוצאה בשקיפות. בלי דמי הצטרפות, ואנחנו מקבלים רק 10% ממה שתחסכו.</p>
+      <div class="acts">
+        <button type="button" class="btn btn-primary" id="stJoin">להצטרף לקבוצת הרכש</button>
+        <button type="button" class="btn btn-ghost" id="stShare">לשלוח לעוד בעל עסק מהענף</button>
+      </div>
+    </div>`;
+  stEl('stJoin').addEventListener('click', stToJoin);
+  stEl('stShare').addEventListener('click', stShareSector);
+  stEl('stOut').scrollIntoView({ behavior: stStill() ? 'auto' : 'smooth', block: 'start' });
+}
+
+async function stSubmit(e) {
+  e.preventDefault();
+  stSay('');
+  const vals = {};
+  for (const it of stSector.items) {
+    const raw = (stEl('st_' + it.key).value || '').trim();
+    if (!raw) continue;
+    const v = +raw;
+    const max = it.max || 1000000;
+    if (!isFinite(v) || v <= 0 || v > max) {
+      stSay(`המספר ב"${it.name}" לא נראה סביר. ` +
+            (it.unit === 'pct' ? 'אחוזים כותבים כמספר בלבד, למשל 1.2' : 'כותבים את המחיר בשקלים, בלי סימנים'));
+      stEl('st_' + it.key).focus();
+      return;
+    }
+    vals[it.key] = Math.round(v * 100) / 100;
+  }
+  if (!Object.keys(vals).length) {
+    stSay('מלאו לפחות מחיר אחד — מספיק אחד שאתם יודעים.');
+    return;
+  }
+  stKeep(stSector.key, vals);
+
+  const btn = stEl('stGo');
+  const label = btn.textContent;
+  btn.disabled = true;
+  btn.textContent = 'בודקים…';
+  try {
+    const data = await stRpc(STANDING.rpc, {
+      p_sector: stSector.key,
+      p_device: stDevice(),
+      p_items: vals,
+      p_size: stEl('stSize').value || null,
+    });
+    if (!data || !data.ok) throw new Error((data && data.error) || 'failed');
+    stShow(data);
+  } catch (err) {
+    stSay('משהו לא עבד בשמירה. נסו שוב בעוד רגע.');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = label;
+  }
+}
+
+function stToJoin() {
+  if (VIEW !== 'business') setView('business');
+  const biz = stEl('f_biz');
+  if (biz && !biz.value.trim() && stSector.key !== 'general') biz.value = stSector.name;
+  stEl('join').scrollIntoView({ behavior: stStill() ? 'auto' : 'smooth', block: 'start' });
+  stEl('f_name').focus({ preventScroll: true });
+}
+
+function stShareSector() {
+  const root = SITE.replace(/(business|private)\/$/, '');
+  const url = root + '?s=' + stSector.key + '#standing';
+  const text = `בדקתי כמה אני משלם לעומת עסקים אחרים בענף שלי (${stSector.name}). ` +
+               'זה אנונימי לגמרי, בלי שם ובלי טלפון, וכל עסק שמשתף מקרב את ההשוואה לכולנו:';
+  window.open('https://wa.me/?text=' + encodeURIComponent(text + '\n' + url), '_blank');
+}
+
+/* בחירת ענף: לחיצה, וגם חיצים במקלדת כמו בקבוצת כפתורי בחירה רגילה */
+stEl('stSectors').addEventListener('click', e => {
+  const b = e.target.closest('.sector');
+  if (b) stPick(b.dataset.sector, true);
+});
+stEl('stSectors').addEventListener('keydown', e => {
+  if (!['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(e.key)) return;
+  e.preventDefault();
+  const list = STANDING.sectors;
+  const i = list.findIndex(s => s.key === stSector.key);
+  /* בעברית החץ השמאלי מתקדם */
+  const step = (e.key === 'ArrowLeft' || e.key === 'ArrowDown') ? 1 : -1;
+  stPick(list[(i + step + list.length) % list.length].key, true);
+});
+stEl('stForm').addEventListener('submit', stSubmit);
+
+/* ענף מהקישור (?s=food), אחרת הראשון ברשימה */
+stPick(new URLSearchParams(location.search).get('s') || STANDING.sectors[0].key);
+
+/* כמה עסקים כבר שיתפו בכל ענף — מוצג רק מ-5 ומעלה. בשקט אם נכשל. */
+stRpc(STANDING.counts).then(c => {
+  if (c && typeof c === 'object') { stCounts = c; stChips(); }
+}).catch(() => {});
 
 /* -----------------------------------------------------------------
    חזרה לראש העמוד.
