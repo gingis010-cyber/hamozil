@@ -2192,22 +2192,62 @@ if (navigator.share) {
    unit: 'pct' לאחוזים, 'ils' לשקלים. per: "לחודש", "לק״ג" וכו'.
    מוצר טוב להשוואה = משהו שכל עסק בענף קונה באותה יחידה בדיוק.
 ------------------------------------------------------------------ */
-const P = {   // מוצרים שחוזרים בכמה ענפים
+const P = {   // מוצרים שחוזרים בכמה ענפים — מוגדרים פעם אחת, אותו key בכל מקום
   wolt:        { key: 'wolt_pct', name: 'עמלת וולט', unit: 'pct', per: 'מכל הזמנה', max: 60 },
   booking:     { key: 'booking_app_month', name: 'אפליקציית זימון תורים', unit: 'ils', per: 'לחודש' },
   gloves:      { key: 'gloves_nitrile_100', name: 'כפפות ניטריל, קופסה של 100', unit: 'ils' },
   couch:       { key: 'couch_paper_roll', name: 'נייר למיטת טיפולים', unit: 'ils', per: 'לגליל' },
   liability:   { key: 'liability_insurance_year', name: 'ביטוח אחריות מקצועית', unit: 'ils', per: 'לשנה' },
+  thirdParty:  { key: 'third_party_insurance_year', name: 'ביטוח צד ג׳', unit: 'ils', per: 'לשנה' },
+  equipIns:    { key: 'equipment_insurance_year', name: 'ביטוח ציוד', unit: 'ils', per: 'לשנה' },
   laundry:     { key: 'towel_laundry_kg', name: 'כביסת מגבות', unit: 'ils', per: 'לק״ג' },
+  linen:       { key: 'linen_laundry_set', name: 'כביסת סט מצעים', unit: 'ils', per: 'לסט' },
   chicken:     { key: 'chicken_breast_kg', name: 'חזה עוף טרי', unit: 'ils', per: 'לק״ג' },
+  thigh:       { key: 'chicken_thigh_kg', name: 'פרגיות', unit: 'ils', per: 'לק״ג' },
   oil:         { key: 'canola_oil_18l', name: 'ג׳ריקן שמן קנולה 18 ליטר', unit: 'ils' },
   flour:       { key: 'flour_25kg', name: 'שק קמח 25 ק״ג', unit: 'ils' },
+  sugar:       { key: 'sugar_25kg', name: 'שק סוכר 25 ק״ג', unit: 'ils' },
+  milk:        { key: 'milk_3pct_1l', name: 'חלב 3%', unit: 'ils', per: 'לליטר' },
   coffee:      { key: 'coffee_beans_kg', name: 'קפה פולים', unit: 'ils', per: 'לק״ג' },
+  gas48:       { key: 'gas_cylinder_48kg', name: 'בלון גז 48 ק״ג', unit: 'ils' },
+  takeaway:    { key: 'takeaway_box_1l_100', name: 'קופסאות טייק אוויי 1 ליטר עם מכסה, 100 יחידות', unit: 'ils' },
+  cola:        { key: 'cola_24_cans', name: 'ארגז קולה, 24 פחיות', unit: 'ils' },
+  water:       { key: 'water_6x15l', name: 'שישיית מים 1.5 ליטר', unit: 'ils' },
+  ice:         { key: 'ice_kg', name: 'קרח', unit: 'ils', per: 'לק״ג' },
+  vacuum:      { key: 'vacuum_bags_20x30_100', name: 'שקיות ואקום 20×30, 100 יחידות', unit: 'ils' },
+  scale:       { key: 'scale_inspection', name: 'בדיקה וכיול של מאזני מסחר', unit: 'ils', per: 'לבדיקה' },
   pos:         { key: 'pos_system_month', name: 'מערכת קופה', unit: 'ils', per: 'לחודש' },
   tillRoll:    { key: 'till_roll_80mm', name: 'גליל נייר לקופה 80 מ״מ', unit: 'ils', per: 'לגליל' },
-  courier:     { key: 'courier_parcel_5kg', name: 'משלוח חבילה עד 5 ק״ג', unit: 'ils', per: 'למשלוח' },
   bags:        { key: 'tshirt_bags_kg', name: 'שקיות גופייה', unit: 'ils', per: 'לק״ג' },
+  paperBags:   { key: 'paper_bags_100', name: 'שקיות נייר עם ידיות, 100 יחידות', unit: 'ils' },
+  hangers:     { key: 'hangers_100', name: 'קולבים, 100 יחידות', unit: 'ils' },
+  giftWrap:    { key: 'gift_wrap_roll', name: 'נייר עטיפה למתנות', unit: 'ils', per: 'לגליל' },
+  bubble:      { key: 'bubble_wrap_roll', name: 'ניילון בועות', unit: 'ils', per: 'לגליל' },
+  stretch:     { key: 'stretch_film_roll', name: 'ניילון נצמד לאריזה (סטרץ׳)', unit: 'ils', per: 'לגליל' },
+  courier:     { key: 'courier_parcel_5kg', name: 'משלוח חבילה עד 5 ק״ג', unit: 'ils', per: 'למשלוח' },
+  localDel:    { key: 'local_delivery', name: 'שליח עירוני', unit: 'ils', per: 'למשלוח' },
+  storeSite:   { key: 'store_platform_month', name: 'מערכת החנות באתר (שופיפיי, ויקס וכו׳)', unit: 'ils', per: 'לחודש' },
   cleaning:    { key: 'cleaning_month', name: 'ניקיון', unit: 'ils', per: 'לחודש' },
+  music:       { key: 'music_license_year', name: 'רישיון להשמעת מוזיקה בעסק', unit: 'ils', per: 'לשנה' },
+  guard:       { key: 'security_guard_hour', name: 'מאבטח', unit: 'ils', per: 'לשעה' },
+  members:     { key: 'members_app_month', name: 'מערכת לניהול מנויים', unit: 'ils', per: 'לחודש' },
+  crm:         { key: 'crm_month', name: 'מערכת לניהול לקוחות', unit: 'ils', per: 'לחודש' },
+  editing:     { key: 'editing_software_month', name: 'תוכנות עיצוב ועריכה', unit: 'ils', per: 'לחודש' },
+  a4:          { key: 'a4_paper_box_5', name: 'נייר צילום A4, קרטון של 5 חבילות', unit: 'ils' },
+  medWaste:    { key: 'medical_waste_month', name: 'פינוי פסולת רפואית', unit: 'ils', per: 'לחודש' },
+  microfiber:  { key: 'microfiber_cloths_50', name: 'מטליות מיקרופייבר, 50 יחידות', unit: 'ils' },
+  trashBags:   { key: 'trash_bags_roll', name: 'שקיות אשפה גדולות', unit: 'ils', per: 'לגליל' },
+  vanLease:    { key: 'van_lease_month', name: 'ליסינג לרכב מסחרי', unit: 'ils', per: 'לחודש' },
+  diesel:      { key: 'diesel_l', name: 'סולר', unit: 'ils', per: 'לליטר' },
+  indPaper:    { key: 'industrial_paper_roll', name: 'נייר תעשייתי', unit: 'ils', per: 'לגליל' },
+  tire:        { key: 'tire_205_55_r16', name: 'צמיג 205/55R16', unit: 'ils', per: 'ליחידה' },
+  cement:      { key: 'cement_bag_25kg', name: 'שק מלט 25 ק״ג', unit: 'ils' },
+  paint:       { key: 'wall_paint_18l', name: 'דלי צבע לבן לקירות, 18 ליטר', unit: 'ils' },
+  silicone:    { key: 'silicone_tube', name: 'שפופרת סיליקון', unit: 'ils', per: 'ליחידה' },
+  screws:      { key: 'wood_screws_500', name: 'ברגים לעץ, קופסה של 500', unit: 'ils' },
+  soil:        { key: 'potting_soil_50l', name: 'שק אדמת שתילה 50 ליטר', unit: 'ils' },
+  fertilizer:  { key: 'slow_fertilizer_kg', name: 'דשן איטי', unit: 'ils', per: 'לק״ג' },
+  bookingCom:  { key: 'booking_com_pct', name: 'עמלת בוקינג', unit: 'pct', max: 40 },
 };
 
 const GENERAL = [
@@ -2223,18 +2263,17 @@ const STANDING = {
   allKey: 'all',      // הענף שבו נשמרות ההוצאות הכלליות
   rpc: 'hamozil_share_prices',
   counts: 'hamozil_sector_counts',
-  /* group = הכותרת בתפריט הבחירה. who = איך קוראים לכל הענף במשפט ("כשיצטרפו מספיק …") */
+  /* group = הכותרת בתפריט הבחירה. who = איך קוראים לכל הענף במשפט ("כשיצטרפו מספיק …").
+     key של ענף קיים לא משנים — הנתונים שכבר נשמרו קשורים אליו. */
   sectors: [
+    /* ---------- אוכל ומשקאות ---------- */
     { group: 'אוכל ומשקאות', key: 'restaurant', name: 'מסעדות', who: 'מסעדות', items: [
-      P.wolt, P.oil,
-      { key: 'gas_cylinder_48kg', name: 'בלון גז 48 ק״ג', unit: 'ils' },
-      P.chicken,
+      P.wolt, P.oil, P.gas48, P.chicken,
       { key: 'ground_beef_kg', name: 'בשר בקר טחון', unit: 'ils', per: 'לק״ג' },
-      { key: 'takeaway_box_1l_100', name: 'קופסאות טייק אוויי 1 ליטר עם מכסה, 100 יחידות', unit: 'ils' },
+      P.takeaway,
     ]},
     { group: 'אוכל ומשקאות', key: 'cafe', name: 'בתי קפה', who: 'בתי קפה', items: [
-      P.coffee,
-      { key: 'milk_3pct_1l', name: 'חלב 3%', unit: 'ils', per: 'לליטר' },
+      P.coffee, P.milk,
       { key: 'paper_cup_8oz_1000', name: 'כוסות נייר 8 אונקיות, 1,000 יחידות', unit: 'ils' },
       { key: 'croissant_frozen_unit', name: 'קרואסון קפוא', unit: 'ils', per: 'ליחידה' },
       P.wolt,
@@ -2246,33 +2285,171 @@ const STANDING = {
       { key: 'pizza_box_family', name: 'קרטון לפיצה משפחתית', unit: 'ils', per: 'ליחידה' },
       P.wolt,
     ]},
+    { group: 'אוכל ומשקאות', key: 'street_food', name: 'פלאפל, שווארמה ומזון מהיר', who: 'עסקי פלאפל, שווארמה ומזון מהיר', items: [
+      P.oil,
+      { key: 'pita_unit', name: 'פיתה', unit: 'ils', per: 'ליחידה' },
+      { key: 'dry_chickpeas_25kg', name: 'שק חומוס יבש 25 ק״ג', unit: 'ils' },
+      { key: 'raw_tahini_kg', name: 'טחינה גולמית', unit: 'ils', per: 'לק״ג' },
+      P.thigh, P.wolt,
+    ]},
+    { group: 'אוכל ומשקאות', key: 'sushi', name: 'סושי ומטבח אסייתי', who: 'מסעדות סושי ומטבח אסייתי', items: [
+      { key: 'sushi_rice_kg', name: 'אורז לסושי', unit: 'ils', per: 'לק״ג' },
+      { key: 'salmon_fillet_kg', name: 'פילה סלמון טרי', unit: 'ils', per: 'לק״ג' },
+      { key: 'nori_50', name: 'אצות נורי, 50 דפים', unit: 'ils' },
+      { key: 'soy_sauce_l', name: 'רוטב סויה', unit: 'ils', per: 'לליטר' },
+      P.wolt,
+    ]},
     { group: 'אוכל ומשקאות', key: 'bakery', name: 'מאפיות וקונדיטוריות', who: 'מאפיות וקונדיטוריות', items: [
       P.flour,
       { key: 'fresh_yeast_kg', name: 'שמרים טריים', unit: 'ils', per: 'לק״ג' },
       { key: 'butter_kg', name: 'חמאה', unit: 'ils', per: 'לק״ג' },
-      { key: 'sugar_25kg', name: 'שק סוכר 25 ק״ג', unit: 'ils' },
+      P.sugar,
       { key: 'eggs_tray_30_l', name: 'מגש 30 ביצים, גודל L', unit: 'ils' },
-    ]},
-    { group: 'אוכל ומשקאות', key: 'butcher', name: 'אטליזים וקצביות', who: 'אטליזים וקצביות', items: [
-      { key: 'entrecote_kg', name: 'אנטריקוט טרי', unit: 'ils', per: 'לק״ג' },
-      { key: 'beef_shoulder_kg', name: 'כתף בקר', unit: 'ils', per: 'לק״ג' },
-      P.chicken,
-      { key: 'chicken_thigh_kg', name: 'פרגיות', unit: 'ils', per: 'לק״ג' },
-      { key: 'vacuum_bags_20x30_100', name: 'שקיות ואקום 20×30, 100 יחידות', unit: 'ils' },
     ]},
     { group: 'אוכל ומשקאות', key: 'catering', name: 'קייטרינג ואוכל ביתי', who: 'עסקי קייטרינג ואוכל ביתי', items: [
       P.chicken, P.oil,
       { key: 'rice_25kg', name: 'שק אורז 25 ק״ג', unit: 'ils' },
-      { key: 'takeaway_box_1l_100', name: 'קופסאות טייק אוויי 1 ליטר עם מכסה, 100 יחידות', unit: 'ils' },
+      P.takeaway,
       { key: 'gas_cylinder_12kg', name: 'בלון גז 12 ק״ג', unit: 'ils' },
     ]},
-    { group: 'אוכל ומשקאות', key: 'grocery', name: 'מכולות ומינימרקטים', who: 'מכולות ומינימרקטים', items: [
-      { key: 'cola_24_cans', name: 'ארגז קולה, 24 פחיות', unit: 'ils' },
-      { key: 'water_6x15l', name: 'שישיית מים 1.5 ליטר', unit: 'ils' },
-      P.bags, P.tillRoll, P.pos,
+    { group: 'אוכל ומשקאות', key: 'bar', name: 'ברים ופאבים', who: 'ברים ופאבים', items: [
+      { key: 'beer_keg_30l', name: 'חבית בירה 30 ליטר', unit: 'ils' },
+      P.cola, P.ice, P.music, P.guard,
     ]},
 
-    { group: 'יופי וטיפוח', key: 'barber', name: 'מספרות', who: 'מספרות', items: [
+    /* ---------- חנויות מזון ---------- */
+    { group: 'חנויות מזון', key: 'grocery', name: 'מכולות, מינימרקטים וקיוסקים', who: 'מכולות, מינימרקטים וקיוסקים', items: [
+      P.cola, P.water, P.bags, P.tillRoll, P.pos,
+    ]},
+    { group: 'חנויות מזון', key: 'butcher', name: 'אטליזים וקצביות', who: 'אטליזים וקצביות', items: [
+      { key: 'entrecote_kg', name: 'אנטריקוט טרי', unit: 'ils', per: 'לק״ג' },
+      { key: 'beef_shoulder_kg', name: 'כתף בקר', unit: 'ils', per: 'לק״ג' },
+      P.chicken, P.thigh, P.vacuum, P.scale,
+    ]},
+    { group: 'חנויות מזון', key: 'greengrocer', name: 'ירקות ופירות', who: 'חנויות ירקות ופירות', items: [
+      { key: 'potatoes_kg', name: 'תפוחי אדמה מהסיטונאי', unit: 'ils', per: 'לק״ג' },
+      { key: 'onions_kg', name: 'בצל יבש מהסיטונאי', unit: 'ils', per: 'לק״ג' },
+      { key: 'tomatoes_kg', name: 'עגבניות מהסיטונאי', unit: 'ils', per: 'לק״ג' },
+      P.bags, P.scale, P.localDel,
+    ]},
+    { group: 'חנויות מזון', key: 'deli', name: 'מעדניות וגבינות', who: 'מעדניות', items: [
+      { key: 'yellow_cheese_28_kg', name: 'גבינה צהובה 28% בגוש', unit: 'ils', per: 'לק״ג' },
+      { key: 'smoked_turkey_kg', name: 'חזה הודו מעושן', unit: 'ils', per: 'לק״ג' },
+      { key: 'green_olives_kg', name: 'זיתים ירוקים', unit: 'ils', per: 'לק״ג' },
+      P.vacuum, P.scale,
+    ]},
+    { group: 'חנויות מזון', key: 'sweets', name: 'ממתקים, פיצוחים ותבלינים', who: 'חנויות ממתקים, פיצוחים ותבלינים', items: [
+      { key: 'cashew_kg', name: 'קשיו טבעי', unit: 'ils', per: 'לק״ג' },
+      { key: 'almonds_kg', name: 'שקדים טבעיים', unit: 'ils', per: 'לק״ג' },
+      { key: 'sunflower_seeds_kg', name: 'גרעינים שחורים', unit: 'ils', per: 'לק״ג' },
+      { key: 'paprika_kg', name: 'פפריקה מתוקה', unit: 'ils', per: 'לק״ג' },
+      { key: 'cellophane_bags_1000', name: 'שקיות צלופן, 1,000 יחידות', unit: 'ils' },
+      P.scale,
+    ]},
+    { group: 'חנויות מזון', key: 'liquor', name: 'משקאות ואלכוהול', who: 'חנויות משקאות', items: [
+      { key: 'beer_case_24', name: 'ארגז בירה מקומית, 24 בקבוקים', unit: 'ils' },
+      { key: 'wine_gift_box', name: 'קופסת מתנה לבקבוק יין', unit: 'ils', per: 'ליחידה' },
+      P.cola, P.ice, P.pos, P.localDel,
+    ]},
+
+    /* ---------- חנויות אופנה וטיפוח ---------- */
+    { group: 'חנויות אופנה וטיפוח', key: 'fashion', name: 'בגדים', who: 'חנויות בגדים', items: [
+      P.hangers, P.paperBags,
+      { key: 'security_tags_1000', name: 'תגיות אבטחה לבגדים, 1,000 יחידות', unit: 'ils' },
+      P.pos, P.courier,
+    ]},
+    { group: 'חנויות אופנה וטיפוח', key: 'shoes', name: 'נעליים', who: 'חנויות נעליים', items: [
+      P.paperBags,
+      { key: 'tryon_socks_100', name: 'גרבי מדידה חד-פעמיים, 100 יחידות', unit: 'ils' },
+      { key: 'insoles_pair', name: 'מדרסים בסיסיים', unit: 'ils', per: 'לזוג' },
+      P.pos, P.courier,
+    ]},
+    { group: 'חנויות אופנה וטיפוח', key: 'jewelry', name: 'תכשיטים ושעונים', who: 'חנויות תכשיטים ושעונים', items: [
+      { key: 'jewelry_boxes_100', name: 'קופסאות לתכשיטים, 100 יחידות', unit: 'ils' },
+      { key: 'watch_batteries_100', name: 'סוללות לשעונים, 100 יחידות', unit: 'ils' },
+      { key: 'stock_insurance_year', name: 'ביטוח מלאי ותכולה', unit: 'ils', per: 'לשנה' },
+      P.giftWrap, P.pos, P.courier,
+    ]},
+    { group: 'חנויות אופנה וטיפוח', key: 'optics', name: 'אופטיקה', who: 'חנויות אופטיקה', items: [
+      { key: 'lens_pair_basic', name: 'זוג עדשות ראייה בסיסיות מהמעבדה', unit: 'ils', per: 'לזוג' },
+      { key: 'contacts_monthly_box', name: 'קופסת עדשות מגע חודשיות', unit: 'ils', per: 'לקופסה' },
+      { key: 'glasses_cases_100', name: 'נרתיקים למשקפיים, 100 יחידות', unit: 'ils' },
+      P.booking, P.pos,
+    ]},
+    { group: 'חנויות אופנה וטיפוח', key: 'beauty_shop', name: 'פארם, קוסמטיקה ובשמים', who: 'חנויות פארם וקוסמטיקה', items: [
+      { key: 'perfume_samples_100', name: 'בקבוקוני דוגמית לבושם, 100 יחידות', unit: 'ils' },
+      P.paperBags, P.giftWrap, P.pos, P.courier,
+    ]},
+
+    /* ---------- חנויות לבית ולגן ---------- */
+    { group: 'חנויות לבית ולגן', key: 'housewares', name: 'כלי בית ומתנות', who: 'חנויות כלי בית ומתנות', items: [
+      P.giftWrap, P.bubble, P.paperBags, P.pos, P.courier,
+    ]},
+    { group: 'חנויות לבית ולגן', key: 'furniture', name: 'רהיטים ומזרנים', who: 'חנויות רהיטים ומזרנים', items: [
+      { key: 'furniture_delivery', name: 'הובלת רהיט ללקוח', unit: 'ils', per: 'להובלה' },
+      { key: 'furniture_assembly', name: 'הרכבה אצל הלקוח', unit: 'ils', per: 'להרכבה' },
+      { key: 'warehouse_m2_month', name: 'שכירות מחסן', unit: 'ils', per: 'למ״ר לחודש' },
+      P.stretch, P.pos,
+    ]},
+    { group: 'חנויות לבית ולגן', key: 'hardware', name: 'חומרי בניין, צבע וכלי עבודה', who: 'חנויות לחומרי בניין וכלי עבודה', items: [
+      P.cement, P.paint, P.silicone, P.screws, P.pos, P.vanLease,
+    ]},
+    { group: 'חנויות לבית ולגן', key: 'garden', name: 'משתלות וגינון', who: 'משתלות', items: [
+      P.soil,
+      { key: 'plant_pots_17cm_100', name: 'עציצי פלסטיק 17 ס״מ, 100 יחידות', unit: 'ils' },
+      P.fertilizer,
+      { key: 'drip_line_100m', name: 'צינור טפטוף, גליל 100 מטר', unit: 'ils' },
+      P.localDel,
+    ]},
+    { group: 'חנויות לבית ולגן', key: 'flowers', name: 'פרחים', who: 'חנויות פרחים', items: [
+      { key: 'roses_bunch_20', name: 'צרור 20 ורדים מהסיטונאי', unit: 'ils' },
+      { key: 'floral_foam_brick', name: 'ספוג לסידור פרחים', unit: 'ils', per: 'ללבנה' },
+      { key: 'bouquet_cellophane_roll', name: 'צלופן לעטיפת זרים', unit: 'ils', per: 'לגליל' },
+      P.localDel, P.pos,
+    ]},
+
+    /* ---------- חנויות פנאי, ילדים ומחשבים ---------- */
+    { group: 'חנויות פנאי, ילדים ומחשבים', key: 'kids', name: 'תינוקות, ילדים וצעצועים', who: 'חנויות לתינוקות, לילדים ולצעצועים', items: [
+      { key: 'batteries_aa_40', name: 'סוללות AA, 40 יחידות', unit: 'ils' },
+      P.giftWrap, P.paperBags, P.pos, P.courier,
+    ]},
+    { group: 'חנויות פנאי, ילדים ומחשבים', key: 'pets', name: 'חיות מחמד', who: 'חנויות לחיות מחמד', items: [
+      { key: 'dog_food_15kg', name: 'שק מזון יבש לכלבים 15 ק״ג', unit: 'ils' },
+      { key: 'cat_litter_10l', name: 'חול לחתולים 10 ליטר', unit: 'ils' },
+      P.bags, P.pos, P.localDel,
+    ]},
+    { group: 'חנויות פנאי, ילדים ומחשבים', key: 'sport', name: 'ספורט ואופניים', who: 'חנויות ספורט ואופניים', items: [
+      { key: 'bike_inner_tube', name: 'פנימית לאופניים', unit: 'ils', per: 'ליחידה' },
+      { key: 'ebike_battery_48v', name: 'סוללה לאופניים חשמליים 48V', unit: 'ils', per: 'ליחידה' },
+      P.paperBags, P.pos, P.courier,
+    ]},
+    { group: 'חנויות פנאי, ילדים ומחשבים', key: 'books', name: 'ספרים וכלי כתיבה', who: 'חנויות ספרים וכלי כתיבה', items: [
+      P.a4,
+      { key: 'pens_blue_50', name: 'עטים כחולים, 50 יחידות', unit: 'ils' },
+      { key: 'notebooks_a4_10', name: 'מחברות A4, 10 יחידות', unit: 'ils' },
+      P.giftWrap, P.pos,
+    ]},
+    { group: 'חנויות פנאי, ילדים ומחשבים', key: 'phones', name: 'סלולר, מחשבים ואביזרים', who: 'חנויות סלולר ומחשבים', items: [
+      { key: 'screen_protectors_100', name: 'מגני מסך מזכוכית, 100 יחידות', unit: 'ils' },
+      { key: 'phone_case_silicone', name: 'כיסוי סיליקון לטלפון', unit: 'ils', per: 'ליחידה' },
+      { key: 'usb_c_cable', name: 'כבל USB-C', unit: 'ils', per: 'ליחידה' },
+      { key: 'charger_20w', name: 'מטען 20W', unit: 'ils', per: 'ליחידה' },
+      P.pos, P.courier,
+    ]},
+
+    /* ---------- חנויות אונליין ואחרות ---------- */
+    { group: 'חנויות אונליין ואחרות', key: 'ecommerce', name: 'חנויות אונליין', who: 'חנויות אונליין', items: [
+      P.courier, P.storeSite,
+      { key: 'online_clearing_pct', name: 'עמלת סליקה באתר', unit: 'pct', max: 10 },
+      { key: 'shipping_box_medium', name: 'קרטון משלוח בינוני', unit: 'ils', per: 'ליחידה' },
+      P.bubble,
+    ]},
+    { group: 'חנויות אונליין ואחרות', key: 'retail', name: 'חנות מסוג אחר', who: 'חנויות', items: [
+      P.pos, P.tillRoll, P.bags, P.paperBags, P.courier,
+    ]},
+
+    /* ---------- יופי וטיפוח ---------- */
+    { group: 'יופי וטיפוח', key: 'barber', name: 'מספרות ועיצוב שיער', who: 'מספרות', items: [
       P.booking,
       { key: 'razor_blades_100', name: 'סכיני גילוח, 100 יחידות', unit: 'ils' },
       { key: 'hair_color_tube_60ml', name: 'צבע לשיער, שפופרת 60 מ״ל', unit: 'ils' },
@@ -2290,7 +2467,18 @@ const STANDING = {
       { key: 'wax_kg', name: 'שעווה', unit: 'ils', per: 'לק״ג' },
       P.couch, P.gloves, P.laundry,
     ]},
+    { group: 'יופי וטיפוח', key: 'spa', name: 'ספא ועיסויים', who: 'מכוני ספא ועיסוי', items: [
+      { key: 'massage_oil_l', name: 'שמן עיסוי', unit: 'ils', per: 'לליטר' },
+      P.laundry, P.couch, P.booking, P.liability,
+    ]},
+    { group: 'יופי וטיפוח', key: 'tattoo', name: 'קעקועים ופירסינג', who: 'סטודיו לקעקועים', items: [
+      { key: 'tattoo_needles_50', name: 'מחטי קעקוע, 50 יחידות', unit: 'ils' },
+      { key: 'tattoo_ink_30ml', name: 'דיו לקעקוע 30 מ״ל', unit: 'ils', per: 'לבקבוק' },
+      { key: 'cling_film_roll', name: 'ניילון נצמד', unit: 'ils', per: 'לגליל' },
+      P.gloves, P.booking,
+    ]},
 
+    /* ---------- בריאות וכושר ---------- */
     { group: 'בריאות וכושר', key: 'clinic', name: 'קליניקות ומטפלים', who: 'קליניקות ומטפלים', items: [
       P.booking, P.gloves, P.couch, P.liability,
     ]},
@@ -2298,63 +2486,175 @@ const STANDING = {
       P.gloves,
       { key: 'face_masks_50', name: 'מסכות כירורגיות, 50 יחידות', unit: 'ils' },
       { key: 'lab_crown_unit', name: 'כתר חרסינה ממעבדה', unit: 'ils', per: 'ליחידה' },
-      P.liability, P.booking,
+      P.medWaste, P.liability, P.booking,
+    ]},
+    { group: 'בריאות וכושר', key: 'vet', name: 'וטרינרים', who: 'מרפאות וטרינריות', items: [
+      { key: 'rabies_vaccine_dose', name: 'חיסון כלבת', unit: 'ils', per: 'למנה' },
+      { key: 'syringes_100', name: 'מזרקים 2.5 מ״ל, 100 יחידות', unit: 'ils' },
+      P.gloves, P.medWaste, P.booking,
     ]},
     { group: 'בריאות וכושר', key: 'fitness', name: 'חדרי כושר וסטודיו', who: 'חדרי כושר וסטודיו', items: [
-      { key: 'members_app_month', name: 'מערכת לניהול מנויים', unit: 'ils', per: 'לחודש' },
-      { key: 'third_party_insurance_year', name: 'ביטוח צד ג׳', unit: 'ils', per: 'לשנה' },
-      P.cleaning, P.laundry,
+      P.members, P.thirdParty, P.cleaning, P.laundry, P.music,
     ]},
 
-    { group: 'חנויות', key: 'fashion', name: 'חנויות בגדים', who: 'חנויות בגדים', items: [
-      { key: 'hangers_100', name: 'קולבים, 100 יחידות', unit: 'ils' },
-      { key: 'paper_bags_100', name: 'שקיות נייר עם ידיות, 100 יחידות', unit: 'ils' },
-      P.pos, P.courier,
-    ]},
-    { group: 'חנויות', key: 'ecommerce', name: 'חנויות אונליין', who: 'חנויות אונליין', items: [
-      P.courier,
-      { key: 'store_platform_month', name: 'מערכת החנות באתר (שופיפיי, ויקס וכו׳)', unit: 'ils', per: 'לחודש' },
-      { key: 'online_clearing_pct', name: 'עמלת סליקה באתר', unit: 'pct', max: 10 },
-      { key: 'shipping_box_medium', name: 'קרטון משלוח בינוני', unit: 'ils', per: 'ליחידה' },
-      { key: 'bubble_wrap_roll', name: 'ניילון בועות', unit: 'ils', per: 'לגליל' },
-    ]},
-    { group: 'חנויות', key: 'retail', name: 'חנויות אחרות', who: 'חנויות', items: [
-      P.pos, P.tillRoll, P.bags, P.courier,
-    ]},
-
-    { group: 'רכב', key: 'garage', name: 'מוסכים', who: 'מוסכים', items: [
+    /* ---------- רכב, הובלה ונהגים ---------- */
+    { group: 'רכב, הובלה ונהגים', key: 'garage', name: 'מוסכים', who: 'מוסכים', items: [
       { key: 'engine_oil_5w30_l', name: 'שמן מנוע 5W-30', unit: 'ils', per: 'לליטר' },
-      { key: 'tire_205_55_r16', name: 'צמיג 205/55R16', unit: 'ils', per: 'ליחידה' },
+      P.tire,
       { key: 'coolant_l', name: 'נוזל קירור', unit: 'ils', per: 'לליטר' },
       { key: 'car_ac_gas_kg', name: 'גז למזגן רכב', unit: 'ils', per: 'לק״ג' },
-      { key: 'industrial_paper_roll', name: 'נייר תעשייתי', unit: 'ils', per: 'לגליל' },
+      P.indPaper,
+    ]},
+    { group: 'רכב, הובלה ונהגים', key: 'tires', name: 'פנצ׳ריות וצמיגים', who: 'פנצ׳ריות', items: [
+      P.tire,
+      { key: 'tire_valves_100', name: 'ונטילים, 100 יחידות', unit: 'ils' },
+      { key: 'wheel_weights_kg', name: 'משקולות איזון', unit: 'ils', per: 'לק״ג' },
+      { key: 'tire_disposal_unit', name: 'פינוי צמיג ישן', unit: 'ils', per: 'לצמיג' },
+      P.indPaper,
+    ]},
+    { group: 'רכב, הובלה ונהגים', key: 'bodyshop', name: 'פחחות וצבע', who: 'מוסכי פחחות וצבע', items: [
+      { key: 'car_paint_l', name: 'צבע לרכב', unit: 'ils', per: 'לליטר' },
+      { key: 'clear_coat_l', name: 'לכה שקופה לרכב', unit: 'ils', per: 'לליטר' },
+      { key: 'sandpaper_100', name: 'נייר שיוף, 100 דפים', unit: 'ils' },
+      { key: 'masking_tape_roll', name: 'נייר הדבקה לצבע (מסקינג)', unit: 'ils', per: 'לגליל' },
+      P.indPaper,
+    ]},
+    { group: 'רכב, הובלה ונהגים', key: 'carwash', name: 'שטיפת רכב וניקוי פנים', who: 'עסקי שטיפת רכב', items: [
+      { key: 'car_shampoo_20l', name: 'שמפו לרכב 20 ליטר', unit: 'ils' },
+      { key: 'car_wax_l', name: 'ווקס לרכב', unit: 'ils', per: 'לליטר' },
+      P.microfiber, P.vanLease,
+    ]},
+    { group: 'רכב, הובלה ונהגים', key: 'movers', name: 'הובלות ושליחויות', who: 'חברות הובלה ושליחים', items: [
+      { key: 'moving_boxes_100', name: 'קרטונים להובלה, 100 יחידות', unit: 'ils' },
+      P.stretch, P.diesel,
+      { key: 'truck_insurance_year', name: 'ביטוח משאית', unit: 'ils', per: 'לשנה' },
+      P.vanLease,
+    ]},
+    { group: 'רכב, הובלה ונהגים', key: 'drivers', name: 'מוניות, הסעות ובתי ספר לנהיגה', who: 'נהגים ובתי ספר לנהיגה', items: [
+      { key: 'car_lease_month', name: 'ליסינג לרכב', unit: 'ils', per: 'לחודש' },
+      { key: 'car_insurance_year', name: 'ביטוח רכב מקיף', unit: 'ils', per: 'לשנה' },
+      { key: 'fuel_95_l', name: 'בנזין 95', unit: 'ils', per: 'לליטר' },
+      { key: 'car_service', name: 'טיפול תקופתי לרכב', unit: 'ils', per: 'לטיפול' },
+      P.booking,
     ]},
 
-    { group: 'תיירות ואירוח', key: 'lodging', name: 'צימרים ובתי הארחה', who: 'צימרים ובתי הארחה', items: [
-      { key: 'booking_com_pct', name: 'עמלת בוקינג', unit: 'pct', max: 40 },
-      { key: 'airbnb_pct', name: 'עמלת איירביאנבי', unit: 'pct', max: 40 },
-      { key: 'linen_laundry_set', name: 'כביסת סט מצעים', unit: 'ils', per: 'לסט' },
-      { key: 'turnover_cleaning', name: 'ניקיון יחידה בין אורחים', unit: 'ils', per: 'לניקיון' },
-    ]},
-
-    { group: 'בנייה ובית', key: 'construction', name: 'קבלנים ושיפוצים', who: 'קבלנים ועסקי שיפוצים', items: [
-      { key: 'cement_bag_25kg', name: 'שק מלט 25 ק״ג', unit: 'ils' },
+    /* ---------- בנייה, בית ובעלי מקצוע ---------- */
+    { group: 'בנייה, בית ובעלי מקצוע', key: 'construction', name: 'קבלנים ושיפוצים', who: 'קבלנים ועסקי שיפוצים', items: [
+      P.cement,
       { key: 'block_20cm_unit', name: 'בלוק 20', unit: 'ils', per: 'ליחידה' },
       { key: 'waste_container_8m3', name: 'מכולה לפינוי פסולת 8 קוב', unit: 'ils', per: 'לפינוי' },
       { key: 'contractor_insurance_year', name: 'ביטוח קבלנים', unit: 'ils', per: 'לשנה' },
+      P.paint,
+    ]},
+    { group: 'בנייה, בית ובעלי מקצוע', key: 'trades', name: 'חשמלאים, אינסטלטורים ומיזוג', who: 'חשמלאים, אינסטלטורים וטכנאי מיזוג', items: [
+      { key: 'cable_3x2_5_100m', name: 'כבל חשמל 3×2.5, גליל 100 מטר', unit: 'ils' },
+      { key: 'pvc_pipe_110_m', name: 'צינור ביוב 110 מ״מ', unit: 'ils', per: 'למטר' },
+      { key: 'ac_gas_r32_kg', name: 'גז למזגנים R32', unit: 'ils', per: 'לק״ג' },
+      P.vanLease, P.liability,
+    ]},
+    { group: 'בנייה, בית ובעלי מקצוע', key: 'carpentry', name: 'נגריות ומסגריות', who: 'נגריות ומסגריות', items: [
+      { key: 'plywood_18mm_sheet', name: 'לוח סנדוויץ׳ 18 מ״מ', unit: 'ils', per: 'ללוח' },
+      P.screws,
+      { key: 'welding_wire_kg', name: 'חוט ריתוך', unit: 'ils', per: 'לק״ג' },
+      P.vanLease,
+    ]},
+    { group: 'בנייה, בית ובעלי מקצוע', key: 'cleaning_co', name: 'חברות ניקיון', who: 'חברות ניקיון', items: [
+      { key: 'floor_cleaner_4l', name: 'נוזל לניקוי רצפות 4 ליטר', unit: 'ils' },
+      P.trashBags, P.microfiber, P.gloves, P.vanLease,
+    ]},
+    { group: 'בנייה, בית ובעלי מקצוע', key: 'pest', name: 'הדברה', who: 'מדבירים', items: [
+      { key: 'pro_insecticide_l', name: 'חומר הדברה מקצועי', unit: 'ils', per: 'לליטר' },
+      { key: 'rodent_bait_kg', name: 'פיתיון למכרסמים', unit: 'ils', per: 'לק״ג' },
+      P.gloves, P.vanLease, P.liability,
+    ]},
+    { group: 'בנייה, בית ובעלי מקצוע', key: 'gardener', name: 'גננים ואחזקת גינות', who: 'גננים', items: [
+      { key: 'green_waste_removal', name: 'פינוי גזם', unit: 'ils', per: 'לפינוי' },
+      P.soil, P.fertilizer,
+      { key: 'trimmer_line_kg', name: 'חוט לחרמש', unit: 'ils', per: 'לק״ג' },
+      P.vanLease, P.thirdParty,
     ]},
 
+    /* ---------- תיירות ואירוח ---------- */
+    { group: 'תיירות ואירוח', key: 'lodging', name: 'צימרים ובתי הארחה', who: 'צימרים ובתי הארחה', items: [
+      P.bookingCom,
+      { key: 'airbnb_pct', name: 'עמלת איירביאנבי', unit: 'pct', max: 40 },
+      P.linen,
+      { key: 'turnover_cleaning', name: 'ניקיון יחידה בין אורחים', unit: 'ils', per: 'לניקיון' },
+    ]},
+    { group: 'תיירות ואירוח', key: 'hotel', name: 'מלונות קטנים והוסטלים', who: 'מלונות קטנים והוסטלים', items: [
+      P.bookingCom, P.linen,
+      { key: 'toiletry_kit', name: 'ערכת טואלטיקה לחדר', unit: 'ils', per: 'לערכה' },
+      { key: 'hotel_system_month', name: 'מערכת לניהול המלון', unit: 'ils', per: 'לחודש' },
+      P.cleaning,
+    ]},
+    { group: 'תיירות ואירוח', key: 'travel', name: 'סוכנויות נסיעות ומדריכי טיולים', who: 'סוכנויות נסיעות ומדריכים', items: [
+      { key: 'flight_booking_system_month', name: 'מערכת להזמנת טיסות ומלונות', unit: 'ils', per: 'לחודש' },
+      { key: 'tour_bus_day', name: 'אוטובוס לטיול', unit: 'ils', per: 'ליום' },
+      P.liability, P.crm,
+    ]},
+
+    /* ---------- אירועים ושמחות ---------- */
+    { group: 'אירועים ושמחות', key: 'event_hall', name: 'אולמות וגני אירועים', who: 'אולמות וגני אירועים', items: [
+      { key: 'tablecloth_laundry', name: 'כביסת מפת שולחן', unit: 'ils', per: 'למפה' },
+      { key: 'table_centerpiece', name: 'סידור פרחים לשולחן', unit: 'ils', per: 'ליחידה' },
+      P.guard, P.music, P.gas48,
+    ]},
+    { group: 'אירועים ושמחות', key: 'photo', name: 'צלמים ואולפנים', who: 'צלמים', items: [
+      { key: 'photo_print_10x15', name: 'הדפסת תמונה 10×15', unit: 'ils', per: 'לתמונה' },
+      { key: 'album_30x30', name: 'אלבום 30×30 מהמעבדה', unit: 'ils', per: 'לאלבום' },
+      P.editing, P.equipIns,
+    ]},
+    { group: 'אירועים ושמחות', key: 'kids_party', name: 'הפעלות ומסיבות ילדים', who: 'מפעילי מסיבות ילדים', items: [
+      { key: 'balloons_100', name: 'בלונים, 100 יחידות', unit: 'ils' },
+      { key: 'helium_refill_10l', name: 'מילוי מיכל הליום 10 ליטר', unit: 'ils', per: 'למילוי' },
+      P.thirdParty, P.booking,
+    ]},
+
+    /* ---------- חינוך וילדים ---------- */
     { group: 'חינוך וילדים', key: 'kindergarten', name: 'גנים פרטיים ומעונות', who: 'גנים פרטיים ומעונות', items: [
       { key: 'child_lunch_day', name: 'ארוחת צהריים מקייטרינג', unit: 'ils', per: 'לילד ליום' },
       { key: 'child_accident_insurance_year', name: 'ביטוח תאונות אישיות', unit: 'ils', per: 'לילד לשנה' },
       P.cleaning,
     ]},
+    { group: 'חינוך וילדים', key: 'classes', name: 'חוגים ושיעורים פרטיים', who: 'מורים ומפעילי חוגים', items: [
+      { key: 'room_rent_hour', name: 'שכירת חדר לחוג', unit: 'ils', per: 'לשעה' },
+      P.booking, P.members, P.thirdParty,
+    ]},
 
+    /* ---------- משרדים ושירותים ---------- */
     { group: 'משרדים ושירותים', key: 'office', name: 'משרדים ונותני שירות', who: 'משרדים ונותני שירות', items: [
-      { key: 'a4_paper_box_5', name: 'נייר צילום A4, קרטון של 5 חבילות', unit: 'ils' },
+      P.a4,
       { key: 'office_software_month', name: 'תוכנה לניהול המשרד', unit: 'ils', per: 'לחודש' },
       { key: 'it_support_month', name: 'תמיכה במחשבים', unit: 'ils', per: 'לחודש' },
       P.cleaning,
+    ]},
+    { group: 'משרדים ושירותים', key: 'realestate', name: 'תיווך נדל״ן', who: 'משרדי תיווך', items: [
+      { key: 'property_ads_month', name: 'פרסום מודעות באתרי נדל״ן', unit: 'ils', per: 'לחודש' },
+      { key: 'for_sale_sign', name: 'שלט למכירה או להשכרה', unit: 'ils', per: 'ליחידה' },
+      P.crm, P.liability,
+    ]},
+    { group: 'משרדים ושירותים', key: 'digital', name: 'פרילנסרים, שיווק ודיגיטל', who: 'פרילנסרים ומשרדי דיגיטל', items: [
+      { key: 'web_hosting_month', name: 'אחסון אתר', unit: 'ils', per: 'לחודש' },
+      { key: 'domain_co_il_year', name: 'כתובת אתר co.il', unit: 'ils', per: 'לשנה' },
+      P.editing, P.crm, P.liability,
+    ]},
+    { group: 'משרדים ושירותים', key: 'printing', name: 'דפוס ושילוט', who: 'בתי דפוס ושילוט', items: [
+      { key: 'business_cards_1000', name: '1,000 כרטיסי ביקור מדפוס סיטונאי', unit: 'ils' },
+      { key: 'rollup_banner', name: 'רול-אפ 85×200', unit: 'ils', per: 'ליחידה' },
+      { key: 'print_vinyl_m2', name: 'ויניל להדפסה', unit: 'ils', per: 'למ״ר' },
+      P.a4,
+    ]},
+    { group: 'משרדים ושירותים', key: 'laundromat', name: 'מכבסות וניקוי יבש', who: 'מכבסות', items: [
+      { key: 'pro_detergent_20l', name: 'נוזל כביסה מקצועי 20 ליטר', unit: 'ils' },
+      { key: 'wire_hangers_500', name: 'קולבי ברזל, 500 יחידות', unit: 'ils' },
+      { key: 'garment_cover_roll', name: 'ניילון לכיסוי בגדים', unit: 'ils', per: 'לגליל' },
+      P.pos,
+    ]},
+    { group: 'משרדים ושירותים', key: 'tailor', name: 'תפירה ותיקוני בגדים', who: 'עסקי תפירה ותיקונים', items: [
+      { key: 'thread_spool_5000m', name: 'חוט תפירה, סליל 5,000 מטר', unit: 'ils' },
+      { key: 'zippers_20cm_100', name: 'רוכסנים 20 ס״מ, 100 יחידות', unit: 'ils' },
+      { key: 'sewing_machine_service', name: 'טיפול למכונת תפירה', unit: 'ils', per: 'לטיפול' },
+      P.hangers,
     ]},
 
     { group: 'אחר', key: 'other', name: 'עסק אחר', who: 'עסקים', items: [] },
@@ -2441,7 +2741,7 @@ function stPick(key) {
   stEl('stSector').value = stSector.key;
   const mine = stSector.items.length ? `
     <div class="st-group">
-      <h3>המוצרים של ${stSector.name}</h3>
+      <h3>המוצרים של ${stSector.who}</h3>
       <p class="st-sub">מושווים מול עסקים מאותו סוג בלבד</p>
       <div class="st-items">${stInputs(stSector.items, stLoad(stSector.key), 's')}</div>
     </div>` : '';
@@ -2517,7 +2817,7 @@ function stShow(sectorData, generalData) {
   const s = stSector;
   stEl('stOut').innerHTML = `
     <div class="st-res">
-      ${stBlock('המוצרים של ' + s.name + ' · מול עסקים מאותו סוג', s.items, sectorData)}
+      ${stBlock('המוצרים של ' + s.who + ' · מול עסקים מאותו סוג', s.items, sectorData)}
       ${stBlock('הוצאות שיש לכל עסק · מול כל העסקים', GENERAL, generalData)}
     </div>
     <div class="st-cta">
@@ -2596,7 +2896,7 @@ async function stSubmit(e) {
 function stToJoin() {
   if (VIEW !== 'business') setView('business');
   const biz = stEl('f_biz');
-  if (biz && !biz.value.trim() && stSector.key !== 'other') biz.value = stSector.name;
+  if (biz && !biz.value.trim() && stSector.key !== 'other') biz.value = stSector.who;
   stEl('join').scrollIntoView({ behavior: stStill() ? 'auto' : 'smooth', block: 'start' });
   stEl('f_name').focus({ preventScroll: true });
 }
@@ -2604,7 +2904,7 @@ function stToJoin() {
 function stShareSector() {
   const root = SITE.replace(/(business|private)\/$/, '');
   const url = root + '?s=' + stSector.key + '#standing';
-  const text = `בדקתי כמה אני משלם לעומת עסקים אחרים מהסוג שלי (${stSector.name}). ` +
+  const text = `בדקתי כמה אני משלם לעומת עסקים אחרים מהסוג שלי (${stSector.who}). ` +
                'זה אנונימי לגמרי, בלי שם ובלי טלפון, וכל עסק שמשתף מקרב את ההשוואה לכולנו:';
   window.open('https://wa.me/?text=' + encodeURIComponent(text + '\n' + url), '_blank');
 }
